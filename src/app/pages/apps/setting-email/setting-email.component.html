@@ -1,0 +1,53 @@
+<div class="p-gutter" vexContainer>
+    <div class="card">
+        <div class="border-b py-4 px-6" fxLayout="row" fxLayoutAlign="start center">
+          <h2 class="m-0 title" fxFlex="auto">SMTP setting for email communication</h2>
+        </div>
+      
+        <div class="py-5 px-5" fxLayout="row" fxLayout.lt-md="column">
+            <table>
+                <tr>
+                    <td class="td-width-left">
+                        <img src="http://localhost:4200/assets/img/illustrations/new_message.svg" style="width: 100%;"/>
+                    </td>
+                    <td class="td-width-right">
+                        <mat-form-field>
+                            <mat-label>SMTP Host</mat-label>
+                            <input [(ngModel)]="smtHost" matInput value="{{ smtHost }}">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>SMTP Port</mat-label>
+                            <input [(ngModel)]="mailPort" matInput value="{{ mailPort }}">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>SMTP Username</mat-label>
+                            <input [(ngModel)]="smtpName" matInput value="{{ smtpName }}">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>SMTP Password</mat-label>
+                            <input [(ngModel)]="smtpPass" matInput [type]="inputType" value="{{ smtpPass }}">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>From Email Address</mat-label>
+                            <input [(ngModel)]="mailFrom" matInput value="{{ mailFrom }}">
+                            <mat-icon [icIcon]="icMail" matSuffix></mat-icon>
+                        </mat-form-field>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="card-footer border-t py-3 px-6">
+            <div fxLayout="row" class="float-right" fxLayoutAlign="end right" fxLayoutGap="8px">
+              <button color="secondary" mat-raised-button type="button" class="mr-5"> Save</button>
+              <button (click)="testconnection()"  color="primary" mat-raised-button type="button" class="mr-5"> Test Connection</button>
+              <button (click)="resetForm()" color="secondary" mat-raised-button class="mr-5" type="button" > Remove Settings</button>
+            </div>
+            <br />
+            <br />
+          </div>
+    </div>
+</div>

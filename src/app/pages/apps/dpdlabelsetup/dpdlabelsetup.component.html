@@ -1,0 +1,189 @@
+<link rel="stylesheet" href="https://s3-us-west-1.amazonaws.com/khubweb/assets/global/plugins/bootstrap/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://login.sellershub.io/css/new-admin.css">
+<link rel="stylesheet" href="https://login.sellershub.io/css/components.css">
+<div class="row topbar margin-top-10 margin-bottom-10">
+  
+<
+    
+<div class="page-content-wrapper">
+    <!-- BEGIN PAGE HEAD -->
+   
+    <!-- END PAGE HEAD -->
+    <!-- BEGIN PAGE CONTENT -->
+    <div class="page-content">
+       <div id="maindiv">
+			<div class="row topbar margin-top-10">
+			<div class="col-md-2 col-sm-6 col-xs-6">
+				&nbsp;&nbsp;<label><img style="width:100px" src="https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubdpd.png"/></label>
+			</div>
+			<div class="col-md-6 col-sm-8 col-xs-8">
+				<div class="form-group">
+					<label><i class="fa fa-truck"></i> Manage DPD Integration</label>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-4 col-xs-4">
+				<div class="pull-right">
+					<a class="btn btn-sm btn-success btn-circle" onclick="savedpdsettingschanges(3,false)" href="javascript:void(0)"><i class="fa fa-check"></i> Save Changes</a>
+			
+	<!-- 				<a class="btn btn-sm btn-default btn-circle" target="_blank" href=""><i class="fa fa-share font-green"></i> Manifest</a> -->
+					<a class="btn btn-sm btn-default btn-circle"  routerLink="/apps/integration-shipping-courier"><i class="fa fa-times font-red"></i> Close</a>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+				<div class="col-md-12">
+					<div class="portlet transparent">
+						<div class="portlet">
+							<div class="portlet-body form">
+								<div class="portlet box">
+								   <div class="portlet-body">
+										<div class="">
+											<div class="tabbable-custom">
+												<ul class="nav nav-tabs">
+													<li class="active">
+														<a href="#tab_1_1" data-toggle="tab" aria-expanded="true"> Integration </a>
+													</li>
+
+													
+												   
+												</ul>
+	<div class="tab-content">
+													<div class="tab-pane active in" id="tab_1_1">
+														<div class="portlet-body form">
+															<!-----------------------------Form Start----------------------------------->
+															<div class="portlet box">
+																	<div class="">
+																		<div class="portlet transparent">
+																			<div class="">
+																				<div class="row">
+																				<div class="col-md-6">
+																					<div class="portlet box blue">
+	 <div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-truck"></i> Dpd Account Details
+	   </div>
+	</div>
+
+<div class="portlet-body">
+	  <form class="" role="form">
+		    <div class="form-group">
+			   <label>Customer Id</label>
+			  <input class="form-control" type="text" id="dpdCustomerId" value="{{toCustid}}"/>
+		   </div>
+
+		      <div clas="form-group">
+		          <label>User Id</label>
+			      <input class="form-control" type="text" id="dpdUserName" value="{{toUserid}}"/>
+		     </div>
+
+			 <div class="form-group">
+				 <label>Password</label>
+				  <input class="form-control" type="password" id="dpdPassword" value=""/>
+			</div>
+																									
+	 </form>
+
+			</div>
+		</div>
+<br>
+		    <div class="form-group">
+                       <label class="col-md-3 control-label">Label Format<span class="required">* </span></label>
+                
+                    <select id="labelformat" class="form-control">
+                    	 <option  selected value="">     <span>(Selected)</span></option>
+                        <option value="A4">A4</option>
+                        <option value="4X6">4X6</option>
+                    </select>
+                
+            </div>
+        
+	</div>
+
+	   <div class="col-md-6">
+			<div class="portlet box blue">
+               <div class="portlet-title">
+				 <div class="caption">
+					<i class="fa fa-truck"></i>Pickup Address Details
+				</div>
+	</div>
+
+	  <div class="portlet-body">
+		<form class="form-horizontal" role="form">
+		   <div class="form-body">
+
+                <div class="form-group">
+					     <label>Pickup Contact Name <span class="required"> * </span></label>
+						  <input class="form-control" type="text" id="dpdPickupContactName" value=""  />
+				 </div>
+
+		         <div class="form-group">
+			          <label>Pickup Phone Number <span class="required"> * </span></label>
+			          <input class="form-control" type="text" id="dpdPickPhone" value=""  />
+				 </div>
+
+
+				<div class="form-group">
+					     <label>Pickup Building <span class="required"> * </span></label>
+						 <input class="form-control" type="text" id="dpdPickupBuilding" value=""  />
+				 </div>
+
+				<div class="form-group">
+					   <label>Pickup Street <span class="required"> * </span></label>
+					   <input class="form-control" type="text" id="dpdPickupStreet" value=""  />
+				 </div>
+
+
+				<div class="form-group">
+					  <label>Pickup Locality <span class="required"> * </span></label>
+					  <input class="form-control" type="text" id="dpdPickupLocality" value=""  />
+				 </div>
+
+				 <div class="form-group">
+						<label>Pickup Town <span class="required"> * </span></label>
+					   <input class="form-control" type="text" id="dpdPickupTown" value=""  />
+				 </div>
+
+
+				 <div class="form-group">
+					    <label>Pickup Postcode <span class="required"> * </span></label>
+							  <input class="form-control" type="text" id="dpdPickupZip" value=""  />
+			     </div>
+
+
+			     <div class="form-group">
+					    <label>Pickup Country <span class="required"> * </span></label>
+							  <input class="form-control" type="text" id="dpdPickupCountry" value=""  />
+			     </div>
+
+
+			     <div class="form-group">
+					    <label>Pickup Country Code<span class="required"> * </span></label>
+							  <input class="form-control" type="text" id="dpdPickupCountryCode" value=""  />
+			     </div>
+                </div>
+        </form>
+    </div>
+</div>
+</div>																						
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-----------------------------Form Ends----------------------------------->
+</div>
+													
+													
+													
+													
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>

@@ -1,0 +1,53 @@
+<div class="w-full h-full" fxLayout="column" fxLayoutAlign="center center">
+  <div @fadeInUp class="card overflow-hidden w-full max-w-sm">
+    <div class="p-6 pb-0" fxLayout="column" fxLayoutAlign="center center">
+      <div class="fill-current text-center">
+        <img class="w-64" src="assets/img/demo/logo.png">
+      </div>
+    </div>
+
+    <div class="text-center mt-4">
+      <h2 class="title m-0">User Login</h2>
+      <h4 class="body-2 text-secondary m-0">Sign in with your credentials below.</h4>
+    </div>
+
+    <div [formGroup]="form" class="p-6" fxLayout="column" fxLayoutGap="16px">
+      <div fxFlex="auto" fxLayout="column">
+        <mat-form-field appearance="outline" fxFlex="grow">
+          <mat-label>E-Mail</mat-label>
+          <input [(ngModel)]="email" formControlName="email" matInput required autofocus>
+          <mat-error *ngIf="form.get('email').hasError('required')">We need an email address to log you in</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="grow">
+          <mat-label>Password</mat-label>
+          <input [(ngModel)]="password" [type]="inputType" formControlName="password" matInput required>
+          <button (click)="toggleVisibility()" mat-icon-button matSuffix matTooltip="Toggle Visibility" type="button">
+            <mat-icon *ngIf="visible" [icIcon]="icVisibility"></mat-icon>
+            <mat-icon *ngIf="!visible" [icIcon]="icVisibilityOff"></mat-icon>
+          </button>
+          <!-- <mat-hint>Click the eye to toggle visibility</mat-hint> -->
+          <mat-error *ngIf="form.get('password').hasError('required')">We need a password to log you in</mat-error>
+        </mat-form-field>
+
+        <!-- <mat-progress-spinner mode="determinate" [value]="40"></mat-progress-spinner> -->
+        <mat-spinner *ngIf="isLoading" diameter="30" class="float-center"></mat-spinner>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <mat-checkbox class="caption" color="primary">Remember Me</mat-checkbox>
+        <button (click)="signinUser()" color="primary" mat-raised-button type="button">
+          SIGN IN <mat-icon color="text-secondary" [icIcon]="icSign"></mat-icon>
+        </button>
+        
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <a [routerLink]="['/forgot-password']">Forgot Password?</a>
+        <a [routerLink]="['/register']">Sign up Now</a>
+      </div>
+      <br />
+      <p class="text-center">
+        2021 &copy; Sellershub. All Rights Reserved.
+      </p>
+    </div>
+  </div>
+</div>

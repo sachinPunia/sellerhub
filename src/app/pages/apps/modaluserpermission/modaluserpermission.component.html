@@ -1,0 +1,26 @@
+<div class="flex items-center" mat-dialog-title>
+    <p class="flex-auto text-lg font-medium">Please Apply Permissions</p>
+    <button mat-dialog-close mat-icon-button type="button">
+        <mat-icon [icIcon]="icClose" size="24px"></mat-icon>
+    </button>
+</div>
+  
+  <mat-dialog-content>
+    <b>Please select permission</b>
+    <mat-checkbox *ngFor="let row of roles">{{ row.roles }}</mat-checkbox>
+    
+  </mat-dialog-content>
+  
+  <mat-dialog-actions>
+  
+    <span class="flex-1"></span>
+  
+    <button mat-dialog-close mat-raised-button type="button" color="secondary">
+      <mat-icon [icIcon]="icCancel" [inline]="true" size="16px"></mat-icon> Cancel
+    </button>
+  
+    <button color="primary" mat-flat-button type="button">
+        <ic-icon [icIcon]="icCheck" [inline]="true" size="16px"></ic-icon>  Save
+    </button>
+  </mat-dialog-actions>
+  

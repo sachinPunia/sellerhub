@@ -1,0 +1,6 @@
+{
+  "/user": {
+    "target": "https://login.sellershub.io",
+    "secure": false
+  }
+}

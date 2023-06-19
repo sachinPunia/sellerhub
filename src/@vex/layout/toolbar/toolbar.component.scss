@@ -1,0 +1,48 @@
+:host {
+  background: var(--toolbar-background);
+  box-sizing: border-box;
+  color: var(--toolbar-color);
+  display: block;
+  white-space: nowrap;
+  width: 100%;
+  z-index: var(--toolbar-z-index);
+}
+
+.toolbar {
+  height: var(--toolbar-height);
+  /**
+   * Sengaja Dimatikan 
+   * background-image: linear-gradient(to left top, #fc8a01, #fc8a01, #fc8a01, #fc8a01, #fc8a01) !important;
+  **/
+}
+
+.mat-icon {
+  color: var(--toolbar-icon-color);
+}
+
+a {
+  color: var(--toolbar-color);
+  text-decoration: none;
+}
+.button-text {
+  font-size: 12pt !important;
+  color: rgb(240, 18, 18) !important;
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+.mr-10 {
+  margin-right: 30px !important;
+}
+
+.mr-30{
+  margin-right: 65px !important;
+}
+.font-11 {
+  font-size: 13pt !important;
+}

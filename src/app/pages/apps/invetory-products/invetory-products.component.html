@@ -1,0 +1,270 @@
+
+<div class="p-gutter" vexContainer>
+    <div class="card">
+        <div class="border-b py-4 px-6 bg-sellershub" fxLayout="row" fxLayoutAlign="start center">
+          <div class="content">
+              <div class="column">
+                  <div class="row" style="margin-right: 10px !important;">
+                    <h2 class="mt-2 title" fxFlex="auto">Products</h2>
+                  </div>
+              </div>
+              <div class="column">
+                <div class='row'>
+                           
+                    <button (click)="openSyncprogressModal()" color="secondary" mat-raised-button class="small-icon-button font-10 mr-4">
+                        Sync Progress
+                    </button>
+
+                 <button class="small-icon-button font-10 mr-4" [matMenuTriggerFor]="addNewMenu"
+                              color="primary"
+                              mat-raised-button
+                              type="button"> Linked Products
+                  </button>
+          
+                  <mat-menu #addNewMenu="matMenu" [overlapTrigger]="false" xPosition="after" yPosition="below">
+                        <button (click)="openCreatelinkedproductModal(selectedId)" mat-menu-item>
+                            <span>Create Link Products</span>
+                        </button>
+                      
+                        <button (click)="openLinkedProductModal()" mat-menu-item>
+                            <span>Linked Inventory</span>
+                        </button>
+                  </mat-menu>
+          
+                  
+                      <button (click)="excludeSKU()" color="secondary" mat-raised-button class="small-icon-button font-10 mr-4">
+                          Exclude SKU
+                      </button>
+          
+                      <button color="secondary" mat-raised-button class="small-icon-button font-10 mr-4">
+                          Import
+                      </button>
+          
+                      <button color="secondary" mat-raised-button class="small-icon-button font-10 mr-4">
+                          Export
+                      </button>
+          
+                      <button (click)="removeProduct()" color="secondary" mat-raised-button class="small-icon-button font-10 mr-4">
+                         <mat-icon class="text-warn" [icIcon]="icDelete"></mat-icon>
+                      </button>
+                      <button routerLink="/apps/add-product" color="secondary" mat-raised-button class="small-icon-button font-10 mr-4">
+                        <mat-icon class="text-warn" [icIcon]="icAdd"></mat-icon> Add Products
+                    </button>
+
+                    <button (click)="openAddtochannelModal()"  color="secondary" mat-raised-button class="small-icon-button font-10 mb-4 mr-4 font-10">
+                        <mat-icon class="text-warn" [icIcon]="icAdd"></mat-icon> Add To Channel
+                    </button>
+
+                    <button  class="small-icon-button font-10 mb-4 mr-4 font-10" [matMenuTriggerFor]="addNewMenu_new"
+                              color="primary"
+                              mat-raised-button
+                              type="button"> Bundle Products
+                  </button>
+          
+                  <mat-menu #addNewMenu_new="matMenu" [overlapTrigger]="false" xPosition="after" yPosition="below">
+                        <button mat-menu-item>
+                            <span>Create Bundle</span>
+                        </button>
+                      
+                        <button mat-menu-item>
+                            <span>Convert Simple To Bundle</span>
+                        </button>
+                  </mat-menu>
+                  
+                </div>
+              </div>
+          </div>
+          
+          
+        </div>
+      
+        <div class="py-0 px-0" fxLayout="row" fxLayout.lt-md="column" style="margin-top: 5px !important;">
+            <div class="top-search">
+                <mat-form-field appearance="standard" style="width: 140px !important; margin-right: 6px !important; margin-left: 27px !important;" fxFlex="none">
+                    <mat-label>Search By</mat-label>
+                    <mat-select (valueChange)="onSearchByChange($event)">
+                        <mat-option value="0">Search By</mat-option>
+                        <mat-option value="1">SKU</mat-option>
+                        <!-- <mat-option value="2">Channel</mat-option> -->
+                        <mat-option value="3">TITLE</mat-option>
+                        <mat-option value="101">VENDOR</mat-option>
+                        <mat-option value="102">TAGS</mat-option>
+                        <mat-option value="103">PRODUCTTYPE</mat-option>
+                        <mat-option value="7">QTY</mat-option>
+                        <mat-option value="8">Brand</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="standard" style="width: 190px !important; margin-right: 6px !important;" class="vex-flex-form-field" color="warn">
+                    <mat-label>Enter value to search</mat-label>
+                    <input matInput [(ngModel)]="searchByInput">
+                </mat-form-field>
+
+                <button (click)="onSearch()" class="mt-3" color="primary" mat-raised-button type="button">
+                    <mat-icon color="text-secondary" [icIcon]="icSearch"></mat-icon>
+                </button>
+                &nbsp;&nbsp;&nbsp;
+                <mat-form-field appearance="standard" style="width: 250px !important; margin-right: 6px !important;" class="vex-flex-form-field" color="warn">
+                    <mat-label>Filter By Channel</mat-label>
+                        <mat-select (valueChange)="onSearchByChannel($event)">
+                            <mat-option *ngFor="let cur of showChannel" value="{{ cur.id }}">{{ cur.type }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                
+
+                <mat-form-field appearance="standard" style="width: 190px !important; margin-right: 6px !important;" class="vex-flex-form-field" color="warn">
+                    <mat-label>Filter By Channel</mat-label>
+                    <mat-select>
+                        <mat-option value="All">Filter By Condition - All</mat-option>
+                        <mat-option value="New">New/Brand New/New with box/New with tags</mat-option>
+                        <mat-option value="10">New without tags/Unused item with no signs of wear/Packaging may be missing or opened</mat-option>
+                        <mat-option value="5">New with defects/Collectible Like New</mat-option>
+                        <mat-option value="Used">Used/Pre-Owned</mat-option>
+                        <mat-option value="1">Used Like New</mat-option>
+                        <mat-option value="2">Used Very Good</mat-option>
+                        <mat-option value="3">Used Good</mat-option>
+                        <mat-option value="9">Good</mat-option>
+                        <mat-option value="4">Used Acceptable</mat-option>
+                        <mat-option value="6">Manufacturer refurbished/Collectible Very Good</mat-option>
+                        <mat-option value="7">Seller refurbished/Collectible Good</mat-option>
+                        <mat-option value="8">Collectible Acceptable</mat-option>
+                        <mat-option value="12">For parts or not working</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="standard" style="width: 150px !important; margin-right: 6px !important;" class="vex-flex-form-field" color="warn">
+                    <mat-label>Sort By</mat-label>
+                    <mat-select>
+                        <mat-option value="0">Sort By</mat-option>
+                        <mat-option value="1">SKU Ascending</mat-option>
+                        <mat-option value="2">SKU Descending</mat-option>
+                        <mat-option value="3">Price low to high</mat-option>
+                        <mat-option value="4">Price High to low</mat-option>
+                        <mat-option value="5">Title A-Z</mat-option>
+                        <mat-option value="6">Title Z-A</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="bottom-search">
+                <mat-form-field appearance="standard" style="width: 190px !important; margin-left: 25px !important; margin-right: 6px !important;" class="vex-flex-form-field" color="warn">
+                    <mat-label>Filter By Brand</mat-label>
+                    <mat-select>
+                        <mat-option value="all">Filter By Brand - All</mat-option>
+                        <mat-option value="GSK">GSK</mat-option>
+                        <mat-option value="Pointblanktees">Pointblanktees</mat-option>
+                        <mat-option value="Unbranded">Unbranded</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                
+
+                <mat-form-field appearance="standard" style="width: 190px !important; margin-right: 6px !important;" class="vex-flex-form-field" color="warn">
+                    <mat-label>Filter By Supplier</mat-label>
+                    <mat-select>
+                        <mat-option value="all_supplier">Filter By Supplier - All</mat-option>
+                        <mat-option value="1">Test </mat-option>
+                        <mat-option value="2">Vamshi </mat-option>
+                        <mat-option value="5">SSS </mat-option>
+                        <mat-option value="6">Test </mat-option>
+                        <mat-option value="7">GSK </mat-option>
+                        <mat-option value="8"></mat-option>
+                        <mat-option value="9"></mat-option>
+                        <mat-option value="10"></mat-option>
+                        <mat-option value="11"></mat-option>
+                        <mat-option value="12">Vamshi </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-slide-toggle [checked]="false" color="warn" class="mr-4">Show Parent Products</mat-slide-toggle>
+                <mat-slide-toggle [checked]="false" color="warn" class="mr-4">Show Active Products</mat-slide-toggle>
+                <mat-slide-toggle [checked]="false" color="warn">Including Zero Qty Products</mat-slide-toggle>
+            </div>
+            <div>
+                <div class="table-responsive">
+                    <table [dataSource]="dataSource" class="w-full top-30" mat-table matSort style="width: 100% !important;">
+                        
+                        <!-- Checkbox Column -->
+                        <ng-container matColumnDef="checkbox">
+                            <th *matHeaderCellDef mat-header-cell style="padding-left: 25px !important;" class="uppercase bg-sellershub">
+                            <mat-checkbox (change)="$event ? masterToggle() : null"
+                                            [checked]="selection.hasValue() && isAllSelected()"
+                                            [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                            color="primary">
+                            </mat-checkbox>
+                            </th>
+                            <td style="padding-left: 25px !important;" *matCellDef="let row" class="w-4" mat-cell>
+                            <mat-checkbox (change)="setSelectedRow(row, $event)"
+                                            (click)="$event.stopPropagation()"
+                                            [checked]="selection.isSelected(row)"
+                                            color="primary">
+                            </mat-checkbox>
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="image_data">
+                            <th *matHeaderCellDef mat-header-cell class="uppercase bg-sellershub">IMAGE</th>
+                            <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell>
+                                <img [src]="row['imageUrl']" class="h-12 w-12 align-middle">
+                            </td>
+                        </ng-container>
+
+                        <!-- <ng-container matColumnDef="sku">
+                            <th *matHeaderCellDef mat-header-cell class="uppercase bg-sellershub">SKU</th>
+                            <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell>
+                                <button color="secondary" class="small-icon-btn mr-4 font-10" matTooltip="Favorite this" mat-mini-fab type="button">
+                                    <mat-icon class="text-grey" [icIcon]="icAdd1"></mat-icon>
+                                </button> 
+                                {{ row['sku'] }}
+                            </td>
+                        </ng-container> -->
+
+                        <ng-container *ngFor="let column of columns">
+                            <ng-container *ngIf="column.type === 'text'" [matColumnDef]="column.property">
+                                <th *matHeaderCellDef class="uppercase" mat-header-cell mat-sort-header class="bg-sellershub"> {{ column.label }}</th>
+                                <td *matCellDef="let row" mat-cell style="width: 20px !important;">{{ row[column.property] }}</td>
+                            </ng-container>
+                        </ng-container>
+
+                        <ng-container matColumnDef="channel">
+                            <th *matHeaderCellDef mat-header-cell class="uppercase bg-sellershub">CHANNEL</th>
+                            <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell >
+                                <!-- <table><tr><td><img src="https://s3-us-west-2.amazonaws.com/khubstatic/web/kartzhubamazonUK.png"></td><td><img [src]="row['channel_two']"></td></tr></table> -->
+                                {{row['channel']}}
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="lastModifiedDate">
+                            <th *matHeaderCellDef mat-header-cell mat-sort-header class="bg-sellershub">LAST UPDATE</th>
+                            <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell style="width: 20px !important;">
+                                    {{ row['lastModifiedDate'] |  date:'dd/MM/yyyy' }} 
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="action">
+                            <th *matHeaderCellDef mat-header-cell mat-sort-header class="uppercase bg-sellershub">ACTION</th>
+                            <td *matCellDef="let row" mat-cell>
+                              <div class="flex">
+                                <button class="small-icon-button font-10" color="secondary" mat-raised-button type="button" style="margin-left: 10px !important; margin-right: 6px !important;">
+                                    <mat-icon class="font-13-icon" color="text-secondary" [icIcon]="icEdit"></mat-icon> Edit
+                                </button>
+                                
+                                <button (click)="openAddproductModal()" class="small-icon-button font-10" color="secondary" mat-raised-button type="button" style="margin-left: 10px !important; margin-right: 6px !important;">
+                                    <mat-icon class="font-13-icon" color="text-secondary" [icIcon]="icAdd"></mat-icon> Add Product
+                                </button>
+                              </div>
+                            </td>
+                        </ng-container>
+            
+                        <tr *matHeaderRowDef="visibleColumns; sticky: true" mat-header-row></tr>
+                        <tr *matRowDef="let row; columns: visibleColumns;"
+                            @fadeInUp stagger60ms
+                            class="hover:bg-hover trans-ease-out cursor-pointer"
+                            mat-row></tr>
+            
+                    </table>
+                </div>
+                <mat-paginator appearance="standard" [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" class="sticky left-0"></mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>

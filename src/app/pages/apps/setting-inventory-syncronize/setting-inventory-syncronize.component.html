@@ -1,0 +1,117 @@
+<div class="p-gutter" vexContainer>
+    <div class="card">
+        <div class="border-b py-4 px-6" fxLayout="row" fxLayoutAlign="start center">
+          <h2 class="m-0 title" fxFlex="auto">Manage Inventory Synchronization Settings</h2>
+        </div>
+      
+        <div class="py-5 px-5" fxLayout="row" fxLayout.lt-md="column">
+            <mat-tab-group [@.disabled]="true">
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        Stock Synchronization by Channel
+                    </ng-template>
+                    <div style="display: flex;justify-content: space-between;" class="border-b py-1 px-2" fxLayout="row" fxLayoutAlign="start center">
+                        <mat-checkbox style="padding-top: 5px">Enabled Stock Synchronization</mat-checkbox>
+
+                      <button style="background-color: blue; color: white;" mat-raised-button class="mr-4 font-10">
+                        <mat-icon color="text-secondary" [icIcon]="icCheckcircle"></mat-icon> Save 
+                      </button>
+                    </div><br>
+                    <div class="info">
+                        Stock synchronization is currently switched off. Please enable it to keep your stock level in synch between channels.
+                    </div>
+                    <!-- <mat-form-field appearance="standard" style="width: 140px !important; margin-right: 6px !important; margin-left: 27px !important;" fxFlex="none">
+                        <mat-label>Search By</mat-label>
+                        <mat-select>
+                          <mat-option value="SKU">SKU</mat-option>
+                          <mat-option value="Channel">Channel</mat-option>
+                          <mat-option value="Title">Title</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+        
+                    <mat-form-field appearance="standard" style="width: 250px !important; margin-right: 6px !important;" class="vex-flex-form-field" color="warn">
+                        <mat-label>Enter value to search</mat-label>
+                        <input matInput>
+                    </mat-form-field>
+                    <button class="mt-3" color="primary" mat-raised-button type="button">
+                        <mat-icon color="text-secondary" [icIcon]="icSearch"></mat-icon>
+                    </button> -->
+                    <!-- <br> -->
+                    <div>
+                        <div class="table-responsive">
+                            <table [dataSource]="dataSource" class="w-full top-30 left-13" mat-table matSort style="width: 100% !important;">
+        
+                                <ng-container *ngFor="let column of columns">
+                                    <ng-container *ngIf="column.type === 'text'" [matColumnDef]="column.property">
+                                        <th *matHeaderCellDef class="uppercase" mat-header-cell mat-sort-header> {{ column.label }}</th>
+                                        <td *matCellDef="let row" mat-cell style="width: 20px !important;">{{ row[column.property] }}</td>
+                                    </ng-container>
+                                </ng-container>
+        
+                                <ng-container matColumnDef="enable">
+                                    <th *matHeaderCellDef mat-header-cell mat-sort-header>SYNCHRONIZATION</th>
+                                    <td *matCellDef="let row" mat-cell>
+                                      <div >
+                                          <mat-checkbox (change)="setSelectedRow(row, $event)"></mat-checkbox>
+                                      </div>
+                                    </td>
+                                </ng-container>
+                    
+                                <tr *matHeaderRowDef="visibleColumns sticky: true" mat-header-row></tr>
+                                <tr *matRowDef="let row; columns: visibleColumns;"
+                                    @fadeInUp stagger60ms
+                                    class="hover:bg-hover trans-ease-out cursor-pointer"
+                                    mat-row></tr>
+                    
+                            </table>
+                        </div>
+                        <mat-paginator appearance="standard" [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" class="sticky left-0"></mat-paginator>
+                    </div>
+                </mat-tab>
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        Products excluded from Stock Sync
+                    </ng-template>
+                    <div style="display: flex;justify-content: space-between;" class="border-b py-1 px-2" fxLayout="row" fxLayoutAlign="start center">
+                      <p></p>
+                      <button style="background-color: blue; color: white;" mat-raised-button class="mr-4 font-10">
+                        <mat-icon color="text-secondary" [icIcon]="icCheckcircle"></mat-icon> Save 
+                      </button>
+                    </div>
+                    <div>
+                        <div class="table-responsive">
+                          
+                            <table [dataSource]="dataSource_1" class="top-30 left-13" mat-table matSort>
+                            
+                            
+                            <ng-container *ngFor="let column1 of columns_new">
+                                <ng-container *ngIf="column1.type === 'text'" [matColumnDef]="column1.property">
+                                    <th *matHeaderCellDef class="uppercase" mat-header-cell mat-sort-header> {{ column1.label }}</th>
+                                    <td *matCellDef="let row" mat-cell style="width: 20px !important;">{{ row[column1.property] }}</td>
+                                </ng-container>
+                            </ng-container>
+        
+                            <ng-container matColumnDef="remove">
+                                <th *matHeaderCellDef mat-header-cell mat-sort-header>SYNCHRONIZATION</th>
+                                <td *matCellDef="let row" mat-cell>
+                                  <div >
+                                      <mat-checkbox (change)="setSelectedRow(row, $event)"></mat-checkbox>
+                                  </div>
+                                </td>
+                            </ng-container>
+                    
+                                <tr *matHeaderRowDef="visibleColumns_new; sticky: true" mat-header-row></tr>
+                                <tr *matRowDef="let row; columns: visibleColumns_new;"
+                                    @fadeInUp stagger60ms
+                                    class="hover:bg-hover trans-ease-out cursor-pointer"
+                                    mat-row></tr>
+                    
+                            </table>
+                        </div>
+                        <mat-paginator appearance="standard" [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" class="sticky left-0"></mat-paginator>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+</div>

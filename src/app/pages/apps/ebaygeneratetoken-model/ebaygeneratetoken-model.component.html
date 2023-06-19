@@ -1,0 +1,38 @@
+<div class="flex items-center" mat-dialog-title>
+    <h2 style="font-size: 18px;" class="flex-auto text-lg font-medium font-12">
+        Generate a new eBay token?
+    </h2>
+    <button mat-dialog-close mat-icon-button type="button">
+        <mat-icon [icIcon]="icClose" size="24px"></mat-icon>
+    </button>
+</div>
+<mat-divider></mat-divider>
+  <mat-dialog-content>
+    <div>
+        You need to generate an eBay token in order to list your inventory into eBay using Sellershub selling tools. You can do this by login into eBay and follow the integration steps.This will take less than 1 minute to complete. If your login is successful, eBay will issue a token to Sellershub which will be used to interact with eBay.<br>
+
+        If you do not have an account with eBay, you can create an account at www.ebay.com<br>
+
+        Sellershub is an eBay Compatible Application.<br>
+
+        <img src="https://s3-us-west-1.amazonaws.com/khubweb/web/ebaycompatibleapp.jpg"/>
+
+    </div>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions>
+  
+    <span class="flex-1"></span>
+    
+    
+    <!-- <button mat-dialog-close mat-raised-button type="button" color="secondary">
+      <mat-icon [icIcon]="icCancel" [inline]="true" size="16px"></mat-icon> Close
+    </button>-->
+
+    <a (click)="generatetoken()" target="_blank" color="primary" mat-flat-button type="button">
+        <ic-icon [icIcon]="icSend" [inline]="true" size="16px"></ic-icon>  Generate eBay Token
+    </a>
+  
+    
+  </mat-dialog-actions>
+  

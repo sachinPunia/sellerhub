@@ -1,0 +1,273 @@
+<div class="card">
+    <div class="border-b py-4 px-6" fxLayout="row" fxLayoutAlign="start center">
+      <h2 class="m-0 title" fxFlex="auto">Channel Integration</h2>
+    </div>
+</div>
+<div class="card">
+    <mat-tab-group>
+      <mat-tab label="Registered Channels">
+        <div class="p-0" style="background-color: rgb(235, 235, 235);">
+            <div class="my-alert" role="alert">
+                Registered Channel are displayed below
+            </div>
+            <mat-grid-list cols="4" gutterSize="0">
+                <mat-grid-tile *ngFor="let row of channelRegistration">
+                    <div class="card">
+                        <div class="border-b py-4 px-8" fxLayout="row" fxLayoutAlign="start center">
+                            <img src="{{ row.channel_logo }}" style="width: 150px; height: 40px;">
+                        </div>
+                      
+                        <div class="py-4 px-3" fxLayout="row" fxLayout.lt-md="column">
+                            <table style="min-height: 120px !important; padding: 10px !important">
+                                <tbody>
+                                    <tr>
+                                        <td>Name : <b><a class="tooltips" data-original-title="">{{ row.channel_title }}</a></b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>SKU Limit : <b>{{ row.channel_sku }}</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Status : <b style="color:green;"> {{ row.channel_status }} </b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Last Update : <b>{{ row.channel_update }}</b></td>
+                                    </tr>
+                                </tbody>
+                                
+                            </table>
+                            <div class="px-8" style="margin-top: 5px;">
+                                <button style="font-size: 9pt; margin-right: 4px;" color="secondary" mat-raised-button type="button" class="small-icon-button mat-focus-indicator mat-raised-button mat-button-base">Edit</button>
+                                <button style="font-size: 9pt" color="primary" mat-raised-button type="button" class="small-icon-button mat-focus-indicator mat-raised-button mat-button-base mat-primary">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Marketplaces">
+        <div class="p-0" style="background-color: rgb(235, 235, 235);">
+            <div class="my-alert" role="alert">
+                Available Marketplace Integrations
+            </div>
+            <mat-grid-list cols="4" gutterSize="0">
+                <mat-grid-tile *ngFor="let market of channelLists">
+                    <div class="card">
+                        <div class="border-b py-4 px-8" fxLayout="row" fxLayoutAlign="start center">
+                            <img src="{{ market.channel_logo }}" style="width: 150px; height: 40px;">
+                        </div>
+                      
+                        <div class="py-4 px-3" fxLayout="row" fxLayout.lt-md="column">
+                            <table style="min-height: 90px !important; padding: 10px !important">
+                                <tbody>
+                                    <tr>
+                                        <td style="font-size: 11pt !important; text-align: center !important;"><b style="text-align: center !important;"><a class="tooltips" data-original-title="">{{ market.channel_title }}</a></b></td>
+                                    </tr>
+                                </tbody>
+                                
+                            </table>
+                            <div style="margin-top: 5px;">
+                                <button routerLink="{{ market.channel_link_path }}" style="margin-right: 4px; font-size: 9pt !important;" color="secondary" mat-raised-button type="button" class="small-icon-button mat-focus-indicator mat-raised-button mat-button-base">Add to SellersHub</button>
+                                <button style="font-size: 9pt !important;" color="primary" mat-raised-button type="button" class="small-icon-button mat-focus-indicator mat-raised-button mat-button-base mat-primary">Get One</button>
+                            </div>
+                        </div>
+                    </div>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="eCommerce Stores">
+        <div class="p-0" style="background-color: rgb(235, 235, 235);">
+            <div class="my-alert" role="alert">
+                Available eCommerce Store Integrations
+            </div>
+            <mat-grid-list cols="4" gutterSize="0">
+                <mat-grid-tile *ngFor="let eco of channelEcommerce">
+                    <div class="card">
+                        <div class="border-b py-4 px-8" fxLayout="row" fxLayoutAlign="start center">
+                            <img src="{{ eco.channel_logo }}" style="width: 150px; height: 40px;">
+                        </div>
+                      
+                        <div class="py-4 px-3" fxLayout="row" fxLayout.lt-md="column">
+                            <table style="min-height: 90px !important; padding: 10px !important">
+                                <tbody>
+                                    <tr>
+                                        <td style="font-size: 11pt !important; text-align: center !important;"><b style="text-align: center !important;"><a class="tooltips" data-original-title="">{{ eco.channel_title }}</a></b></td>
+                                    </tr>
+                                </tbody>
+                                
+                            </table>
+                            <div style="margin-top: 5px;">
+                                <button style="margin-right: 4px; font-size: 9pt !important;" color="secondary" mat-raised-button type="button" class="small-icon-button mat-focus-indicator mat-raised-button mat-button-base">Add to SellersHub</button>
+                                <button style="font-size: 9pt !important;" color="primary" mat-raised-button type="button" class="small-icon-button mat-focus-indicator mat-raised-button mat-button-base mat-primary">Get One</button>
+                            </div>
+                        </div>
+                    </div>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Accounting">
+       <div class="p-0" style="background-color: rgb(235, 235, 235);">
+            <div class="my-alert" role="alert">
+                Available Accounting Systems
+            </div>
+            <mat-grid-list cols="4" gutterSize="0">
+                <mat-grid-tile *ngFor="let acc of channelAccounting">
+                    <div class="card">
+                        <div class="border-b py-4 px-8" fxLayout="row" fxLayoutAlign="start center">
+                            <img src="{{ acc.channel_logo }}" style="width: 150px; height: 40px;">
+                        </div>
+                      
+                        <div class="py-4 px-3" fxLayout="row" fxLayout.lt-md="column">
+                            <table style="min-height: 90px !important; padding: 10px !important">
+                                <tbody>
+                                    <tr>
+                                        <td style="font-size: 11pt !important; text-align: center !important;"><b style="text-align: center !important;"><a class="tooltips" data-original-title="">{{ acc.channel_title }}</a></b></td>
+                                    </tr>
+                                </tbody>
+                                
+                            </table>
+                            <div style="margin-top: 5px;">
+                                <button style="margin-right: 4px; font-size: 9pt !important;" color="secondary" mat-raised-button type="button" class="small-icon-button mat-focus-indicator mat-raised-button mat-button-base">Add to SellersHub</button>
+                                <button style="font-size: 9pt !important;" color="primary" mat-raised-button type="button" class="small-icon-button mat-focus-indicator mat-raised-button mat-button-base mat-primary">Get One</button>
+                            </div>
+                        </div>
+                    </div>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="CRM">
+        <div class="p-0" style="background-color: rgb(235, 235, 235);">
+            <div class="my-alert" role="alert">
+                Customer Relationships Systems (CRM)
+            </div>
+            <mat-grid-list cols="4" gutterSize="0">
+                <mat-grid-tile *ngFor="let c of channelCrm">
+                    <div class="card">
+                        <div class="border-b py-4 px-8" fxLayout="row" fxLayoutAlign="start center">
+                            <img src="{{ c.channel_logo }}" style="width: 150px; height: 40px;">
+                        </div>
+                      
+                        <div class="py-4 px-3" fxLayout="row" fxLayout.lt-md="column">
+                            <table style="min-height: 90px !important; padding: 10px !important">
+                                <tbody>
+                                    <tr>
+                                        <td style="font-size: 11pt !important; text-align: center !important;"><b style="text-align: center !important;"><a class="tooltips" data-original-title="">{{ c.channel_title }}</a></b></td>
+                                    </tr>
+                                </tbody>
+                                
+                            </table>
+                            <div style="margin-top: 5px;">
+                                <button style="margin-right: 4px; font-size: 9pt !important;" color="secondary" mat-raised-button type="button" class="small-icon-button mat-focus-indicator mat-raised-button mat-button-base">Add to SellersHub</button>
+                                <button style="font-size: 9pt !important;" color="primary" mat-raised-button type="button" class="small-icon-button mat-focus-indicator mat-raised-button mat-button-base mat-primary">Get One</button>
+                            </div>
+                        </div>
+                    </div>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="ePOS Systems">
+        <div class="p-0" style="background-color: rgb(235, 235, 235);">
+            <div class="my-alert" role="alert">
+                ePos Systems
+            </div>
+            <mat-grid-list cols="4" gutterSize="0">
+                <mat-grid-tile *ngFor="let e of channelEpos">
+                    <div class="card">
+                        <div class="border-b py-4 px-8" fxLayout="row" fxLayoutAlign="start center">
+                            <img src="{{ e.channel_logo }}" style="width: 150px; height: 40px;">
+                        </div>
+                      
+                        <div class="py-4 px-3" fxLayout="row" fxLayout.lt-md="column">
+                            <table style="min-height: 90px !important; padding: 10px !important">
+                                <tbody>
+                                    <tr>
+                                        <td style="font-size: 11pt !important; text-align: center !important;"><b style="text-align: center !important;"><a class="tooltips" data-original-title="">{{ e.channel_title }}</a></b></td>
+                                    </tr>
+                                </tbody>
+                                
+                            </table>
+                            <div style="margin-top: 5px;">
+                                <button style="margin-right: 4px; font-size: 9pt !important;" color="secondary" mat-raised-button type="button" class="small-icon-button mat-focus-indicator mat-raised-button mat-button-base">Add to SellersHub</button>
+                                <button style="font-size: 9pt !important;" color="primary" mat-raised-button type="button" class="small-icon-button mat-focus-indicator mat-raised-button mat-button-base mat-primary">Get One</button>
+                            </div>
+                        </div>
+                    </div>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="App Store">
+        <div class="p-0" style="background-color: rgb(235, 235, 235);">
+            <div class="my-alert" role="alert">
+                Following apps are available
+            </div>
+            <mat-grid-list cols="4" gutterSize="0">
+                <mat-grid-tile *ngFor="let app of channelAppstore">
+                    <div class="card">
+                        <div class="border-b py-4 px-8" fxLayout="row" fxLayoutAlign="start center">
+                            <img src="{{ app.channel_logo }}" style="width: 150px; height: 40px;">
+                        </div>
+                      
+                        <div class="py-4 px-3" fxLayout="row" fxLayout.lt-md="column">
+                            <table style="min-height: 90px !important; padding: 10px !important">
+                                <tbody>
+                                    <tr>
+                                        <td style="font-size: 11pt !important; text-align: center !important;"><b style="text-align: center !important;"><a class="tooltips" data-original-title="">{{ app.channel_title }}</a></b></td>
+                                    </tr>
+                                </tbody>
+                                
+                            </table>
+                            <div style="margin-top: 5px;">
+                                <button style="margin-right: 4px; font-size: 9pt !important;" color="secondary" mat-raised-button type="button" class="small-icon-button mat-focus-indicator mat-raised-button mat-button-base">Add to SellersHub</button>
+                                <button style="font-size: 9pt !important;" color="primary" mat-raised-button type="button" class="small-icon-button mat-focus-indicator mat-raised-button mat-button-base mat-primary">Get One</button>
+                            </div>
+                        </div>
+                    </div>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Other">
+        <div class="p-0" style="background-color: rgb(235, 235, 235);">
+            <div class="my-alert" role="alert">
+                Other Sales Systems
+            </div>
+            <mat-grid-list cols="4" gutterSize="0">
+                <mat-grid-tile *ngFor="let other of channelOther">
+                    <div class="card">
+                        <div class="border-b py-4 px-8" fxLayout="row" fxLayoutAlign="start center">
+                            <img src="{{ other.channel_logo }}" style="width: 150px; height: 60px;">
+                        </div>
+                      
+                        <div class="py-4 px-3" fxLayout="row" fxLayout.lt-md="column">
+                            <table style="min-height: 90px !important; padding: 10px !important">
+                                <tbody>
+                                    <tr>
+                                        <td style="font-size: 11pt !important; text-align: center !important;"><b style="text-align: center !important;"><a class="tooltips" data-original-title="">{{ other.channel_title }}</a></b></td>
+                                    </tr>
+                                </tbody>
+                                
+                            </table>
+                            <div style="margin-top: 5px;">
+                                
+                                <button class="py-4 px-8" style="font-size: 9pt !important;" color="primary" mat-raised-button type="button" class="small-icon-button mat-focus-indicator mat-raised-button mat-button-base mat-primary">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>

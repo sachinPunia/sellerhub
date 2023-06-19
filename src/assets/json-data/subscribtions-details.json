@@ -1,0 +1,29 @@
+[
+    {
+      "date": "02 Aug 2021",
+      "plan_title": "LIFE TIME OFFER",
+      "plan_limit": "(10000 SKU limit /10000 orders per month)",
+      "plan_desc": "If the limits are not sufficient, please upgrade to next level plan to get more volumes",
+      "status": "Subscribed",
+      "payment_mode": "Stripe",
+      "expired_on": ""
+    },
+    {
+        "date": "02 Jul 2021",
+        "plan_title": "TRIAL PERIOD",
+        "plan_limit": "(2000 SKU limit /100 orders per month)",
+        "plan_desc": "You are in Free Trial and SKU Limit is only 2000. If you need more SKUs to be Listed or Orders to be downloaded. Please Subscribe now",
+        "status": "FREE TRIAL",
+        "payment_mode": "",
+        "expired_on": ""
+    },
+    {
+        "date": "10 May 2021",
+        "plan_title": "TRIAL PERIOD",
+        "plan_limit": "(2000 SKU limit /100 orders per month)",
+        "plan_desc": "You are in Free Trial and SKU Limit is only 2000. If you need more SKUs to be Listed or Orders to be downloaded. Please Subscribe now",
+        "status": "FREE TRIAL",
+        "payment_mode": "",
+        "expired_on": ""
+    }
+]

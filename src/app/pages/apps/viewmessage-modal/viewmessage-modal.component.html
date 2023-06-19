@@ -1,0 +1,46 @@
+<div class="flex items-center" mat-dialog-title>
+    <p class="flex-auto text-lg font-medium">View Message</p>
+    <button mat-dialog-close mat-icon-button type="button">
+        <mat-icon [icIcon]="icClose" size="24px"></mat-icon>
+    </button>
+</div>
+  
+  <mat-dialog-content>
+    
+    <table class="w-full table">
+        <tr>
+            <th class="td-width-right">Message ID</th><th style="text-align: left;">{{ ids }}</th>
+        </tr>
+        <tr>
+            <th class="td-width-right">Created On</th><th style="text-align: left;">{{ date | date:'medium' }}</th>
+        </tr>
+        <tr>
+            <th class="td-width-right">Channel</th><th style="text-align: left;"><img src="https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhub{{ channel }}.png" class="h-10 w-22 align-middle"></th>
+        </tr>
+        <tr>
+            <th class="td-width-right">Message From</th><th style="text-align: left;">{{ from }}</th>
+        </tr>
+        <tr>
+            <th class="td-width-right">Message Status</th><th style="text-align: left;">{{ reply }}</th>
+        </tr>
+        <tr>
+            <th class="td-width-right">Subject</th><td style="text-align: left;">{{ subject }}</td>
+        </tr>
+        <tr>
+            <th class="td-width-right">Message Content</th><td style="text-align: left;">{{ msgtext }}</td>
+        </tr>
+    </table>
+
+  </mat-dialog-content>
+  
+  <mat-dialog-actions>
+  
+    <span class="flex-1"></span>
+
+    <button mat-dialog-close mat-raised-button type="button" color="secondary">
+      <mat-icon [icIcon]="icCancel" [inline]="true" size="16px"></mat-icon> Close
+    </button>
+  
+    
+  </mat-dialog-actions>
+  

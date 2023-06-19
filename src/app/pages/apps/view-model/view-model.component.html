@@ -1,0 +1,55 @@
+<div class="flex items-center" mat-dialog-title >
+    <h2 class="flex-auto text-lg font-medium font-12" >
+        Order Details
+    </h2>
+    <button mat-dialog-close mat-icon-button type="button">
+        <mat-icon [icIcon]="icClose" size="24px"></mat-icon>
+    </button>
+</div>
+<!-- <table class="w-full">
+    <tr><td class="left">US +1 (925) 217-1261 (8AM EST - 5PM EST)</td><td class="right">UK +44 203 371 7255 (10AM GMT - 5PM GMT)</td></tr>
+</table> -->
+  <mat-dialog-content>
+    <mat-divider></mat-divider><br>
+
+    <div class="table-responsive">
+        <table [dataSource]="dataSource" class="w-full top-30 left-13" mat-table matSort>
+
+            <ng-container *ngFor="let column of columns">
+                <ng-container *ngIf="column.type === 'text'" [matColumnDef]="column.property">
+                    <th *matHeaderCellDef class="uppercase" mat-header-cell mat-sort-header> {{ column.label }}</th>
+                    <td *matCellDef="let row" mat-cell style="width: 20px !important;">{{ row[column.property] }}</td>
+                </ng-container>
+            </ng-container>
+
+            <tr *matHeaderRowDef="visibleColumns sticky: true" mat-header-row></tr>
+            <tr *matRowDef="let row; columns: visibleColumns;"
+                @fadeInUp stagger60ms
+                class="hover:bg-hover trans-ease-out cursor-pointer"
+                mat-row></tr>
+
+        </table>
+    <mat-paginator appearance="standard" [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" class="sticky left-0"></mat-paginator><br>
+    
+    </div><br>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions>
+  
+    <span class="flex-1"></span>
+    
+    
+    <!-- <button mat-dialog-close mat-raised-button type="button" color="secondary">
+      <mat-icon [icIcon]="icCancel" [inline]="true" size="16px"></mat-icon> Close
+    </button>-->
+<!-- 
+    <button color="primary" mat-flat-button type="button">
+        <ic-icon [icIcon]="icSend" [inline]="true" size="16px"></ic-icon>  Create New Order
+    </button> -->
+
+    <button mat-dialog-close mat-raised-button type="button" color="secondary">
+        <mat-icon [icIcon]="icCancel" [inline]="true" size="16px"></mat-icon> Close
+    </button>
+  
+    
+  </mat-dialog-actions>

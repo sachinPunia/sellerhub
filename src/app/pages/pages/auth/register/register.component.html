@@ -1,0 +1,58 @@
+<div class="w-full h-full" fxLayout="column" fxLayoutAlign="center center">
+  <div @fadeInUp class="card overflow-hidden w-full max-w-xl">
+    <div fxLayout="column" fxLayoutAlign="center center" style="background-image: url('assets/img/demo/popup-register-image-1.png'); background-size: cover; height: 235px;">
+      
+    </div>
+    <div [formGroup]="form" class="p-6" fxLayout="column" fxLayoutGap="5px">
+      <p class="text-secondary text-left text-black">Start automating your commercee business today!</p>
+      <div fxFlex="auto" fxLayout="column">
+        <mat-form-field fxFlex="grow">
+          <mat-label>First Name</mat-label>
+          <input [(ngModel)]="name" formControlName="name" matInput required>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="grow" class="mt-10">
+          <mat-label>Last Name</mat-label>
+          <input [(ngModel)]="lastname" formControlName="name" matInput required>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="grow" class="mt-10">
+          <mat-label>E-Mail</mat-label>
+          <input formControlName="email" [(ngModel)]="email" matInput required>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="grow" class="mt-10">
+          <mat-label>Password</mat-label>
+          <input [type]="inputType" [(ngModel)]="password"formControlName="password" matInput required>
+          <button (click)="toggleVisibility()" mat-icon-button matSuffix matTooltip="Toggle Visibility" type="button">
+            <mat-icon *ngIf="visible" [icIcon]="icVisibility"></mat-icon>
+            <mat-icon *ngIf="!visible" [icIcon]="icVisibilityOff"></mat-icon>
+          </button>
+        </mat-form-field>
+
+        <div fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap="0px" fxLayoutGap.gt-xs="20px" class="mt-10">
+          <mat-form-field>
+            <mat-label>Country</mat-label>
+            <mat-select (valueChange)="onCountryChange($event)">
+              <mat-option *ngFor="let row of countryList" value={{row.code}}>{{ row.name }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          
+          <mat-form-field fxFlex="grow">
+            <mat-label>Contact Telephone</mat-label>
+            <input [(ngModel)]="phonenumber" formControlName="phonenumber" matInput required>
+          </mat-form-field>
+  
+        </div>
+      </div>
+      <button (click)="registerNewUser()" color="primary" mat-raised-button type="button" mat-raised-button class="mt-10">
+        GET STARTED NOW
+      </button>
+      <p class="text-secondary text-left text-black">
+        Already have an account? <a [routerLink]="['/login']"><b color="primary">Sign in to SellersHub</b></a><br />
+        <span color="black">You can upgrade, downgrade or cancel your plan at any time.</span><br />
+        <span color="black">By clicking on '<b>Get Started Now</b>' you are accepting our terms of usage and privacy policy</span>
+      </p>
+    </div>
+  </div>
+</div>

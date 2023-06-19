@@ -1,0 +1,86 @@
+
+<div class="p-gutter" vexContainer>
+    <div class="card">
+        <div class="border-b py-4 px-6" fxLayout="row" fxLayoutAlign="start center">
+          <h2 class="m-0 title" fxFlex="auto">Scheduled Listing</h2>
+          
+        </div>
+      
+        <div class="py-0 px-0" fxLayout="row" fxLayout.lt-md="column" style="margin-top: 5px !important;">
+            <mat-form-field appearance="standard" style="width: 140px !important; margin-right: 6px !important; margin-left: 27px !important;" fxFlex="none">
+                <mat-label>Search By</mat-label>
+                <mat-select>
+                  <mat-option value="SKU">SKU</mat-option>
+                  <mat-option value="SKU">SKU</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="standard" style="width: 250px !important; margin-right: 6px !important;" class="vex-flex-form-field" color="warn">
+                <mat-label>Enter value to search</mat-label>
+                <input matInput>
+            </mat-form-field>
+
+            <button class="mt-3" color="primary" mat-raised-button type="button">
+                <mat-icon color="text-secondary" [icIcon]="icSearch"></mat-icon>
+            </button>
+
+            <button color="primary" mat-raised-button type="button" style="margin-left: 10px !important; margin-right: 6px !important;">
+                <mat-icon color="text-secondary" [icIcon]="icRefresh"></mat-icon>
+            </button>
+            
+            <div>
+                <div class="table-responsive">
+                    <table [dataSource]="dataSource" class="w-full top-30 left-13" mat-table matSort>
+                        
+                        
+                        <ng-container matColumnDef="checkbox">
+                            <th *matHeaderCellDef mat-header-cell>
+                            <mat-checkbox (change)="$event ? masterToggle() : null"
+                                            [checked]="selection.hasValue() && isAllSelected()"
+                                            [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                            color="primary">
+                            </mat-checkbox>
+                            </th>
+                            <td *matCellDef="let row" class="w-4" mat-cell>
+                            <mat-checkbox (change)="$event ? selection.toggle(row) : null"
+                                            (click)="$event.stopPropagation()"
+                                            [checked]="selection.isSelected(row)"
+                                            color="primary">
+                            </mat-checkbox>
+                            </td>
+                        </ng-container>
+
+                        
+
+                        <ng-container *ngFor="let column of columns">
+                            <ng-container *ngIf="column.type === 'text'" [matColumnDef]="column.property">
+                                <th *matHeaderCellDef class="uppercase" mat-header-cell mat-sort-header> {{ column.label }}</th>
+                                <td *matCellDef="let row" mat-cell style="width: 20px !important;">{{ row[column.property] }}</td>
+                            </ng-container>
+                        </ng-container>
+
+                        <ng-container matColumnDef="action">
+                            <th *matHeaderCellDef mat-header-cell mat-sort-header>ACTION</th>
+                            <td *matCellDef="let row" mat-cell>
+                              <div class="flex">
+                                <a class="w-8 h-8 leading-none flex items-center justify-center hover:bg-hover text-red bg-red-light"
+                                   mat-icon-button>
+                                  <mat-icon [icIcon]="icRemove" size="18px"></mat-icon>
+                                </a>
+                              </div>
+                            </td>
+                        </ng-container>
+            
+                        <tr *matHeaderRowDef="visibleColumns sticky: true" mat-header-row></tr>
+                        <tr *matRowDef="let row; columns: visibleColumns;"
+                            @fadeInUp stagger60ms
+                            class="hover:bg-hover trans-ease-out cursor-pointer"
+                            mat-row></tr>
+            
+                    </table>
+                </div>
+                <mat-paginator appearance="standard" [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" class="sticky left-0"></mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="flex items-center" mat-dialog-title>
+    <p class="flex-auto text-lg font-medium">Create Ticket</p>
+    <button mat-dialog-close mat-icon-button type="button">
+        <mat-icon [icIcon]="icClose" size="24px"></mat-icon>
+    </button>
+</div>
+  
+  <mat-dialog-content>
+    
+    <table>
+        <tr>
+            <td class="td-width-left">
+                <p class="text-center mb-5">
+                    Please create ticket with issue or details.
+                    One of our Customer Advisor will come back to you!
+                </p>
+                <img src="http://localhost:4200/assets/img/illustrations/checklist.svg" style="width: 100%;"/>
+            </td>
+            <td class="td-width-right">
+                <mat-form-field>
+                    <mat-label>Name</mat-label>
+                    <input matInput value=" {{toName}} ">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>E-mail</mat-label>
+                    <input matInput value="{{ toEmail }}">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Phone Number</mat-label>
+                    <input matInput value="{{ toNumber }}">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Enter Your Query</mat-label>
+                    <textarea matInput [(ngModel)]="toQuery"></textarea>
+                </mat-form-field>
+                <p>
+                    If applicable, please provide a few examples (SKU, Variant SKUs, Item Ids, Order Number, etc)
+                </p>
+            </td>
+        </tr>
+    </table>
+
+  </mat-dialog-content>
+  
+  <mat-dialog-actions>
+  
+    <span class="flex-1"></span>
+    
+    <button (click)="saveTicket()" color="primary" mat-flat-button type="button">
+        <ic-icon [icIcon]="icSend" [inline]="true" size="16px"></ic-icon>  Create Ticket
+    </button>
+
+    <button mat-dialog-close mat-raised-button type="button" color="secondary">
+      <mat-icon [icIcon]="icCancel" [inline]="true" size="16px"></mat-icon> Close
+    </button>
+  
+    
+  </mat-dialog-actions>
+  

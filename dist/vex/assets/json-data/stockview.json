@@ -1,0 +1,20 @@
+[
+    {
+      "id": 1,
+      "sku": "6692532",
+      "title": "Product Title",
+      "price": "",
+      "qty": "0",
+      "supplier": "",
+      "order_history": ""
+    },
+    {
+      "id": 2,
+      "sku": "6692532",
+      "title": "Product Title",
+      "price": "",
+      "qty": "0",
+      "supplier": "",
+      "order_history": ""
+    }
+]

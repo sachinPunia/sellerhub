@@ -1,0 +1,173 @@
+<div class="flex items-center" mat-dialog-title>
+    <h2 class="flex-auto text-lg font-medium font-12">
+        Update Quantity for the product <b>Bundle Product Title - SKU 5717070</b>
+    </h2>
+    <button mat-dialog-close mat-icon-button type="button">
+        <mat-icon [icIcon]="icClose" size="24px"></mat-icon>
+    </button>
+</div>
+<!-- <table class="w-full">
+    <tr><td class="left">US +1 (925) 217-1261 (8AM EST - 5PM EST)</td><td class="right">UK +44 203 371 7255 (10AM GMT - 5PM GMT)</td></tr>
+</table> -->
+  <mat-dialog-content>
+    <mat-divider></mat-divider><br>
+    <div style="display: flex;">
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>New Total Quantity: </mat-label>
+          <input matInput value="">
+        </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <mat-checkbox class="example-margin">List Full Quantity</mat-checkbox>
+
+        <button color="primary" mat-flat-button type="button" style="height: 40px;">
+            Update Qty 
+        </button> &nbsp;&nbsp;
+        
+    
+        <button mat-dialog-close mat-raised-button type="button" style="height: 40px;" color="secondary">
+          <mat-icon [icIcon]="icCancel" [inline]="true" size="16px"></mat-icon> Close
+        </button>
+    </div><br>
+    <div>
+        <h4>This will update the quantity for all the products with SKU 5717070</h4>
+    </div><br>
+    <div class="info">
+        <mat-checkbox checked=true>Relist Closed Items</mat-checkbox>
+    </div><br>
+    <div class="info_1">
+        <h4><b>Channel Products associated with this SKU and variation SKUs are shown below</b></h4>
+        <h4>You can adjust listng quantity for each channel below.</h4>
+    </div><br>
+
+    <div class="table-responsive">
+        <table [dataSource]="dataSource" class="w-full top-30 left-13" mat-table matSort>
+
+            <ng-container matColumnDef="channel">
+                <th *matHeaderCellDef mat-header-cell>CHANNEL</th>
+                <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell>
+                    <img height="40" [src]="row['channel']" class="h-12 w-40 align-middle">
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="sku">
+                <th *matHeaderCellDef mat-header-cell mat-sort-header>SKU</th>
+                <td *matCellDef="let row" mat-cell>
+                  <div class="flex">
+                    <a class="w-20 h-8 leading-none flex items-center justify-center hover:bg-hover text-white bg-red"
+                       mat-icon-button>
+                      {{ row['sku'] }}
+                    </a>
+                  </div>
+                </td>
+            </ng-container>
+
+            <ng-container *ngFor="let column of columns">
+                <ng-container *ngIf="column.type === 'text'" [matColumnDef]="column.property">
+                    <th *matHeaderCellDef class="uppercase" mat-header-cell mat-sort-header> {{ column.label }}</th>
+                    <td *matCellDef="let row" mat-cell style="width: 20px !important;">{{ row[column.property] }}</td>
+                </ng-container>
+            </ng-container>
+
+            <ng-container matColumnDef="total_qty">
+                <th *matHeaderCellDef mat-header-cell mat-sort-header>TOTAL QTY </th>
+                <td *matCellDef="let row" mat-cell>
+                  <div class="flex">
+                    <mat-form-field style="width: 140px !important; margin-right: 6px !important;" appearance="outline" color="primary">
+                        <!-- <mat-label>Package Weight</mat-label> -->
+                        <input matInput #input value="1" >
+                    </mat-form-field>
+                  </div>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="listing_qty">
+                <th *matHeaderCellDef mat-header-cell mat-sort-header>LISTING QTY </th>
+                <td *matCellDef="let row" mat-cell>
+                  <div class="flex">
+                    <mat-form-field style="width: 140px !important; margin-right: 6px !important;" appearance="outline" color="primary">
+                        <!-- <mat-label>Package Weight</mat-label> -->
+                        <input matInput #input value="1" >
+                    </mat-form-field>
+                  </div>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="selling_price">
+                <th *matHeaderCellDef mat-header-cell mat-sort-header>SELLING PRICE </th>
+                <td *matCellDef="let row" mat-cell>
+                  <div class="flex">
+                    <mat-form-field style="width: 140px !important; margin-right: 6px !important;" appearance="outline" color="primary">
+                        <!-- <mat-label>Package Weight</mat-label> -->
+                        <input matInput #input  >
+                    </mat-form-field>
+                  </div>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="listing_status">
+                <th *matHeaderCellDef mat-header-cell mat-sort-header>LISTING STATUS </th>
+                <td *matCellDef="let row" mat-cell>
+                  <div class="flex">
+                    <a class="w-20 h-8 leading-none flex items-center justify-center hover:bg-hover text-white bg-purple"
+                       mat-icon-button>
+                      {{ row['listing_status'] }}
+                    </a>
+                  </div>
+                </td>
+            </ng-container>
+
+
+
+            
+            <!-- <ng-container matColumnDef="select">
+                <th *matHeaderCellDef mat-header-cell class="bg-sellershub pl-20">
+                <mat-checkbox (change)="$event ? masterToggle() : null"
+                                [checked]="selection.hasValue() && isAllSelected()"
+                                [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                color="primary">
+                </mat-checkbox>
+                </th>
+                <td *matCellDef="let row" class="w-4 pl-20" mat-cell>
+                <mat-checkbox (change)="$event ? selection.toggle(row) : null"
+                                (click)="$event.stopPropagation()"
+                                [checked]="selection.isSelected(row)"
+                                color="primary">
+                </mat-checkbox>
+                </td>
+            </ng-container> -->
+
+            <tr *matHeaderRowDef="visibleColumns sticky: true" mat-header-row></tr>
+            <tr *matRowDef="let row; columns: visibleColumns;"
+                @fadeInUp stagger60ms
+                class="hover:bg-hover trans-ease-out cursor-pointer"
+                mat-row></tr>
+
+        </table>
+    </div>
+    <mat-paginator appearance="standard" [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" class="sticky left-0"></mat-paginator>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions>
+  
+    <span class="flex-1"></span>
+
+    <button color="primary" mat-flat-button type="button">
+        Next 
+    </button> 
+    
+    <!-- <button color="primary" mat-flat-button type="button" [matMenuTriggerFor]="aboveMenu"><ic-icon [icIcon]="icUparrow" [inline]="true" size="16px"></ic-icon></button>
+    <mat-menu #aboveMenu="matMenu" yPosition="above">
+    <button mat-menu-item>Last 1 Day</button>
+    <button mat-menu-item>Last 7 Days</button>
+    <button mat-menu-item>Last 14 Days</button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item>Last 30 Days</button>
+    </mat-menu> -->
+    
+
+    <button mat-dialog-close mat-raised-button type="button" color="secondary">
+      <mat-icon [icIcon]="icCancel" [inline]="true" size="16px"></mat-icon> Close
+    </button>
+  
+    
+  </mat-dialog-actions>
+  

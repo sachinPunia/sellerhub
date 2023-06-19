@@ -1,0 +1,89 @@
+<div class="flex items-center" mat-dialog-title>
+    <h2 class="flex-auto text-lg font-medium font-12">
+        Currency Convertor
+    </h2>
+    <button mat-dialog-close mat-icon-button type="button">
+        <mat-icon [icIcon]="icClose" size="24px"></mat-icon>
+    </button>
+</div>
+<!-- <table class="w-full">
+    <tr><td class="left">US +1 (925) 217-1261 (8AM EST - 5PM EST)</td><td class="right">UK +44 203 371 7255 (10AM GMT - 5PM GMT)</td></tr>
+</table> -->
+<mat-divider></mat-divider>
+  <mat-dialog-content>
+      <h4>Please select from Currency</h4>
+
+      <mat-form-field appearance="outline" style="width: 440px !important; margin-right: 6px !important; margin-left: 27px !important;" fxFlex="none">
+        <mat-label>From Currency</mat-label>
+        <mat-select (valueChange)="onSearchByChange($event)">
+            <!-- <mat-option value="-1">From Currency</mat-option> -->
+            <mat-option value="BGN">BGN</mat-option>
+            <mat-option value="NZD">NZD</mat-option>
+            <mat-option value="ILS">ILS</mat-option>
+            <mat-option value="RUB">RUB</mat-option>
+            <mat-option value="CAD">CAD</mat-option>
+            <mat-option value="USD">USD</mat-option>
+            <mat-option value="PHP">PHP</mat-option>
+            <mat-option value="CHF">CHF</mat-option>
+            <mat-option value="AUD">AUD</mat-option>
+            <mat-option value="JPY">JPY</mat-option>
+            <mat-option value="TRY">TRY</mat-option>
+            <mat-option value="HKD">HKD</mat-option>
+            <mat-option value="MYR">MYR</mat-option>
+            <mat-option value="HRK">HRK</mat-option>
+            <mat-option value="CZK">CZK</mat-option>
+            <mat-option value="IDR">IDR</mat-option>
+            <mat-option value="DKK">DKK</mat-option>
+            <mat-option value="NOK">NOK</mat-option>
+            <mat-option value="HUF">HUF</mat-option>
+            <mat-option value="GBP">GBP</mat-option>
+            <mat-option value="MXN">MXN</mat-option>
+            <mat-option value="THB">THB</mat-option>
+            <mat-option value="ISK">ISK</mat-option>
+            <mat-option value="ZAR">ZAR</mat-option>
+            <mat-option value="BRL">BRL</mat-option>
+            <mat-option value="SGD">SGD</mat-option>
+            <mat-option value="PLN">PLN</mat-option>
+            <mat-option value="INR">INR</mat-option>
+            <mat-option value="KRW">KRW</mat-option>
+            <mat-option value="RON">RON</mat-option>
+            <mat-option value="CNY">CNY</mat-option>
+            <mat-option value="SEK">SEK</mat-option>
+            <mat-option value="EUR">EUR</mat-option>
+        </mat-select>
+    </mat-form-field><br>
+
+    <mat-form-field appearance="outline" style="width: 440px !important; margin-right: 6px !important; margin-left: 27px !important;" fxFlex="none">
+        <mat-label>To Currency</mat-label>
+        <mat-select>
+          <!-- <mat-option value="-1">Nothing to Display</mat-option> -->
+          <!-- <mat-option value="SKU">SKU</mat-option> -->
+        </mat-select>
+    </mat-form-field><br>
+
+    <mat-form-field appearance="outline" style="width: 450px !important; margin-right: 6px !important; margin-left: 27px !important;" class="vex-flex-form-field" color="warn">
+        <!-- <mat-label>Enter value to search</mat-label> -->
+        <input matInput placeholder="Enter Currency Exchange Rate">
+    </mat-form-field>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions>
+  
+    <span class="flex-1"></span>
+    
+    
+    <button color="primary" mat-flat-button type="button">
+      <mat-icon [icIcon]="faUpload" [inline]="true" size="16px"></mat-icon> Update
+    </button>
+<!-- 
+    <button color="primary" mat-flat-button type="button">
+        <ic-icon [icIcon]="icSend" [inline]="true" size="16px"></ic-icon>  Create New Order
+    </button> -->
+
+    <button mat-dialog-close mat-raised-button type="button" color="secondary">
+        <mat-icon [icIcon]="icCancel" [inline]="true" size="16px"></mat-icon> Close
+    </button>
+  
+    
+  </mat-dialog-actions>
+  

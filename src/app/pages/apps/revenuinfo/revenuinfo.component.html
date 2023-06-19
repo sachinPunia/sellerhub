@@ -1,0 +1,8 @@
+<div class="card overflow-auto red">
+    <table class="w-full">
+        <tr>
+            <td *ngFor="let row of listRevenue" style="text-align: right !important;">{{ row.totalRevenue }}</td>
+            <td style="width: 45% !important; text-align: left !important;">({{ curMoney }})</td>
+        </tr>
+    </table>
+</div>

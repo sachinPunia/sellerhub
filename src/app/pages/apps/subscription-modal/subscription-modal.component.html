@@ -1,0 +1,86 @@
+<div class="p-gutter" vexContainer>
+    <div class="card">
+        <div class="border-b py-4 px-6" fxLayout="row" fxLayoutAlign="start center">
+          <h2 class="m-0 title" fxFlex="auto">Please select a subscription plan according to your product catalog size and orders per month</h2>
+          <button class="float-right small-icon-button" (click)="goBack()" color="primary" mat-raised-button type="button" style="margin-right: 6px !important;">
+            <mat-icon color="text-secondary" [icIcon]="icBack"></mat-icon> Back
+          </button>  
+        </div>
+      
+        <div class="py-5 px-5" fxLayout="row" fxLayout.lt-md="column">
+            <table>
+                <tr>
+                    <td>
+                        <div class="bg-business text-primary-contrast p-gutter text-center" fxFlex="300px" fxFlex.lt-md="auto">
+                            <h2 class="headline mb-4 text-center font-15">BASE PRICE</h2>
+                        
+                            <div class="flex items-center justify-center">
+                              <ic-icon [icon]="icStars" size="48px"></ic-icon>
+                            </div>
+                            <br />
+                        
+                            <div class="body-1"><span class="body-2">Upto</span> 1 User</div>
+                            <div class="body-1"><span class="body-2">Upto</span> 0 SKU</div>
+                            <div class="body-1"><span class="body-2">1000 Orders </span>a month</div>
+                            <div class="body-1"><span class="body-2">Upto </span>5 channels (e.g eBay,Amazon, Shopify)</div>
+                            <div class="body-1"><span class="body-2">Charge for each additional channel </span>0</div>
+                            <div class="body-1"><span class="body-2">GBP25 </span>per month for every 1000 orders</div>
+                            <!-- <div class="body-1"><span class="body-2">Upto </span>5 channel integrations</div> -->
+                        
+                            <h3 class="display-2 font-bold my-6" style="color: #0c1c44;">25<span class="text-secondary headline align-top">GBP</span></h3>
+                            + 20% VAT Per Month
+                            <br /><br />
+                            <button class="rounded-full max-w-full w-200" color="primary" mat-raised-button type="button">Purchase</button>
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class="bg-professional text-primary-contrast p-gutter text-center" fxFlex="300px" fxFlex.lt-md="auto">
+                            <h2 class="headline mb-4 text-center font-15">LIFETIME</h2>
+                        
+                            <div class="flex items-center justify-center">
+                              <ic-icon [icon]="icBeenhere" size="48px"></ic-icon>
+                            </div>
+                            <br />
+                            <div class="body-1"><span class="body-2">Upto</span> 3 User</div>
+                            <div class="body-1"><span class="body-2">Upto </span>3000 SKU</div>
+                            <div class="body-1"><span class="body-2">500 Orders </span>a month</div>
+                            <div class="body-1"><span class="body-2">Upto </span>5 channels (e.g eBay,Amazon, Shopify)</div>
+                            <div class="body-1"><span class="body-2">Charge for each additional channel </span>0</div>
+                            <div class="body-1"><span class="body-2">GBP25 </span>per month for every 1000 orders</div>
+                            
+                            <h3 class="display-2 font-bold my-6">99<span class="text-secondary headline align-top" style="color: #FFFFFF;">GBP</span></h3>
+                            + 20% VAT Per Month
+                            
+                            <br /><br />
+                            <button class="rounded-full max-w-full w-200" color="warn" mat-raised-button type="button">Purchase</button>
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class="bg-us text-primary-contrast p-gutter text-center" fxFlex="300px" fxFlex.lt-md="auto">
+                            <h2 class="headline mb-4 text-center font-15">Custom Plan</h2>
+                        
+                            <div class="flex items-center justify-center">
+                                <ic-icon [icon]="icBusinessCenter" size="48px"></ic-icon>
+                            </div>
+                            <br />
+                            <div class="body-1"><span class="body-2">Upto</span> 5 User</div>
+                            <div class="body-1"><span class="body-2">Upto</span>50000 SKU</div>
+                            <div class="body-1"><span class="body-2">4000 Orders</span> a month</div>
+                            <div class="body-1"><span class="body-2">Upto</span> 5 channels (e.g eBay,Amazon, Shopify)</div>
+                            <div class="body-1"><span class="body-2">Charge</span> for each additional channel GBP0</div>
+                            <div class="body-1"><span class="body-2">Upto 4000 </span>orders per month</div>
+                        
+                            <h3 class="display-2 font-bold my-6" style="color: #0c1c44;">99<span class="text-secondary headline align-top">GBP</span></h3>
+                            + 20% VAT Per Month
+                        
+                            <br /><br />
+                            <button class="rounded-full max-w-full w-200" color="ancent" mat-raised-button type="button">Purchase</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+th{
+    font-size: 9.8pt !important;
+    color:#0c1c44;
+}
+td {
+    padding: 6px !important;
+    font-size: 9.4pt !important;
+}
+
+::ng-deep .small-icon-button {
+    width: auto !important;
+    height: 32px !important;
+    line-height: 32px !important;
+  
+    .mat-icon {
+       width: 16px !important;
+       height: 16px !important;
+       line-height: 16px !important;
+    }
+    .material-icons {
+       font-size: 16px !important;
+    }
+  }
+
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: hidden;
+    margin-right: 10px;
+    margin-top: 0px !important;
+    .mat-table {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 1rem;
+        display: table;
+        border-collapse: collapse;
+        margin: 0px;
+    }
+    .mat-row,
+    .mat-header-row {
+        display: table-row;
+    }
+    .mat-cell,
+    .mat-header-cell {
+        word-wrap: initial;
+        display: table-cell;
+        padding: 0px 5px;
+        line-break: unset;
+        width: auto;
+        white-space: nowrap;
+        overflow: hidden;
+        vertical-align: middle;
+    }
+  }
+  
+  .table-responsive:hover{
+    overflow-x: auto !important;
+  }
+
+  .bg-sellershub {
+    background-color: #1a202e !important;
+    color: #ffffff;
+  }
+  .mat-tab-label{
+    color: #1a202e !important;
+    font-size: 11pt !important;
+  }

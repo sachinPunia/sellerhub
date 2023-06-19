@@ -1,0 +1,141 @@
+
+<div class="p-gutter" vexContainer>
+    <div class="card">
+        <div class="border-b py-4 px-6" fxLayout="row" fxLayoutAlign="start center">
+          <h2 class="m-0 title" fxFlex="auto">Cancelled Orders</h2>
+          <button class="rounded-tr rounded-br float-right" color="primary" mat-raised-button type="button" style="margin-right: 6px !important;">
+            <mat-icon color="text-secondary" [icIcon]="icPrint"></mat-icon> Print
+          </button>
+          <button class="float-right" color="primary" mat-raised-button type="button" style="margin-right: 6px !important;">
+            <mat-icon color="text-secondary" [icIcon]="icExcel"></mat-icon> Export to CSV
+          </button>
+        </div>
+      
+        <div class="py-0 px-0" fxLayout="row" fxLayout.lt-md="column" style="margin-top: 5px !important;">
+            <mat-form-field appearance="standard" style="width: 140px !important; margin-right: 6px !important; margin-left: 27px !important;" fxFlex="none">
+                <mat-label>Search What</mat-label>
+                <mat-select (valueChange)="SearchBy($event)">
+                  <mat-option value="0">Select</mat-option>
+                  <mat-option value="1">SKU</mat-option>
+                  <mat-option value="3">Title</mat-option>
+                  <mat-option value="4">Order No</mat-option>
+                  <mat-option value="5">Customer Name</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="standard" style="width: 250px !important; margin-right: 6px !important;" class="vex-flex-form-field" color="warn">
+                <mat-label>Enter value to search</mat-label>
+                <input matInput (change)="Txt1($event)">
+            </mat-form-field>
+
+            <button (click)="onSearch()" class="mt-3" color="primary" mat-raised-button type="button">
+                <mat-icon color="text-secondary" [icIcon]="icSearch"></mat-icon>
+            </button>
+
+            <mat-form-field appearance="standard" style="width: 140px !important; margin-right: 6px !important; margin-left: 27px !important;" fxFlex="none">
+                <mat-label>Channels</mat-label>
+                <mat-select (valueChange)="SearchByChannel($event)" >
+                    <mat-option *ngFor="let cur of showChannel" value="{{ cur.id }}">{{ cur.type }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="standard" style="width: 150px !important; margin-right: 6px !important; margin-left: 27px !important;" fxFlex="none">
+                <mat-label>Shipping Methods</mat-label>
+                <mat-select (valueChange)="SearchByMethods($event)" >
+                    <mat-option value="000">Select</mat-option>
+                    <mat-option value="1.50 test">1.50 test</mat-option>
+                    <mat-option value="1VP ">1VP </mat-option>
+                    <mat-option value="BPL1">BPL1</mat-option>
+                    <mat-option value="CRL48">CRL48</mat-option>
+                    <mat-option value="DPD">DPD</mat-option>
+                    <mat-option value="DPD NEXT DAY">DPD NEXT DAY</mat-option>
+                    <mat-option value="OLP1">OLP1</mat-option>
+                    <mat-option value="royal mail">royal mail</mat-option>
+                    <mat-option value="SD3OLP">SD3OLP</mat-option>
+                    <mat-option value="UK_RoyalMailSecondClassStandard">UK_RoyalMailSecondClassStandard</mat-option>
+                    <mat-option value="UK_RoyalMailSecondClassStandard_f">UK_RoyalMailSecondClassStandard_f</mat-option>
+                    <mat-option value="UK_RoyalMailSpecialDeliveryNextDay">UK_RoyalMailSpecialDeliveryNextDay</mat-option>
+                    <mat-option value="Yodel">Yodel</mat-option>
+                </mat-select>
+            </mat-form-field>
+            
+            <div>
+                <div class="table-responsive">
+                    <table [dataSource]="dataSource" class="w-full top-30 left-13" mat-table matSort>
+                        
+                        <!-- Checkbox Column -->
+                        <ng-container matColumnDef="checkbox">
+                            <th *matHeaderCellDef mat-header-cell>
+                            <mat-checkbox (change)="$event ? masterToggle() : null"
+                                            [checked]="selection.hasValue() && isAllSelected()"
+                                            [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                            color="primary">
+                            </mat-checkbox>
+                            </th>
+                            <td *matCellDef="let row" class="w-4" mat-cell>
+                            <mat-checkbox (change)="$event ? selection.toggle(row) : null"
+                                            (click)="$event.stopPropagation()"
+                                            [checked]="selection.isSelected(row)"
+                                            color="primary">
+                            </mat-checkbox>
+                            </td>
+                        </ng-container>
+
+                        <ng-container *ngFor="let column of columns">
+                            <ng-container *ngIf="column.type === 'text'" [matColumnDef]="column.property">
+                                <th *matHeaderCellDef class="uppercase" mat-header-cell mat-sort-header> {{ column.label }}</th>
+                                <td *matCellDef="let row" mat-cell style="width: 20px !important;">{{ row[column.property] }}</td>
+                            </ng-container>
+                        </ng-container>
+
+                        
+                        <ng-container matColumnDef="title">
+                            <th *matHeaderCellDef mat-header-cell>PRODUCT</th>
+                            <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell>
+                                <!-- <img src="https://s3-us-west-1.amazonaws.com/khubweb/web/UK.png" class="h-2 w-6 align-left"> -->
+                                <img [src]="row['imageUrl']" class="h-20 w-20 align-middle">
+                                {{ row['title'] }}
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="purchaseDate">
+                            <th *matHeaderCellDef mat-header-cell mat-sort-header class="bg-sellershub">ORDER DATE</th>
+                            <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell style="width: 20px !important;">
+                                    {{ row['purchaseDate'] |  date:'dd/MM/yyyy' }} 
+                            </td>
+                        </ng-container>
+
+                        
+                        <ng-container matColumnDef="channel">
+                            <th *matHeaderCellDef mat-header-cell>CHANNEL</th>
+                            <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell>
+                                <img src="https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhub{{ row['channel'] }}.png" class="h-10 w-20 align-middle">
+                                <img src="https://s3-us-west-1.amazonaws.com/khubweb/web/{{ row['site'] }}.png" class="h-6 w-8 align-left">
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="view">
+                            <th *matHeaderCellDef mat-header-cell mat-sort-header>View</th>
+                            <td *matCellDef="let row" mat-cell>
+                              <div class="flex">
+                                <a class="w-8 h-8 leading-none flex items-center justify-center hover:bg-hover text-red bg-red-light"
+                                   mat-icon-button>
+                                  <mat-icon [icIcon]="icRemove" size="18px"></mat-icon>
+                                </a>
+                              </div>
+                            </td>
+                        </ng-container>
+            
+                        <tr *matHeaderRowDef="visibleColumns sticky: true" mat-header-row></tr>
+                        <tr *matRowDef="let row; columns: visibleColumns;"
+                            @fadeInUp stagger60ms
+                            class="hover:bg-hover trans-ease-out cursor-pointer"
+                            mat-row></tr>
+            
+                    </table>
+                </div>
+                <mat-paginator appearance="standard" [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" class="sticky left-0"></mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>

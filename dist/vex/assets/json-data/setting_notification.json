@@ -1,0 +1,17 @@
+[
+    {
+      "id": 1,
+      "notification_type": "Low Stock Alert Email",
+      "action": ""
+    },
+    {
+        "id": 2,
+        "notification_type": "New Order Notification Email",
+        "action": ""
+    },
+    {
+        "id": 3,
+        "notification_type": "New Order Notification SMS",
+        "action": ""
+    }
+]

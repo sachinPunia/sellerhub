@@ -1,0 +1,154 @@
+<div class="p-gutter" vexContainer>
+    <div class="card">
+        <div class="border-b py-4 px-6" fxLayout="row" fxLayoutAlign="start center">
+          <h2 class="m-0 title" fxFlex="auto">Bulk Actions</h2>
+        </div>
+      
+        <div class="py-5 px-5" fxLayout="row" fxLayout.lt-md="column">
+            <mat-tab-group [@.disabled]="true">
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        Bulk Imports
+                    </ng-template>
+                    <div style="justify-content: right;"  class="border-b py-1 px-2" fxLayout="row" fxLayoutAlign="start center">
+                        <button stylź="background-color: blue; color: white;" mat-raised-button class="rounded-tr rounded-br float-right">
+                          Download 
+                        </button>
+                        <button (click)="uploadFile()" style="background-color: greenyellow; color: black;" mat-raised-button class="float-right">
+                           Upload
+                        </button>
+                        <button style="background-color: red; color: white;" mat-raised-button class="float-right">
+                           Remove All Files
+                        </button>
+                      </div>
+                      <div style="justify-content: left;">
+                        <div>
+                            <label for="input-file-id" class="md-button md-raised md-primary">Choose Files</label><br>
+                            <input class="ng-hide" id="input-file-id" (change)="selectFile($event)" type="file" />
+                        
+                        <mat-form-field appearance="fill">
+                            <mat-label>Please select the upload file type</mat-label>
+                            <mat-select (valueChange)="onSearchByFileType($event)">
+                                <mat-option value="GeneralCSV">General CSV File</mat-option>
+                                <mat-option value="SKUQuantity">Update Quantities CSV</mat-option>
+                                <mat-option value="BarcodeQuantity">Update Quantities by Barcode</mat-option>
+                                <mat-option value="SKUPrice">Update Prices CSV</mat-option>
+                                <mat-option value="BarcodePrice">Update Prices using Barcodes</mat-option>
+                                <mat-option value="EbayPartsCompatibility">Ebay Parts Compatibility</mat-option>
+                                <mat-option value="SKUBarcode">SKU Barcode Import CSV File</mat-option>
+                                <mat-option value="MergeSKU">Merge SKUs</mat-option>
+                                <mat-option value="LinkSKU">Linking SKUs</mat-option>
+                                <mat-option value="orderimportcsv">Order Import CSV File</mat-option>
+                                <mat-option value="WAREHOUSE_LOCATIONS">Warehouse Locations Import File</mat-option>
+                                <mat-option value="SKU_LOCATIONS">Assign SKUs to Warehouse Locations</mat-option>
+                                <mat-option value="AssignSuppliersToProducts">Assign Suppliers to Products</mat-option>
+                                <mat-option value="MultichannelProductCSV">Multichannel Product CSV File</mat-option>
+                                <mat-option value="CustomCSV">Custom CSV File</mat-option>
+                            </mat-select>
+                            <!-- <mat-hint align="end">Here's the dropdown arrow ^</mat-hint> -->
+                            </mat-form-field>
+                        </div>
+                      </div>
+                      <br>
+                      <div>
+                          <div class="table-responsive">
+                              <table [dataSource]="dataSource" class="w-full top-30 left-13" mat-table matSort style="width: 100% !important;">
+          
+                                  <ng-container *ngFor="let column of columns">
+                                      <ng-container *ngIf="column.type === 'text'" [matColumnDef]="column.property">
+                                          <th *matHeaderCellDef class="uppercase" mat-header-cell mat-sort-header> {{ column.label }}</th>
+                                          <td *matCellDef="let row" mat-cell style="width: 20px !important;">{{ row[column.property] }}</td>
+                                      </ng-container>
+                                  </ng-container>
+          
+                                  <ng-container matColumnDef="action">
+                                      <th *matHeaderCellDef mat-header-cell mat-sort-header>ACTION</th>
+                                      <td *matCellDef="let row" mat-cell>
+                                        <div >
+                                          <!-- <button class="mr-4 font-10" 
+                                              color="primary"
+                                              mat-raised-button
+                                              type="button"><mat-icon color="text-secondary" [icIcon]="icEdit"></mat-icon>
+                                          </button> -->
+                                          <button class="mr-4 font-10" 
+                                              color="primary"
+                                              mat-raised-button
+                                              type="button" (click)="removeBulkimport( row['id'] )" ><mat-icon color="text-secondary" [icIcon]="icRemove"></mat-icon>
+                                          </button>
+                                        </div>
+                                      </td>
+                                  </ng-container>
+                      
+                                  <tr *matHeaderRowDef="visibleColumns sticky: true" mat-header-row></tr>
+                                  <tr *matRowDef="let row; columns: visibleColumns;"
+                                      @fadeInUp stagger60ms
+                                      class="hover:bg-hover trans-ease-out cursor-pointer"
+                                      mat-row></tr>
+                      
+                              </table>
+                          </div>
+                          <mat-paginator appearance="standard" [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" class="sticky left-0"></mat-paginator>
+                      </div>
+                </mat-tab>
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        Bulk Exports
+                    </ng-template>
+                    <div style="display: flex;justify-content: space-between;" class="border-b py-1 px-2" fxLayout="row" fxLayoutAlign="start center">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Please select an export file type</mat-label>
+                            <mat-select>
+                                <mat-option value="-1">Please select an export file type</mat-option>
+                                <mat-option value="general">Product Export File</mat-option>
+                                <mat-option value="EBAY_PRODUCT_EXPORT">Ebay Product Export File</mat-option>
+                                <mat-option value="qtysku">QTY SKU Product Export File</mat-option>
+                                <mat-option value="skubarcode">SKU Barcodes Export File</mat-option>
+                                <mat-option value="customers">Customer Export File</mat-option>
+                            </mat-select>
+                            <!-- <mat-hint align="end">Here's the dropdown arrow ^</mat-hint> -->
+                            </mat-form-field>
+                        <button style="background-color: green; color: white;" mat-raised-button class="rounded-tr rounded-br  float-right">
+                           Export
+                        </button>
+                      </div><br>
+                    <div>
+                        <div class="table-responsive">
+                          
+                            <table [dataSource]="dataSource_1" class="top-30 left-13" mat-table matSort>
+                            
+                            
+                            <ng-container *ngFor="let column1 of columns_new">
+                                <ng-container *ngIf="column1.type === 'text'" [matColumnDef]="column1.property">
+                                    <th *matHeaderCellDef class="uppercase" mat-header-cell mat-sort-header> {{ column1.label }}</th>
+                                    <td *matCellDef="let row" mat-cell style="width: 20px !important;">{{ row[column1.property] }}</td>
+                                </ng-container>
+                            </ng-container>
+        
+                            <ng-container matColumnDef="action">
+                              <th *matHeaderCellDef mat-header-cell mat-sort-header>ACTION</th>
+                              <td *matCellDef="let row" mat-cell>
+                                <div>
+                                  <button class="mr-4 font-10" 
+                                      color="primary"
+                                      mat-raised-button
+                                      type="button"   >Remove
+                                  </button>
+                                </div>
+                              </td>
+                          </ng-container>
+                    
+                                <tr *matHeaderRowDef="visibleColumns_new; sticky: true" mat-header-row></tr>
+                                <tr *matRowDef="let row; columns: visibleColumns_new;"
+                                    @fadeInUp stagger60ms
+                                    class="hover:bg-hover trans-ease-out cursor-pointer"
+                                    mat-row></tr>
+                    
+                            </table>
+                        </div>
+                        <mat-paginator appearance="standard" [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" class="sticky left-0"></mat-paginator>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+</div>

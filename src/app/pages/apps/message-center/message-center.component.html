@@ -1,0 +1,106 @@
+<div class="p-gutter" vexContainer>
+    <div class="card">
+        <div class="border-b py-4 px-6" fxLayout="row" fxLayoutAlign="start center">
+          <h2 class="m-0 title" fxFlex="auto">About Message Center</h2>
+        </div>
+
+        <mat-form-field appearance="standard" style="width: 250px !important; margin-right: 6px !important; margin-left: 10px !important;" class="vex-flex-form-field" color="warn">
+            <mat-label>Filter By Status</mat-label>
+                <mat-select (valueChange)="onSearchByStatus($event)">
+                    <mat-option value="Replied">Replied</mat-option>
+                    <mat-option value="Not Replied">Not Replied</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" style="width: 250px !important; margin-left: 6px !important;" class="vex-flex-form-field" color="warn">
+            <mat-label>Filter By Channel</mat-label>
+                <mat-select (valueChange)="onSearchByChannel($event)">
+                    <mat-option *ngFor="let cur of showChannel" value="{{ cur.id }}">{{ cur.type }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+      
+        <div class="py-5 px-5" fxLayout="row" fxLayout.lt-md="column">
+            <div class="table-responsive">
+            <table [dataSource]="dataSource" class="w-full top-30 left-13" mat-table matSort>
+                        
+                <!-- Checkbox Column -->
+                <ng-container matColumnDef="checkbox">
+                    <th *matHeaderCellDef mat-header-cell>
+                    <mat-checkbox (change)="$event ? masterToggle() : null"
+                                    [checked]="selection.hasValue() && isAllSelected()"
+                                    [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                    color="primary">
+                    </mat-checkbox>
+                    </th>
+                    <td *matCellDef="let row" class="w-4" mat-cell>
+                    <mat-checkbox (change)="$event ? selection.toggle(row) : null"
+                                    (click)="$event.stopPropagation()"
+                                    [checked]="selection.isSelected(row)"
+                                    color="primary">
+                    </mat-checkbox>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="channel">
+                    <th *matHeaderCellDef mat-header-cell class="uppercase">CHANNEL</th>
+                    <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell>
+                        <img src="https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhub{{ row['channelType'] }}.png" class="h-10 w-22 align-middle">
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="itemId">
+                    <th *matHeaderCellDef mat-header-cell class="uppercase">ITEM REF</th>
+                    <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell>
+                        <a (click)="openOrderDetailsModal(row['itemId'])" class="leading-none flex items-center hover:bg-hover text-warn">{{ row['itemId'] }}</a>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="details">
+                    <th *matHeaderCellDef mat-header-cell class="uppercase">DETAILS</th>
+                    <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell>
+                        <!-- {{!row['replied']}} -->
+                      <a (click)="openViewMessage( row['id'], row['itemId'], row['messageSubject'], row['messageFrom'], row['messageText'], row['createdDate'], row['channelType'], !row['replied'] )" class="leading-none flex items-center justify-center hover:bg-hover text-warn">View</a>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="createdDate">
+                    <th *matHeaderCellDef mat-header-cell class="uppercase">RECEIVED ON</th>
+                    <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell>
+                        {{ row['createdDate'] | date:'medium' }}
+                    </td>
+                </ng-container>
+
+                <ng-container *ngFor="let column of columns">
+                    <ng-container *ngIf="column.type === 'text'" [matColumnDef]="column.property">
+                        <th *matHeaderCellDef class="uppercase" mat-header-cell mat-sort-header> {{ column.label }}</th>
+                        <td *matCellDef="let row" mat-cell style="width: 20px !important;">{{ row[column.property] }}</td>
+                    </ng-container>
+                </ng-container>
+
+                <ng-container matColumnDef="action">
+                    <th *matHeaderCellDef mat-header-cell mat-sort-header>ACTION</th>
+                    <td *matCellDef="let row" mat-cell>
+                      <div class="flex">
+                        <a *ngIf="!row['replied'];"  (click)="openReplyModal( row['item_ref'], row['subject'], row['message_from'] )" class="w-8 h-8 leading-none flex items-center justify-center hover:bg-hover text-red bg-red-light"
+                           mat-icon-button>
+                          <mat-icon [icIcon]="icMail" size="18px"></mat-icon>
+                        </a>
+                        <a *ngIf="row['replied'];">
+                          Replied
+                        </a>
+                      </div>
+                    </td>
+                </ng-container>
+    
+                <tr *matHeaderRowDef="visibleColumns sticky: true" mat-header-row></tr>
+                <tr *matRowDef="let row; columns: visibleColumns;"
+                    @fadeInUp stagger60ms
+                    class="hover:bg-hover trans-ease-out cursor-pointer"
+                    mat-row></tr>
+    
+            </table>
+            </div>
+            <mat-paginator appearance="standard" [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" class="sticky left-0"></mat-paginator>
+        </div>
+    </div>
+</div>

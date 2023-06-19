@@ -1,0 +1,29 @@
+<div class="flex items-center" mat-dialog-title>
+    <p class="flex-auto text-lg font-medium">Redeem Coupon</p>
+    <button mat-dialog-close mat-icon-button type="button">
+        <mat-icon [icIcon]="icClose" size="24px"></mat-icon>
+    </button>
+</div>
+  
+  <mat-dialog-content>
+    <mat-form-field>
+        <mat-label>Please enter 10 digit alphanumeric coupon code</mat-label>
+        <input matInput [(ngModel)]="couponCode">
+    </mat-form-field>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions>
+  
+    <span class="flex-1"></span>
+    
+    <button (click)="savaData()" color="primary" mat-flat-button type="button">
+        <ic-icon [icIcon]="icRedeem" [inline]="true" size="16px"></ic-icon>  Redeem
+    </button>
+
+    <button mat-dialog-close mat-raised-button type="button" color="secondary">
+      <mat-icon [icIcon]="icCancel" [inline]="true" size="16px"></mat-icon> Close
+    </button>
+  
+    
+  </mat-dialog-actions>
+  

@@ -1,0 +1,74 @@
+
+<div class="p-gutter" vexContainer>
+    <div class="card">
+        <div style="display: flex;justify-content: space-between;" class="border-b py-4 px-6" fxLayout="row" fxLayoutAlign="start center">
+          <h2 class="m-0 title" fxFlex="auto">Purchase Order</h2>
+
+          <button routerLink="/apps/inventory-purchase-orders" mat-icon-button type="button">
+              <mat-icon [icIcon]="icClose" size="24px"></mat-icon>
+          </button>
+          
+        </div>
+      
+        <div class="py-0 px-0" style=" display: flex; margin-top: 5px !important; padding: 20px; flex-wrap: wrap;">
+            <mat-form-field style="width: 440px !important; margin-right: 6px !important;" appearance="outline" color="primary">
+                <mat-label>Select Supplier</mat-label>
+                <mat-select>
+                    <!-- <mat-option value="gmt">GMT</mat-option>
+                    <mat-option value="est">EST</mat-option> -->
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field style="width: 440px !important; margin-right: 6px !important;" appearance="outline" color="primary">
+                <mat-label>Select Warehouse</mat-label>
+                <mat-select>
+                    <!-- <mat-option value="gmt">GMT</mat-option>
+                    <mat-option value="est">EST</mat-option> -->
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" style="width: 250px !important; margin-right: 6px !important;" class="vex-flex-form-field" color="warn">
+                <mat-label>Purchase Order No</mat-label>
+                <input matInput>
+            </mat-form-field>
+
+            <mat-form-field style="width: 250px !important; margin-right: 6px !important;" appearance="outline" color="primary">
+                <mat-label>Currency</mat-label>
+                <mat-select>
+                    <!-- <mat-option value="gmt">GMT</mat-option>
+                    <mat-option value="est">EST</mat-option> -->
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" style="width: 250px !important; margin-right: 6px !important;" class="vex-flex-form-field" color="warn">
+                <mat-label>Reference Number</mat-label>
+                <input matInput>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" style="width: 350px !important; margin-right: 6px !important;" class="vex-flex-form-field" color="warn">
+                <mat-label>Tax Percentage</mat-label>
+                <input matInput>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" style="width: 350px !important; margin-right: 6px !important;">
+                <mat-label>Stock required Date :</mat-label>
+                <input [matDatepicker]="datepickerRef" matInput>
+                <mat-datepicker-toggle [for]="datepickerRef" matSuffix></mat-datepicker-toggle>
+                <mat-datepicker #datepickerRef></mat-datepicker><br>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" style="width: 850px !important; margin-right: 6px !important;" class="vex-flex-form-field" color="warn">
+                <mat-label>Tax Percentage</mat-label>
+                <textarea matInput rows="8"></textarea>
+            </mat-form-field>
+        </div>
+        
+        <mat-divider></mat-divider><br>
+        <div class="pull-right" style="padding-left: 900px;" >
+            <button color="primary" mat-flat-button type="button">
+                <mat-icon [icIcon]="" [inline]="true" size="16px"></mat-icon> Save and Continue
+            </button>
+        </div><br>
+    </div>
+    <br>
+</div>

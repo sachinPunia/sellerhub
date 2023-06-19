@@ -1,0 +1,149 @@
+<link rel="stylesheet" href="https://s3-us-west-1.amazonaws.com/khubweb/assets/global/plugins/bootstrap/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://login.sellershub.io/css/new-admin.css">
+<link rel="stylesheet" href="https://login.sellershub.io/css/components.css">
+<div class="row topbar margin-top-10 margin-bottom-10">
+  
+    <div class="page-content-wrapper">
+        <!-- BEGIN PAGE HEAD -->
+        
+        <!-- END PAGE HEAD -->
+        <!-- BEGIN PAGE CONTENT -->
+        <div class="page-content">
+            <div class="row topbar margin-top-10">
+                <div class="col-md-2 col-sm-6 col-xs-6">
+                    <label><img style="width:100px" src="https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubyodel.png"/></label>
+                </div>
+                <div class="col-md-5 col-sm-8 col-xs-8">
+                    <div class="form-group">
+                        <label><i class="fa fa-truck"></i> Manage Yodel Integration</label>
+                    </div>
+                </div>
+                <div class="col-md-5 col-sm-12 col-xs-12">
+                    <div class="pull-right">
+                    <a class="btn btn-sm btn-default btn-circle" onclick="saveroyalmailshippinglabelchanges(12,false)" href="javascript:void(0)"><i class="fa fa-check"></i> Save</a>
+                    <a class="btn btn-sm btn-default btn-circle" onclick="saveroyalmailshippinglabelchanges(12,true)" href="javascript:void(0)"><i class="fa fa-share"></i> Request Access</a>
+                    <a class="btn btn-sm btn-default btn-circle" target="_blank" href="https://emea.netdespatch.com/ilogin.php3"><i class="fa fa-share"></i> Manifest</a>
+                    <a class="btn btn-sm btn-default btn-circle"  routerLink="/apps/integration-shipping-courier"><i class="fa fa-times font-red"></i> Close</a>		
+                    </div>
+                </div>
+            </div>
+        <div id="maindiv">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="portlet transparent">
+                        <div class="portlet">
+                            <div class="portlet-body form">
+                                <div class="portlet box">
+                                  <div class="portlet-body">
+                                        <div class="">
+                                            <div class="tabbable-custom">
+                                                <ul class="nav nav-tabs">
+                                                    <li class="active">
+                                                        <a href="#tab_1_1" data-toggle="tab" aria-expanded="true"> Integration </a>
+                                                    </li>
+                                                    <!-- <li class="">
+                                                        <a href="#tab_1_2" data-toggle="tab" aria-expanded="false"> Shipping Services </a>
+                                                    </li>
+                                                    <li class="">
+                                                        <a href="#tab_1_3" data-toggle="tab" aria-expanded="false"> Label Settings </a>
+                                                    </li> -->
+                                                   
+                                                </ul>
+                                                <div class="tab-content">
+                                                    <div class="tab-pane active in" id="tab_1_1">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="portlet box blue">
+                                                                    <div class="portlet-title">
+                                                                        <div class="caption">
+                                                                            <i class="fa fa-key"></i> Yodel Account Details 
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="portlet-body">
+                                                                        <form class="form-horizontal" role="form">
+                                                                            <div class="form-group">
+                                                                                <label class="col-md-4 control-label">Account Number</label>
+                                                                                <div class="col-md-8">
+                                                                                    <input class="form-control" type="text" id="rmaccountnumberid" value="474789654666"/>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-md-4 control-label">API Username</label>
+                                                                                <div class="col-md-8">
+                                                                                    <input class="form-control" type="text" id="rmndaccountusername" value="spicom3"/>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-md-4 control-label">API Password</label>
+                                                                                <div class="col-md-8">
+                                                                                    <input class="form-control" type="password" id="rmndaccountpassword" value="spicom3"  />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-md-4"></label>
+                                                                                <div class="col-md-8">
+                                                                                    <span class="help-block">If you would like to print  test labels, please enter below account details</span>
+                                                                                    <span class="help-block"><strong>Account Number :</strong> 222222222</span>
+                                                                                    <span class="help-block"><strong>API Username   :</strong> yodeltest</span>
+                                                                                    <span class="help-block"><strong>API Password   :</strong> yodeltest</span>
+                                                                                </div>
+                                                                            </div>
+    
+                                                                        </form>	
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="portlet box blue">
+                                                                    <div class="portlet-title">
+                                                                        <div class="caption">
+                                                                            <i class="fa fa-truck"></i>Pickup Address Details
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="portlet-body">
+                                                                        <form class="form-horizontal" role="form">
+                                                                            <div class="form-group">
+                                                                                <label class="col-md-4 control-label">Contact Name <span class="required"> * </span></label>
+                                                                                <div class="col-md-8">
+                                                                                    <input class="form-control" type="text" id="rmNDPickupName" value="MANAGER "  />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-md-4 control-label">Company Name <span class="required"> * </span></label>
+                                                                                <div class="col-md-8">
+                                                                                    <input class="form-control" type="text" id="rmNDPickupCompany" value="TIARI SOLUTIONS LTD"  />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-md-4 control-label">Street Name <span class="required"> * </span></label>
+                                                                                <div class="col-md-8">
+                                                                                    <input class="form-control" type="text" id="rmNDPickupStreet" value="1 TWIST WAY"  />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-md-4 control-label">Pickup Town <span class="required"> * </span></label>
+                                                                                <div class="col-md-8">
+                                                                                    <input class="form-control" type="text" id="rmNDPickupTown" value="SLOUGH"  />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-md-4 control-label">Pickup Postcode <span class="required"> * </span></label>
+                                                                                <div class="col-md-8">
+                                                                                    <input class="form-control" type="text" id="rmNDPickupZip" value="SL2 2AY"  />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-md-4 control-label">Contact Phone Number <span class="required"> * </span></label>
+                                                                                <div class="col-md-8">
+                                                                                    <input class="form-control" type="text" id="rmNDPickupPhone" value="12345678"  />
+                                                                                </div>
+                                                                            </div>
+    
+                                                                        </form>	
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    
+                                                    </div>

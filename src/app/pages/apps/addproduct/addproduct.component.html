@@ -1,0 +1,534 @@
+<div class="p-gutter" vexContainer>
+    <div class="card">
+      <div style="display: flex; align-items: center;" class="border-b py-1 px-2" fxLayout="row" fxLayoutAlign="start center">
+        <h3>Edit Product: Product Title</h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp; <b>SKU:</b>303030&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
+        <button  color="primary" mat-raised-button class="rounded-tr rounded-br float-right">
+          Merge Product  
+        </button>
+        <button color="primary" mat-raised-button class="float-right">
+            Duplicate Product
+        </button>
+        <button color="primary"  mat-raised-button class="float-right" type="button" [matMenuTriggerFor]="aboveMenunew">More</button>
+          <mat-menu #aboveMenunew="matMenu" yPosition="below">
+            <button mat-menu-item>Delete</button>
+            <button mat-menu-item>Print</button>
+          </mat-menu>
+      </div>
+      
+        <div class="py-5 px-5" fxLayout="row" fxLayout.lt-md="column">
+
+            <mat-stepper linear #stepper>
+                <!-- #docregion editable -->
+                  <mat-step [stepControl]="firstFormGroup">
+                <!-- #enddocregion editable -->
+                    <form [formGroup]="firstFormGroup">
+                <!-- #docregion step-label -->
+                      <ng-template matStepLabel>Product Details</ng-template>
+                <!-- #enddocregion step-label -->
+                    <div>
+                      <mat-form-field appearance="outline" fxFlex="none" style="width: 440px !important;">
+                        <mat-label>Title</mat-label>
+                        <input matInput formControlName="firstCtrl" required>
+                      </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <mat-form-field appearance="outline" fxFlex="none" style="width: 440px !important;">
+                        <mat-label>Stock keeping unit (SKU)</mat-label>
+                        <input matInput formControlName="firstCtrl" >
+                      </mat-form-field>
+                    </div>
+                    <div>
+                      <mat-form-field appearance="outline" fxFlex="none" style="width: 440px !important;">
+                        <mat-label>Stock keeping unit (SKU)</mat-label>
+                        <textarea matInput ></textarea>
+                      </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <mat-form-field appearance="outline" style="width: 440px !important;">
+                        <mat-label>Country Of Origin</mat-label>
+                        <input matInput>
+                      </mat-form-field>
+                    </div>
+                      <div >
+                        <mat-label>Description</mat-label>
+                        <angular-editor  [placeholder]="'Enter text here...'"  formControlName="firstCtrl"></angular-editor>
+                        <div *ngIf="formdata.controls.description.errors && formdata.controls.description.touched" class="error">description is required(Max 400 - Min 5).</div>
+                        
+                      </div><br>
+                      <div >
+                        <mat-label>Product Code: * Please check the below relevant box to enter code
+                        </mat-label><br>
+                        <mat-checkbox (change)="setSelectedRow($event)" color="primary">UPC</mat-checkbox>&nbsp;&nbsp;
+                        <mat-checkbox (change)="toggleEAN($event)">EAN/FSN </mat-checkbox>&nbsp;&nbsp;
+                        <mat-checkbox (change)="toggleISBN($event)">ISBN</mat-checkbox>&nbsp;&nbsp;
+                        <mat-checkbox (change)="toggleASIN($event)">ASIN</mat-checkbox>
+                      </div>
+
+                      <div *ngIf="showMe">
+                        <mat-form-field appearance="outline" fxFlex="none" style="width: 440px !important;">
+                          <mat-label>UPC:</mat-label>
+                          <input matInput formControlName="firstCtrl" placeholder="UPc">
+                        </mat-form-field>
+                      </div>
+
+                      <div *ngIf="showEAN">
+                        <mat-form-field appearance="outline" fxFlex="none" style="width: 440px !important;">
+                          <mat-label>EAN/FSN:</mat-label>
+                          <input matInput formControlName="firstCtrl" placeholder="European Article Number/Flipkart Serial Number">
+                        </mat-form-field>
+                      </div>
+
+                      <div *ngIf="showISBN">
+                        <mat-form-field appearance="outline" fxFlex="none" style="width: 440px !important;">
+                          <mat-label>ISBN:</mat-label>
+                          <input matInput formControlName="firstCtrl" placeholder="ISBN number">
+                        </mat-form-field>
+                      </div>
+
+                      <div *ngIf="showASIN">
+                        <mat-form-field appearance="outline" fxFlex="none" style="width: 440px !important;">
+                          <mat-label>ASIN:</mat-label>
+                          <input matInput formControlName="firstCtrl" placeholder="Amazon Product ID">
+                        </mat-form-field>&nbsp;&nbsp;&nbsp;
+                        <!-- <button color="primary" mat-raised-button type="button">Search</button> -->
+                        <button color="primary" mat-flat-button type="button" [matMenuTriggerFor]="aboveMenu">Search Amazon</button>
+                        <mat-menu #aboveMenu="matMenu" yPosition="below">
+                          <button mat-menu-item>Search Amazon US</button>
+                          <button mat-menu-item>Search Amazon UK</button>
+                          <button mat-menu-item>Search Amazon CA</button>
+                          <button mat-menu-item>Search Amazon DE</button>
+                          <button mat-menu-item>Search Amazon FR</button>
+                          <button mat-menu-item>Search Amazon IT</button>
+                          <button mat-menu-item>Search Amazon ES</button>
+                        </mat-menu>
+                      </div><br>
+
+                      <div>
+                        <button color="primary" mat-flat-button type="button" matStepperNext>Next</button>
+                      </div>
+                    </form>
+                  </mat-step>
+                  <mat-step [stepControl]="secondFormGroup">
+                    <form [formGroup]="secondFormGroup">
+                      <ng-template matStepLabel>SKU Price and Quantity</ng-template>
+                      <div>
+                        <mat-form-field appearance="outline" fxFlex="none" style="width: 320px !important;">
+                          <mat-label>Selling Price (Inc Tax):</mat-label>
+                          <input matInput formControlName="secondCtrl" >
+                        </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <mat-form-field appearance="outline" fxFlex="none" style="width: 320px !important;">
+                          <mat-label>Selling Price (Excl Tax):</mat-label>
+                          <input matInput formControlName="secondCtrl" disabled>
+                        </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <!-- <h4>Basic native select</h4> -->
+                        <mat-form-field appearance="outline">
+                          <mat-label>Tax Rate</mat-label>
+                          <select matNativeControl >
+                            <option value="-1">None</option>
+                            <option value="1">Tax Rate Name(0.0)</option>
+                            <option value="2">Tax Rate Name(0.0)</option>
+                          </select>
+                        </mat-form-field>
+                        <button (click)="openUpdateqtyproductsModal()" color="primary" mat-raised-button type="button">Manage Rate</button>
+                      </div>
+                      <div>
+                        <mat-form-field appearance="outline" fxFlex="none" style="width: 320px !important;">
+                          <mat-label>Cost Price:</mat-label>
+                          <input matInput formControlName="secondCtrl" >
+                        </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <mat-form-field appearance="outline" fxFlex="none" style="width: 320px !important;">
+                          <mat-label>Recommended Retail Price (RRP):</mat-label>
+                          <input matInput formControlName="secondCtrl" >
+                        </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <mat-form-field appearance="outline" fxFlex="none">
+                          <mat-label>Total Quantity:</mat-label>
+                          <input matInput disabled>
+                        </mat-form-field>
+                        <button color="primary" mat-raised-button type="button">Edit Quantity</button>
+                      </div>
+                      <div>
+                        <mat-form-field appearance="outline" fxFlex="none" style="width: 320px !important;">
+                          <mat-label>Minimum Qty:</mat-label>
+                          <input matInput >
+                        </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <mat-form-field appearance="outline" style="width: 320px !important;">
+                          <mat-label>Item Condition:</mat-label>
+                          <select matNativeControl required>
+                            <option value="New">New/Brand New/New with box/New with tags</option>
+                            <option  value="10">New without tags/Unused item with no signs of wear/Packaging may be missing or opened.</option>
+                            <option  value="5">New with defects/Collectible Like New</option>
+                            <option   value="Used">Used/Pre-Owned</option>
+                            <option  value="1">Used Like New</option>
+                            <option  value="2">Used Very Good</option>
+                            <option  value="3">Used Good</option>
+                            <option  value="9">Good</option>
+                            <option  value="4">Used Acceptable</option>
+                            <option  value="6">Manufacturer refurbished/Collectible Very Good</option>
+                            <option  value="7">Seller refurbished/Collectible Good</option>
+                            <option  value="8">Collectible Acceptable</option>
+                            <option  value="12">For parts or not working</option>
+                          </select>
+                        </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <mat-form-field appearance="outline" fxFlex="none" style="width: 320px !important;">
+                          <mat-label>Condition Note:</mat-label>
+                          <input matInput >
+                        </mat-form-field>
+                      </div>
+                      <div>
+                        <mat-form-field appearance="outline" fxFlex="none" style="width: 320px !important;">
+                          <mat-label>Weight(KG):</mat-label>
+                          <input matInput >
+                        </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <mat-form-field appearance="outline" fxFlex="none" style="width: 320px !important;">
+                          <mat-label>Height(cm):</mat-label>
+                          <input matInput >
+                        </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <mat-form-field appearance="outline" fxFlex="none" style="width: 320px !important;">
+                          <mat-label>Depth(cm):</mat-label>
+                          <input matInput >
+                        </mat-form-field>
+                      </div>
+                      <div>
+                        <mat-form-field appearance="outline" fxFlex="none" style="width: 320px !important;">
+                          <mat-label>Width(cm):</mat-label>
+                          <input matInput >
+                        </mat-form-field>
+                      </div>
+                      <div>
+                        <button mat-button matStepperPrevious>Previous</button>
+                        <button mat-button color="primary" matStepperNext>Save and Continue</button>
+                      </div>
+                    </form>
+                  </mat-step>
+                  <mat-step>
+                    <ng-template matStepLabel>Variation</ng-template>
+                    <mat-radio-group aria-label="Select an option">
+                      <div *ngIf="showVarnot">
+                        <mat-radio-button matStepperNext value="1">No variations</mat-radio-button>
+                        <mat-radio-button (change)="toggleVar($event)" value="2">Has variations</mat-radio-button>
+                      </div>
+                      <div *ngIf="showVar">
+                        <button mat-raised-button type="button">Back to Variation</button>
+                        <button mat-raised-button (click)="toggleTable()" color="primary" type="button">Show Data</button>
+
+                        <h4>You can select a maximum of 4 Combinations</h4><br>
+                        <mat-checkbox (change)="toggleColor()" color="primary">Color</mat-checkbox>&nbsp;&nbsp;
+                        <mat-checkbox (change)="toggleColormap()">Color-Map </mat-checkbox>&nbsp;&nbsp;
+                        <mat-checkbox (change)="toggleColour()">Colour</mat-checkbox>&nbsp;&nbsp;
+                        <mat-checkbox (change)="toggleCondition()">Condition</mat-checkbox>&nbsp;&nbsp;
+                        <mat-checkbox (change)="toggleManufacture()">Manufacturer</mat-checkbox>&nbsp;&nbsp;
+                        <mat-checkbox (change)="toggleSize()">Size</mat-checkbox>
+                        <br><br>
+                        <div ><br>
+                          <mat-form-field *ngIf="showColor" appearance="outline">
+                            <mat-label>Color</mat-label>
+                            <mat-select [formControl]="color" multiple>
+                              <mat-option *ngFor="let color of colorList" [value]="color">{{color}}</mat-option>
+                            </mat-select>
+                          </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;
+
+                          <mat-form-field *ngIf="showColormap" appearance="outline">
+                            <mat-label>ColorMap</mat-label>
+                            <mat-select [formControl]="color" multiple>
+                              <mat-option *ngFor="let color of colorList" [value]="color">{{color}}</mat-option>
+                            </mat-select>
+                          </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;
+                          <mat-form-field *ngIf="showColour" appearance="outline">
+                            <mat-label>Colour</mat-label>
+                            <mat-select [formControl]="color" multiple>
+                              <mat-option *ngFor="let color of colorList" [value]="color">{{color}}</mat-option>
+                            </mat-select>
+                          </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;
+                          <mat-form-field *ngIf="showCondition" appearance="outline">
+                            <mat-label>Condition</mat-label>
+                            <mat-select [formControl]="color" multiple>
+                              <mat-option *ngFor="let color of colorList" [value]="color">{{color}}</mat-option>
+                            </mat-select>
+                          </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;
+                        </div>
+                        <div ><br>
+                          <mat-form-field  *ngIf="showManufacture" appearance="outline">
+                            <mat-label>Manufacture</mat-label>
+                            <mat-select [formControl]="color" multiple>
+                              <mat-option *ngFor="let color of colorList" [value]="color">{{color}}</mat-option>
+                            </mat-select>
+                          </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;
+                          <mat-form-field *ngIf="showSize" appearance="outline">
+                            <mat-label>Size</mat-label>
+                            <mat-select [formControl]="color" multiple>
+                              <mat-option *ngFor="let color of colorList" [value]="color">{{color}}</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                      <div *ngIf="showTable">
+                        <div class="table-responsive">
+                          <table [dataSource]="dataSource" class="w-full top-30 left-13" mat-table matSort>
+                              
+                              <!-- Checkbox Column 
+                              <ng-container matColumnDef="checkbox">
+                                  <th *matHeaderCellDef mat-header-cell>
+                                  <mat-checkbox (change)="$event ? masterToggle() : null"
+                                                  [checked]="selection.hasValue() && isAllSelected()"
+                                                  [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                                  color="primary">
+                                  </mat-checkbox>
+                                  </th>
+                                  <td *matCellDef="let row" class="w-4" mat-cell>
+                                  <mat-checkbox (change)="$event ? selection.toggle(row) : null"
+                                                  (click)="$event.stopPropagation()"
+                                                  [checked]="selection.isSelected(row)"
+                                                  color="primary">
+                                  </mat-checkbox>
+                                  </td>
+                              </ng-container> -->
+                  
+                              <ng-container *ngFor="let column of columns">
+                                  <ng-container *ngIf="column.type === 'text'" [matColumnDef]="column.property">
+                                      <th *matHeaderCellDef class="uppercase" mat-header-cell mat-sort-header> {{ column.label }}</th>
+                                      <td *matCellDef="let row" mat-cell style="width: 20px !important;">{{ row[column.property] }}</td>
+                                  </ng-container>
+                              </ng-container>
+                  
+                              <ng-container matColumnDef="sku">
+                                  <th *matHeaderCellDef mat-header-cell mat-sort-header>SKU</th>
+                                  <td *matCellDef="let row" mat-cell>
+                                    <div class="flex">
+                                      <mat-form-field style="width: 140px !important; margin-right: 6px !important;" appearance="outline" color="primary">
+                                          <!-- <mat-label>Package Weight</mat-label> -->
+                                          <input matInput #input value="royalmail" >
+                                      </mat-form-field>
+                                    </div>
+                                  </td>
+                              </ng-container>
+                  
+                              <ng-container matColumnDef="upc">
+                                  <th *matHeaderCellDef mat-header-cell mat-sort-header>UPC</th>
+                                  <td *matCellDef="let row" mat-cell>
+                                    <div class="flex">
+                                      <mat-form-field style="width: 140px !important; margin-right: 6px !important;" appearance="outline" color="primary">
+                                          <!-- <mat-label>Package Weight</mat-label> -->
+                                          <input matInput #input value="" >
+                                      </mat-form-field>
+                                    </div>
+                                  </td>
+                              </ng-container>
+                  
+                              <ng-container matColumnDef="ean">
+                                  <th *matHeaderCellDef mat-header-cell mat-sort-header>EAN</th>
+                                  <td *matCellDef="let row" mat-cell>
+                                    <div class="flex">
+                                      <mat-form-field style="width: 140px !important; margin-right: 6px !important;" appearance="outline" color="primary">
+                                          <!-- <mat-label>Package Weight</mat-label> -->
+                                          <input matInput #input value="" >
+                                      </mat-form-field>
+                                    </div>
+                                  </td>
+                              </ng-container>
+                  
+                              <ng-container matColumnDef="base_price">
+                                  <th *matHeaderCellDef mat-header-cell mat-sort-header>BASE PRICE</th>
+                                  <td *matCellDef="let row" mat-cell>
+                                    <div class="flex">
+                                      <mat-form-field style="width: 140px !important; margin-right: 6px !important;" appearance="outline" color="primary">
+                                          <!-- <mat-label>Package Weight</mat-label> -->
+                                          <input matInput #input value="" >
+                                      </mat-form-field>
+                                    </div>
+                                  </td>
+                              </ng-container>
+                  
+                              <ng-container matColumnDef="qty">
+                                  <th *matHeaderCellDef mat-header-cell mat-sort-header>QTY</th>
+                                  <td *matCellDef="let row" mat-cell>
+                                    <div class="flex">
+                                      <mat-form-field style="width: 140px !important; margin-right: 6px !important;" appearance="outline" color="primary">
+                                          <!-- <mat-label>Package Weight</mat-label> -->
+                                          <input matInput #input value="" >
+                                      </mat-form-field>
+                                    </div>
+                                  </td>
+                              </ng-container>
+                  
+                              <ng-container matColumnDef="color">
+                                  <th *matHeaderCellDef mat-header-cell mat-sort-header>COLOR</th>
+                                  <td *matCellDef="let row" mat-cell>
+                                    <div class="flex">
+                                      <mat-form-field style="width: 140px !important; margin-right: 6px !important;" appearance="outline" color="primary">
+                                          <!-- <mat-label>Package Weight</mat-label> -->
+                                          <input matInput #input value="" >
+                                      </mat-form-field>
+                                    </div>
+                                  </td>
+                              </ng-container>
+
+                              <ng-container matColumnDef="action">
+                                  <th *matHeaderCellDef mat-header-cell mat-sort-header>ACTION</th>
+                                  <td *matCellDef="let row" mat-cell>
+                                    <div class="flex">
+                                      <button class="mr-4 font-10" 
+                                          style="background-color: red; color: white"
+                                          mat-raised-button
+                                          type="button">Remove
+                                      </button>
+                                    </div>
+                                  </td>
+                              </ng-container>
+                  
+                              <tr *matHeaderRowDef="visibleColumns sticky: true" mat-header-row></tr>
+                              <tr *matRowDef="let row; columns: visibleColumns;"
+                                  @fadeInUp stagger60ms
+                                  class="hover:bg-hover trans-ease-out cursor-pointer"
+                                  mat-row></tr>
+                  
+                          </table>
+                      </div><br>
+                    
+                      </div>
+
+                    </mat-radio-group>
+                    <div>
+                      <button mat-button matStepperPrevious>Back</button>
+                      <button mat-button (click)="stepper.reset()">Reset</button>
+                      <button mat-button color="primary" matStepperNext>Next</button>
+                    </div>
+                  </mat-step>
+                  <mat-step>
+                    <ng-template matStepLabel>Product Image</ng-template>
+                    <p>You are now done.</p>
+                    <div>
+                      <button mat-button matStepperPrevious>Back</button>
+                      <button mat-button (click)="stepper.reset()">Reset</button>
+                      <button mat-button color="primary" matStepperNext>Next</button>
+                    </div>
+                  </mat-step>
+                  <mat-step>
+                    <ng-template matStepLabel>Attributes</ng-template>
+                    <p>You are now done.</p>
+                    <div class="table-responsive">
+                          <table [dataSource]="dataSource" class="w-full top-30 left-13" mat-table matSort>
+                              
+                              <!-- Checkbox Column 
+                              <ng-container matColumnDef="checkbox">
+                                  <th *matHeaderCellDef mat-header-cell>
+                                  <mat-checkbox (change)="$event ? masterToggle() : null"
+                                                  [checked]="selection.hasValue() && isAllSelected()"
+                                                  [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                                  color="primary">
+                                  </mat-checkbox>
+                                  </th>
+                                  <td *matCellDef="let row" class="w-4" mat-cell>
+                                  <mat-checkbox (change)="$event ? selection.toggle(row) : null"
+                                                  (click)="$event.stopPropagation()"
+                                                  [checked]="selection.isSelected(row)"
+                                                  color="primary">
+                                  </mat-checkbox>
+                                  </td>
+                              </ng-container> -->
+                  
+                              <ng-container *ngFor="let column of columns">
+                                  <ng-container *ngIf="column.type === 'text'" [matColumnDef]="column.property">
+                                      <th *matHeaderCellDef class="uppercase" mat-header-cell mat-sort-header> {{ column.label }}</th>
+                                      <td *matCellDef="let row" mat-cell style="width: 20px !important;">{{ row[column.property] }}</td>
+                                  </ng-container>
+                              </ng-container>
+                  
+                              <ng-container matColumnDef="sku">
+                                  <th *matHeaderCellDef mat-header-cell mat-sort-header>SKU</th>
+                                  <td *matCellDef="let row" mat-cell>
+                                    <div class="flex">
+                                      <mat-form-field style="width: 140px !important; margin-right: 6px !important;" appearance="outline" color="primary">
+                                          <!-- <mat-label>Package Weight</mat-label> -->
+                                          <input matInput #input value="royalmail" >
+                                      </mat-form-field>
+                                    </div>
+                                  </td>
+                              </ng-container>
+                  
+                              <ng-container matColumnDef="upc">
+                                  <th *matHeaderCellDef mat-header-cell mat-sort-header>UPC</th>
+                                  <td *matCellDef="let row" mat-cell>
+                                    <div class="flex">
+                                      <mat-form-field style="width: 140px !important; margin-right: 6px !important;" appearance="outline" color="primary">
+                                          <!-- <mat-label>Package Weight</mat-label> -->
+                                          <input matInput #input value="" >
+                                      </mat-form-field>
+                                    </div>
+                                  </td>
+                              </ng-container>
+                  
+                              <ng-container matColumnDef="ean">
+                                  <th *matHeaderCellDef mat-header-cell mat-sort-header>EAN</th>
+                                  <td *matCellDef="let row" mat-cell>
+                                    <div class="flex">
+                                      <mat-form-field style="width: 140px !important; margin-right: 6px !important;" appearance="outline" color="primary">
+                                          <!-- <mat-label>Package Weight</mat-label> -->
+                                          <input matInput #input value="" >
+                                      </mat-form-field>
+                                    </div>
+                                  </td>
+                              </ng-container>
+                  
+                              <ng-container matColumnDef="base_price">
+                                  <th *matHeaderCellDef mat-header-cell mat-sort-header>BASE PRICE</th>
+                                  <td *matCellDef="let row" mat-cell>
+                                    <div class="flex">
+                                      <mat-form-field style="width: 140px !important; margin-right: 6px !important;" appearance="outline" color="primary">
+                                          <!-- <mat-label>Package Weight</mat-label> -->
+                                          <input matInput #input value="" >
+                                      </mat-form-field>
+                                    </div>
+                                  </td>
+                              </ng-container>
+                  
+                              <ng-container matColumnDef="qty">
+                                  <th *matHeaderCellDef mat-header-cell mat-sort-header>QTY</th>
+                                  <td *matCellDef="let row" mat-cell>
+                                    <div class="flex">
+                                      <mat-form-field style="width: 140px !important; margin-right: 6px !important;" appearance="outline" color="primary">
+                                          <!-- <mat-label>Package Weight</mat-label> -->
+                                          <input matInput #input value="" >
+                                      </mat-form-field>
+                                    </div>
+                                  </td>
+                              </ng-container>
+                  
+                              <ng-container matColumnDef="color">
+                                  <th *matHeaderCellDef mat-header-cell mat-sort-header>COLOR</th>
+                                  <td *matCellDef="let row" mat-cell>
+                                    <div class="flex">
+                                      <mat-form-field style="width: 140px !important; margin-right: 6px !important;" appearance="outline" color="primary">
+                                          <!-- <mat-label>Package Weight</mat-label> -->
+                                          <input matInput #input value="" >
+                                      </mat-form-field>
+                                    </div>
+                                  </td>
+                              </ng-container>
+
+                              <ng-container matColumnDef="action">
+                                  <th *matHeaderCellDef mat-header-cell mat-sort-header>ACTION</th>
+                                  <td *matCellDef="let row" mat-cell>
+                                    <div class="flex">
+                                      <button class="mr-4 font-10" 
+                                          style="background-color: red; color: white"
+                                          mat-raised-button
+                                          type="button">Remove
+                                      </button>
+                                    </div>
+                                  </td>
+                              </ng-container>
+                  
+                              <tr *matHeaderRowDef="visibleColumns sticky: true" mat-header-row></tr>
+                              <tr *matRowDef="let row; columns: visibleColumns;"
+                                  @fadeInUp stagger60ms
+                                  class="hover:bg-hover trans-ease-out cursor-pointer"
+                                  mat-row></tr>
+                  
+                          </table>
+                      </div>
+                    <div>
+                      <button mat-button matStepperPrevious>Back</button>
+                      <button mat-button (click)="stepper.reset()">Reset</button>
+                      <button mat-button color="primary" matStepperNext>Next</button>
+                    </div>
+                  </mat-step>
+                </mat-stepper>
+        </div>
+    </div>
+</div>

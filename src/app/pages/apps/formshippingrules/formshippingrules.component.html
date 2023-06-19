@@ -1,0 +1,481 @@
+<link
+  rel="stylesheet"
+  href="https://s3-us-west-1.amazonaws.com/khubweb/assets/global/plugins/bootstrap/css/bootstrap.min.css"
+/>
+
+<link rel="stylesheet" href="https://login.sellershub.io/css/new-admin.css" />
+<link rel="stylesheet" href="https://login.sellershub.io/css/components.css" />
+<div class="p-gutter" vexContainer>
+  <div class="card">
+    <div
+      style="display: flex; justify-content: space-between"
+      class="border-b py-4 px-6"
+      fxLayout="row"
+      fxLayoutAlign="start center"
+    >
+      <div>
+        <h2 class="m-0 title" fxFlex="auto">Shipping Rules</h2>
+
+        <div class="float-right">
+          <a href="javascript:void(0)" class="btn btn-primary" (click)="save()"
+            >Save</a
+          >
+          <a routerLink="/apps/setting-invoice" class="btn btn-danger">Close</a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="portlet light">
+          <!-- <div class="portlet-title right">
+                      
+                    </div> -->
+          <div class="portlet-body">
+            <div class="row">
+              <div class="col-md-7">
+                <div class="portlet box blue">
+                  <div class="portlet-title">
+                    <div class="caption"><i class=""></i> Condition</div>
+                  </div>
+                  <div class="portlet-body">
+                    <div class="row static-info">
+                      <div class="col-md-5 name">Shipping Country:</div>
+
+                      <div class="col-md-7 value">
+                        <div class="col-md-12 value" style="padding: 0px">
+                          <div class="col-md-2 value">
+                            <a
+                              class="btn btn-icon-only blue"
+                              (click)="openShipCountryModal()"
+                            >
+                            <ic-icon [icIcon]="faEdit" [inline]="true" size="16px"></ic-icon> </a>
+                          </div>
+                          <div class="col-md-10 value" style="padding: 0px">
+                            <mat-select
+                              id="selectcountriesoption"
+                              class="form-control"
+                              name=""
+                              (valueChange)="onCountrylistselect($event)"
+                            >
+                              <mat-option value="-1">Selected Countries</mat-option>
+                              <mat-option *ngFor="let country of countryList" value={{country}}>{{country}}</mat-option>
+                            </mat-select>
+                          </div>
+                        </div>
+                        <div id="editcountryvalues"></div>
+                      </div>
+                    </div>
+
+                    <!--                                                     <div class="row static-info">
+                                            <div class="col-md-5 name">
+                                                Shipping Postcode:
+                                            </div>
+                                            <div class="col-md-7 value">
+                                               
+                                         <div class="col-md-12 value" style="padding: 0px;">
+                                            <div class="col-md-2 value">
+                                                <a  class="btn btn-icon-only blue" href="javascript:void(0)"> <i class="fa fa-edit"></i></a>
+                                            </div>
+                                            <div class="col-md-10 value" style="padding: 0px;">
+                                                <select    id="selectpostcodesoption" class="form-control" name="orderStatus">
+                                                    <option value=""> Postcodes</option>
+                                                   
+                                                </select>
+                                           </div>
+                                        </div>
+                                            <div id=""></div>
+                                            </div>
+                                        </div> -->
+
+                    <div class="row static-info">
+                      <div class="col-md-5 name">Shipping Postcode:</div>
+                      <div class="col-md-7 value">
+                        <input
+                          [(ngModel)]="postcodes"
+                          type="text"
+                          class="form-control"
+                          id="postcodeid"
+                          value=""
+                          placeholder="Multiple Postcodes By comma"
+                        />
+                        <div id=""></div>
+                      </div>
+                    </div>
+
+                    <div class="row static-info">
+                      <div class="col-md-5 name">
+                        Sales Channel Shipping Service:
+                      </div>
+                      <div class="col-md-7 value">
+                        <input
+                          [(ngModel)]="services"
+                          type="text"
+                          class="form-control"
+                          id="servicesid"
+                          value=""
+                          placeholder="Multiple Shipping Sevices By comma"
+                        />
+                        <div id=""></div>
+                      </div>
+                    </div>
+
+                    <div class="row static-info">
+                      <div class="col-md-5 name">
+                        Apply the rule to orders from the following sales
+                        channel:
+                        <span class="required" style="color: red"> </span>
+                      </div>
+
+                      <div class="col-md-7 value">
+                        <select
+                          id="selectsaleschanneloption"
+                          class="form-control"
+                          name="orderStatus"
+                        >
+                          <option value="draft">Select Channels</option>
+                          <option value="amazon">Amazon</option>
+                          <option value="ebay">Ebay</option>
+                          <option value="etsy">Etsy</option>
+                          <option value="onbuy">Onbuy</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="row static-info">
+                      <div class="col-md-5 name">
+                        SKU : <span class="required" style="color: red"> </span>
+                      </div>
+
+                      <div class="col-md-7 value">
+                        <select
+                          id="selectskusoption"
+                          class="form-control"
+                          name="orderStatus"
+                          disabled="true"
+                        >
+                          <option value="none">Select SKU</option>
+                          <option value="none">None</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="row static-info">
+                      <div class="col-md-5 name">
+                        Total Order Value (GBP):
+                        <span class="required" style="color: red"> </span>
+                      </div>
+                      <div class="col-md-7 value">
+                        <div class="col-md-12 value" style="padding: 0px">
+                          <div class="col-md-5 value" style="padding: 0px">
+                            <input
+                              type="text"
+                              [(ngModel)]="fromordervalue"
+                              class="form-control"
+                              id="fromordervalue"
+                              value=""
+                              placeholder="Min Order Value"
+                            />
+                          </div>
+                          <div class="col-md-2 value">To</div>
+                          <div class="col-md-5 value" style="padding: 0px">
+                            <input
+                            [(ngModel)]="toordervalue"
+                              type="text"
+                              class="form-control"
+                              id="toordervalue"
+                              value=""
+                              placeholder="Max Order Value"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row static-info">
+                      <div class="col-md-5 name">
+                        Shipping Charge (GBP)
+                        <span class="required" style="color: red"> </span>
+                      </div>
+                      <div class="col-md-7 value">
+                        <div class="col-md-12 value" style="padding: 0px">
+                          <div class="col-md-5 value" style="padding: 0px">
+                            <input
+                            [(ngModel)]="fromshippingcharge"
+                              type="text"
+                              class="form-control"
+                              id="fromshippingcharge"
+                              value=""
+                              disabled="true"
+                            />
+                          </div>
+                          <div class="col-md-2 value">To</div>
+                          <div class="col-md-5 value" style="padding: 0px">
+                            <input
+                            [(ngModel)]="toshippingcharge"
+                              type="text"
+                              class="form-control"
+                              id="toshippingcharge"
+                              value=""
+                              disabled="true"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row static-info">
+                      <div class="col-md-5 name">
+                        Weight (g)
+                        <span class="required" style="color: red"> </span>
+                      </div>
+                      <div class="col-md-7 value">
+                        <div class="col-md-12 value" style="padding: 0px">
+                          <div class="col-md-5 value" style="padding: 0px">
+                            <input
+                            [(ngModel)]="fromweight"
+                              type="text"
+                              class="form-control"
+                              id="fromweight"
+                              value=""
+                              placeholder="Min Weight"
+                            />
+                          </div>
+                          <div class="col-md-2 value">To</div>
+                          <div class="col-md-5 value" style="padding: 0px">
+                            <input
+                            [(ngModel)]="toweight"
+                              type="text"
+                              class="form-control"
+                              id="toweight"
+                              value=""
+                              placeholder="Max Weight"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row static-info">
+                      <div class="col-md-5 name">
+                        Length (cm)
+                        <span class="required" style="color: red"> </span>
+                      </div>
+                      <div class="col-md-7 value">
+                        <div class="col-md-12 value" style="padding: 0px">
+                          <div class="col-md-5 value" style="padding: 0px">
+                            <input
+                            [(ngModel)]="fromlength"
+                              type="text"
+                              class="form-control"
+                              id="fromlength"
+                              value=""
+                              disabled="true"
+                            />
+                          </div>
+                          <div class="col-md-2 value">To</div>
+                          <div class="col-md-5 value" style="padding: 0px">
+                            <input
+                            [(ngModel)]="tolength"
+                              type="text"
+                              class="form-control"
+                              id="tolength"
+                              value=""
+                              disabled="true"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row static-info">
+                      <div class="col-md-5 name">
+                        Width (cm)<span class="required" style="color: red">
+                        </span>
+                      </div>
+                      <div class="col-md-7 value">
+                        <div class="col-md-12 value" style="padding: 0px">
+                          <div class="col-md-5 value" style="padding: 0px">
+                            <input
+                            [(ngModel)]="fromwidth"
+                              type="text"
+                              class="form-control"
+                              id="fromwidth"
+                              value=""
+                              disabled="true"
+                            />
+                          </div>
+                          <div class="col-md-2 value">To</div>
+                          <div class="col-md-5 value" style="padding: 0px">
+                            <input
+                            [(ngModel)]="towidth"
+                              type="text"
+                              class="form-control"
+                              id="towidth"
+                              value=""
+                              disabled="true"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row static-info">
+                      <div class="col-md-5 name">
+                        Height (cm)<span class="required" style="color: red">
+                        </span>
+                      </div>
+                      <div class="col-md-7 value">
+                        <div class="col-md-12 value" style="padding: 0px">
+                          <div class="col-md-5 value" style="padding: 0px">
+                            <input
+                            [(ngModel)]="fromheight"
+                              type="text"
+                              class="form-control"
+                              id="fromheight"
+                              value=""
+                              disabled="true"
+                            />
+                          </div>
+                          <div class="col-md-2 value">To</div>
+                          <div class="col-md-5 value" style="padding: 0px">
+                            <input
+                            [(ngModel)]="toheight"
+                              type="text"
+                              class="form-control"
+                              id="toheight"
+                              value=""
+                              disabled="true"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-5">
+                <div class="portlet box blue">
+                  <div class="portlet-title">
+                    <div class="caption"><i class=""></i> Action</div>
+                  </div>
+                  <div class="portlet-body">
+                    <div class="row static-info">
+                      <div class="col-md-5 name">Enable:</div>
+                      <div class="col-md-7 value">
+                        <input
+                          type="checkbox"
+                          name="enable"
+                          id="enable"
+                          class="checkboxes"
+                          value=""
+                          style="
+                            height: 50px !important;
+                            width: 50px !important;
+                          "
+                        />
+                      </div>
+                    </div>
+
+                    <div class="row static-info">
+                      <div class="col-md-4 name">Rule Name:</div>
+                      <div class="col-md-7 value">
+                        <!--                                                             <select    id="orderStatusselectid" class="form-control" name="orderStatus">
+                                                    <option value="Draft">India</option>
+                                                    <option value="Draft">Afghanistan</option>
+                                                    <option value="Draft">United States</option>
+                                                    <option value="Draft">Russia</option>
+                                                    <option value="Draft">China</option>
+                                                </select> -->
+                        <input
+                          type="hidden"
+                          class="form-control"
+                          id="ruleid"
+                          value=""
+                          name="ruleid"
+                        />
+
+                        <input
+                        [(ngModel)]="rulename"
+                          type="text"
+                          class="form-control"
+                          id="rulename"
+                          value=""
+                          name="rulename"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="row static-info">
+                      <div class="col-md-4 name">Shipping Carrier:</div>
+                      <div class="col-md-6 value">
+                        <!-- <input type="text" class="form-control" id="shippingcarrier" value="" name="shippingcarrier" /> -->
+                        <mat-select
+                          name="serviceformat"
+                          (valueChange)="onCarrierChange($event)"
+                        >
+                          <mat-option value="allcarriers">All Carriers</mat-option>
+
+                          <mat-option value="royalmail">royalmail</mat-option>
+
+                          <mat-option value="yodel">yodel</mat-option>
+
+                          <mat-option value="dpd">dpd</mat-option>
+
+                          <mat-option value="dropbox">RM Click & Drop</mat-option>
+                        </mat-select>
+                      </div>
+                    </div>
+
+                    <div class="row static-info">
+                      <div class="col-md-4 name">Shipping Service:</div>
+                      <div class="col-md-6 value">
+                        <mat-select
+                          class="form-control"
+                          id="availableroyalmailshippingmethodsid"
+                          (valueChange)="onServiceChange($event)"
+                        >
+                          <mat-option value="-1">Please Select a Service?</mat-option>
+
+                          <mat-option
+                            *ngFor="let service of shippingMethods[carrierOption]"
+                            value={{service.value}}
+                          >
+                            {{service.label}}
+                          </mat-option>
+                        </mat-select>
+                      </div>
+                      <div class="col-md-2">
+                        <a href="javascript:void(0)" class="btn btn-icon-only">
+                          <i color="blue" class="fa fa-edit"></i>
+                        </a>
+                      </div>
+                    </div>
+
+                    <div class="row static-info">
+                      <div class="col-md-4 name">
+                        Service Format:
+                        <span class="required" style="color: red"> </span>
+                      </div>
+                      <div class="col-md-6 value">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="shippingformatid"
+                          value=""
+                          name="shippingservice"
+                          disabled="true"
+                        />
+                      </div>
+                      <div class="col-md-2"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

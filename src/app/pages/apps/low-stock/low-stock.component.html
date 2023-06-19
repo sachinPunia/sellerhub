@@ -1,0 +1,50 @@
+
+<div class="p-gutter" vexContainer>
+    <div class="card">
+        <div class="border-b py-4 px-6" fxLayout="row" fxLayoutAlign="start center">
+          <h2 class="m-0 title" fxFlex="auto">Low Stock</h2>
+        </div>
+      
+        <div class="py-0 px-0" fxLayout="row" fxLayout.lt-md="column" style="margin-top: 5px !important;">
+            
+            <mat-form-field appearance="standard" style="width: 250px !important; margin-left: 27px !important; margin-right: 6px !important;" class="vex-flex-form-field" color="warn">
+                <mat-label>SKU or Product Title</mat-label>
+                <input matInput (change)="onSearchValueChange($event)">
+            </mat-form-field>
+            <button (click)="onSearch()" class="mt-3" color="primary" mat-raised-button type="button" style="margin-right: 10px !important;">
+                <mat-icon color="text-secondary" [icIcon]="icSearch"></mat-icon>
+            </button>
+
+            <button class="rounded-tr rounded-br mt-3" color="primary" mat-raised-button type="button" style="margin-right: 6px !important;">
+                Download <mat-icon color="text-secondary" [icIcon]="icDownload"></mat-icon>
+            </button>
+
+            <div class="info">
+                <b>Description</b>: This report contains a summary of all products that are low in stock. 
+                To calculate a low stock alert the available stock level must be lower than the set low stock alert level for a given SKU. If the low stock alert is empty, then all stock with quantity less than or equal to 1 will be returned.
+            </div>
+
+            <div>
+                <div class="table-responsive">
+                    <table [dataSource]="dataSource" class="top-30 left-13" mat-table matSort>
+                        
+                        <ng-container *ngFor="let column of columns">
+                        <ng-container *ngIf="column.type === 'text'" [matColumnDef]="column.property">
+                            <th *matHeaderCellDef class="uppercase" mat-header-cell mat-sort-header> {{ column.label }}</th>
+                            <td *matCellDef="let row" mat-cell style="width: 20px !important;">{{ row[column.property] }}</td>
+                        </ng-container>
+                        </ng-container>
+            
+                        <tr *matHeaderRowDef="visibleColumns sticky: true" mat-header-row></tr>
+                        <tr *matRowDef="let row; columns: visibleColumns;"
+                            @fadeInUp stagger60ms
+                            class="hover:bg-hover trans-ease-out cursor-pointer"
+                            mat-row></tr>
+            
+                    </table>
+                </div>
+                <mat-paginator appearance="standard" [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" class="sticky left-0"></mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>

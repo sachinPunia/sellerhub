@@ -1,0 +1,83 @@
+<div class="p-gutter" vexContainer>
+  <div class="card">
+      <div class="border-b py-4 px-6" fxLayout="row" fxLayoutAlign="start center">
+        <h2 class="m-0 title" fxFlex="auto">Manage Account Settings</h2>
+      </div>
+    
+      <div class="py-5 px-5">
+        <table class="w-full">
+          <tr>
+            <td class="td-width">
+              <mat-form-field>
+                <mat-label>Company Name</mat-label>
+                <input matInput required [(ngModel)]="companyName" value="{{ companyName }}">
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>City</mat-label>
+                <input matInput required[(ngModel)]="city" value="{{ city }}">
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Country</mat-label>
+                <mat-select required (valueChange)="onSearchByCountry($event)">
+                  <mat-option *ngFor="let row of countryList" value="{{ row.code }}">{{ row.name }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-checkbox (change)="vatcheck($event)" class="caption" color="primary">VAT registered</mat-checkbox><br>
+              <mat-hint>Tick this box if you are a VAT registered business. It will set your default tax rate to 20%.</mat-hint>
+            </td>
+
+            <td class="td-width">
+              <mat-form-field>
+                <mat-label>Address Line 1</mat-label>
+                <input matInput [(ngModel)]="addressOne" value="{{ addressOne }}">
+              </mat-form-field>
+              
+              <mat-form-field>
+                <mat-label>State</mat-label>
+                <input matInput [(ngModel)]="state" value="{{ state }}">
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Phone Number</mat-label>
+                <input matInput [(ngModel)]="phoneNumber" value="{{ phoneNumber }}">
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>VAT Registration Number</mat-label>
+                <input matInput [(ngModel)]="vatRegNumber"  value="{{ vatRegNumber }}">
+              </mat-form-field>
+            </td>
+             
+            <td class="td-width">
+              <mat-form-field>
+                <mat-label>Address Line 2</mat-label>
+                <input matInput [(ngModel)]="addressTwo" value="{{ addressTwo }}">
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Zipcode</mat-label>
+                <input matInput [(ngModel)]="zipcode" value="{{ zipcode }}">
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Admin Email</mat-label>
+                <input matInput [(ngModel)]="adminEmail" value="{{ adminEmail }}">
+                <mat-icon (click)="openChangeadminmailModal()" [icIcon]="icMail" matSuffix></mat-icon>
+              </mat-form-field>
+
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="card-footer border-t py-2 px-6">
+        <div fxLayout="row" fxLayoutAlign="end right" fxLayoutGap="8px">
+          <button (click)="saveData()" color="primary" mat-raised-button type="button"><mat-icon [icIcon]="icCheck" matSuffix></mat-icon> Save</button>
+        </div>
+      </div>
+  </div>
+  
+</div>
+`

@@ -1,0 +1,211 @@
+
+<div class="p-gutter" vexContainer>
+    <div class="card">
+        <div class="border-b py-4 px-6 bg-sellershub" fxLayout="row" fxLayoutAlign="start center">
+          <div class="content">
+              <div class="column">
+                  <div class="row" style="margin-right: 10px !important;">
+                    <h2 class="mt-2 title" fxFlex="auto">Channel Products</h2>
+                  </div>
+              </div>
+              <div class="column">
+                <div class='row'>
+                           
+                    <button (click)="openCurrencyConverterModal()" color="secondary" mat-raised-button class="small-icon-button font-10 mr-4">
+                        <mat-icon class="text-warn" [icIcon]="faExchange"></mat-icon> Currency Converter
+                    </button>
+          
+                  
+                      <button (click)="toggleTag()" color="secondary" mat-raised-button class="small-icon-button font-10 mr-4">
+                        <mat-icon class="text-warn" [icIcon]="faUpload"></mat-icon> Bulk Revise Prices
+                      </button>
+          
+                      <button (click)="openScheduleListingModal()" color="secondary" mat-raised-button class="small-icon-button font-10 mr-4">
+                        <mat-icon class="text-warn" [icIcon]="faClock"></mat-icon> Schedule Listing
+                      </button>
+          
+                      <button (click)="openListnowModal()" color="secondary" mat-raised-button class="small-icon-button font-10 mr-4">
+                        <mat-icon class="text-warn" [icIcon]="faList"></mat-icon> List Now
+                      </button>
+          
+                      <button  color="secondary" mat-raised-button class="small-icon-button font-10 mr-4">
+                         <mat-icon class="text-warn" [icIcon]="icDelete"></mat-icon>
+                      </button>
+                  
+                </div>
+              </div>
+          </div>
+          
+          
+        </div>
+        <!-- <div class="border-b py-4 px-6" fxLayout="row" fxLayoutAlign="start center">
+          <h2 class="m-0 title" fxFlex="auto">Channel Products</h2>
+          
+        </div> -->
+      
+        <div class="py-0 px-0" fxLayout="row" fxLayout.lt-md="column" style="margin-top: 5px !important;">
+            <mat-form-field appearance="standard" style="width: 140px !important; margin-right: 6px !important; margin-left: 27px !important;" fxFlex="none">
+                <mat-label>Search By</mat-label>
+                <mat-select (valueChange)="onSearchByChange($event)">
+                  <mat-option value="0">Search What</mat-option>
+                  <mat-option value="1">SKU</mat-option>
+                  <mat-option value="2">Channel</mat-option>
+                  <mat-option value="3">Title</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="standard" style="width: 250px !important; margin-right: 6px !important;" class="vex-flex-form-field" color="warn">
+                <mat-label>Enter value to search</mat-label>
+                <input matInput [(ngModel)]="searchByInput">
+            </mat-form-field>
+
+            <button (click)="onSearch()"  class="mt-3" color="primary" mat-raised-button type="button">
+                <mat-icon color="text-secondary" [icIcon]="icSearch"></mat-icon>
+            </button>
+
+            <!-- <button color="primary" mat-raised-button type="button" style="margin-left: 10px !important; margin-right: 6px !important;">
+                <mat-icon color="text-secondary" [icIcon]="icRefresh"></mat-icon>
+            </button> -->
+            
+            <div>
+              <div *ngIf="showMe">
+                <div style="border: 1px solid #0c1c44; padding: 10px; border-radius: 15px;">
+                  <b style="margin-right: 6px !important; margin-left: 6px !important;">Bulk Revise Product Prices</b> 
+                  <br> 
+                <!--	<p>Please search products and  select a percentage to change price. e.g 5%  to increase or decrease the current price by 5%</p> -->
+                  <p style="margin-right: 6px !important; margin-left: 6px !important;">Please select products to change price.</p>
+                  <br>
+                  <mat-divider></mat-divider>
+                     <div>
+                      <mat-form-field style="width: 140px !important; margin-right: 6px !important; margin-left: 6px !important;"  appearance="outline" color="primary">
+                          <mat-label>Select Anyone</mat-label>
+                      <mat-select (valueChange)="onPricetype($event)">
+                        <mat-option value="pricebynumber">By Number</mat-option>
+                        <mat-option value="pricebypercentage">By Percentage</mat-option>
+                      </mat-select>
+
+                      </mat-form-field>&nbsp;
+
+                      <mat-form-field style="width: 240px !important; margin-right: 6px !important; margin-left: 6px !important;" appearance="outline" color="primary">
+                        <input matInput placeholder="" [(ngModel)]="reviseInput">
+                      </mat-form-field>&nbsp;&nbsp;&nbsp;
+
+                      <button (click)="onIncreaseBulkreviseprice()" color="primary" mat-raised-button type="button">Increase</button>&nbsp;
+                      <button (click)="onDecreaseBulkreviseprice()" color="primary" mat-raised-button type="button">Decrease</button>&nbsp;
+                      <!-- <button color="secondary" mat-raised-button type="button">Cancel</button> -->
+
+                    </div>
+                    <!-- <div style="display: flex; padding-right: 4px;">
+                      
+
+                      <button color="secondary" class="small-icon-btn mr-4 font-10" matTooltip="Favorite this" mat-mini-fab type="button">Increase</button>
+                          
+                      <button color="secondary" class="small-icon-btn mr-4 font-10" matTooltip="Favorite this" mat-mini-fab type="button">Decrease</button>
+                          
+                      <button color="secondary" class="small-icon-btn mr-4 font-10" matTooltip="Favorite this" mat-mini-fab type="button">Cancel</button>
+                            
+                    </div> -->
+                </div>
+              </div>	
+                <div class="table-responsive">
+                    <table [dataSource]="dataSource" class="w-full top-30 left-13" mat-table matSort style="width: 100% !important;">
+                        
+                        <!-- Checkbox Column -->
+                        <ng-container matColumnDef="checkbox">
+                            <th *matHeaderCellDef mat-header-cell>
+                            <mat-checkbox (change)="$event ? masterToggle() : null"
+                                            [checked]="selection.hasValue() && isAllSelected()"
+                                            [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                            color="primary">
+                            </mat-checkbox>
+                            </th>
+                            <td *matCellDef="let row" class="w-4" mat-cell>
+                            <mat-checkbox (change)="setSelectedRow(row, $event)"
+                                            (click)="$event.stopPropagation()"
+                                            [checked]="selection.isSelected(row)"
+                                            color="primary">
+                            </mat-checkbox>
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="image_data">
+                            <th *matHeaderCellDef mat-header-cell>IMAGE</th>
+                            <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell>
+                                <img [src]="row['image']" class="h-12 w-12 align-middle">
+                            </td>
+                        </ng-container>
+
+                        <ng-container *ngFor="let column of columns">
+                            <ng-container *ngIf="column.type === 'text'" [matColumnDef]="column.property">
+                                <th *matHeaderCellDef class="uppercase" mat-header-cell mat-sort-header> {{ column.label }}</th>
+                                <td *matCellDef="let row" mat-cell style="width: 20px !important;">{{ row[column.property] }}</td>
+                            </ng-container>
+                        </ng-container>
+
+                        <ng-container matColumnDef="modifiedDate">
+                            <th *matHeaderCellDef mat-header-cell mat-sort-header>MODIFIED DATE</th>
+                            <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell style="width: 20px !important;">
+                                    {{ row['modifiedDate'] |  date:'dd/MM/yyyy' }} 
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="channel">
+                            <th *matHeaderCellDef mat-header-cell>CHANNEL</th>
+                            <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell>
+                                <img src="https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhub{{ row.channel }}.png" class="h-120 w-120 align-middle">
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="total_quantity">
+                          <th *matHeaderCellDef mat-header-cell mat-sort-header>TOTAL QUANTITY</th>
+                          <td *matCellDef="let row" mat-cell>
+                            {{ row['qty'] }} &nbsp;&nbsp;
+                            <button (click)="openUpdateqtyproductsModal()" color="secondary" class="small-icon-btn mr-4 font-10" matTooltip="Favorite this" mat-mini-fab type="button">
+                              Edit
+                            </button>                        
+                          </td>
+                      </ng-container>
+
+                        <ng-container matColumnDef="action">
+                            <th *matHeaderCellDef mat-header-cell mat-sort-header>ACTION</th>
+                            <td *matCellDef="let row" mat-cell>
+                              <div class="flex">
+                                <button class="small-icon-button mr-4 font-10" [matMenuTriggerFor]="addNewMenuPrint"
+                                    color="primary"
+                                    mat-raised-button
+                                    type="button">Action <mat-icon [icIcon]="icArrowRight"></mat-icon>
+                                </button>
+                                    <mat-menu #addNewMenuPrint="matMenu" [overlapTrigger]="false" xPosition="after" yPosition="below">
+                                            <a mat-menu-item>
+                                                <span>Edit Channel Product</span>
+                                            </a>
+                                        
+                                            <a mat-menu-item>
+                                                <span>Edit Sellershub Product</span>
+                                            </a>
+                                        
+                                            <button mat-menu-item>
+                                                <span>Update to Channel</span>
+                                            </button>
+                            
+                                            <button mat-menu-item>
+                                                <span>Remove</span>
+                                            </button>
+                                    </mat-menu>
+                              </div>
+                            </td>
+                        </ng-container>
+            
+                        <tr *matHeaderRowDef="visibleColumns sticky: true" mat-header-row></tr>
+                        <tr *matRowDef="let row; columns: visibleColumns;"
+                            @fadeInUp stagger60ms
+                            class="hover:bg-hover trans-ease-out cursor-pointer"
+                            mat-row></tr>
+            
+                    </table>
+                </div>
+                <mat-paginator appearance="standard" [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" class="sticky left-0"></mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>

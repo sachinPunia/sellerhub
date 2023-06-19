@@ -1,0 +1,119 @@
+<div class="flex items-center" mat-dialog-title>
+    <h2 class="flex-auto text-lg font-medium font-12">
+        Following Orders are in Draft status
+    </h2>
+    <button mat-dialog-close mat-icon-button type="button">
+        <mat-icon [icIcon]="icClose" size="24px"></mat-icon>
+    </button>
+</div>
+<!-- <table class="w-full">
+    <tr><td class="left">US +1 (925) 217-1261 (8AM EST - 5PM EST)</td><td class="right">UK +44 203 371 7255 (10AM GMT - 5PM GMT)</td></tr>
+</table> -->
+<mat-divider></mat-divider>
+  <mat-dialog-content>
+    <div class="info">
+        Please select a order from following or create a new order
+    </div><br>
+    <div class="table-responsive">
+        <table [dataSource]="dataSource" class="w-full top-30 left-13" mat-table matSort>
+            
+            <!-- Checkbox Column -->
+            <!-- <ng-container matColumnDef="checkbox">
+                <th *matHeaderCellDef mat-header-cell>
+                <mat-checkbox (change)="$event ? masterToggle() : null"
+                                [checked]="selection.hasValue() && isAllSelected()"
+                                [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                color="primary">
+                </mat-checkbox>
+                </th>
+                <td *matCellDef="let row" class="w-4" mat-cell>
+                <mat-checkbox (change)="$event ? selection.toggle(row) : null"
+                                (click)="$event.stopPropagation()"
+                                [checked]="selection.isSelected(row)"
+                                color="primary">
+                </mat-checkbox>
+                </td>
+            </ng-container> -->
+
+            <ng-container *ngFor="let column of columns">
+                <ng-container *ngIf="column.type === 'text'" [matColumnDef]="column.property">
+                    <th *matHeaderCellDef class="uppercase" mat-header-cell mat-sort-header> {{ column.label }}</th>
+                    <td *matCellDef="let row" mat-cell style="width: 20px !important;">{{ row[column.property] }}</td>
+                </ng-container>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+                <th *matHeaderCellDef mat-header-cell mat-sort-header>ACTION</th>
+                <td *matCellDef="let row" mat-cell>
+                  <div class="flex">
+                    <button class="mr-4 font-10" 
+                        color="primary"
+                        mat-raised-button
+                        type="button">Select
+                    </button>
+                    <button class="mr-4 font-10" 
+                        style="background-color: red; color: white"
+                        mat-raised-button
+                        type="button">Remove
+                    </button>
+                  </div>
+                </td>
+            </ng-container>
+
+            <tr *matHeaderRowDef="visibleColumns sticky: true" mat-header-row></tr>
+            <tr *matRowDef="let row; columns: visibleColumns;"
+                @fadeInUp stagger60ms
+                class="hover:bg-hover trans-ease-out cursor-pointer"
+                mat-row></tr>
+
+        </table>
+    </div><br>
+    <div class="info flex">
+        <img src="https://login.sellershub.io/web/kartzhubtelesale.png">&nbsp;&nbsp;&nbsp; <b>Create a new order in KartzHub. Sale channel will be set to Telesales</b>
+    </div>
+    <mat-form-field appearance="standard" style="width: 200px !important; margin-right: 6px !important;" fxFlex="none">
+        <mat-label>Please select a channel</mat-label>
+        <mat-select>
+            <mat-option value="-1">Telesales</mat-option>
+            <mat-option value="5569">amazon -</mat-option>
+            <mat-option value="5570">etsy -Etsy Account</mat-option>
+            <mat-option value="5571">ebay -ebay UK</mat-option>
+            <mat-option value="5572">woocommerce -Woocommerce Account</mat-option>
+            <mat-option value="5659">telesale -Telesales</mat-option>
+            <mat-option value="5732">ebay -</mat-option>
+            <mat-option value="5733">rakuten -Rakuten</mat-option>
+            <mat-option value="5734">prestashop -Prestashop Account</mat-option>
+            <mat-option value="5736">ebay -</mat-option>
+            <mat-option value="5740">bonanza -Bonanza Account</mat-option>
+        </mat-select>
+    </mat-form-field>
+    
+                <!-- <mat-form-field appearance="fill">
+                    <mat-label>Search by Order ID</mat-label>
+                    <input matInput #input maxlength="10" placeholder="Search By Order ID">
+                     <button class="small-icon-button mt-3" color="primary" mat-raised-button type="button" style="margin-right: 6px !important;">
+                        <mat-icon color="text-secondary" [icIcon]="icSearch"></mat-icon>
+                    </button> 
+                </mat-form-field> -->
+  </mat-dialog-content>
+  
+  <mat-dialog-actions>
+  
+    <span class="flex-1"></span>
+    
+    
+    <!-- <button mat-dialog-close mat-raised-button type="button" color="secondary">
+      <mat-icon [icIcon]="icCancel" [inline]="true" size="16px"></mat-icon> Close
+    </button>-->
+
+    <button mat-dialog-close routerLink="/apps/add-createorderpage" color="primary" mat-flat-button type="button">
+        <ic-icon [icIcon]="icSend" [inline]="true" size="16px"></ic-icon>  Create New Order
+    </button>
+
+    <button mat-dialog-close mat-raised-button type="button" color="secondary">
+        <mat-icon [icIcon]="icCancel" [inline]="true" size="16px"></mat-icon> Close
+    </button>
+  
+    
+  </mat-dialog-actions>
+  

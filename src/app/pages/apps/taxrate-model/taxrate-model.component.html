@@ -1,0 +1,89 @@
+<div class="flex items-center" mat-dialog-title>
+    <h2 class="flex-auto text-lg font-medium font-12">
+        Please Add Tax Rates Applicable For Your Products.
+    </h2>
+    <button mat-dialog-close mat-icon-button type="button">
+        <mat-icon [icIcon]="icClose" size="24px"></mat-icon>
+    </button>
+</div>
+<mat-divider></mat-divider>
+  <mat-dialog-content>
+    
+    <div class="table-responsive" *ngIf="showMenot">
+        <table [dataSource]="dataSource" class="w-full top-30 left-13" mat-table matSort>
+
+            <ng-container *ngFor="let column of columns">
+                <ng-container *ngIf="column.type === 'text'" [matColumnDef]="column.property">
+                    <th *matHeaderCellDef class="uppercase" mat-header-cell mat-sort-header> {{ column.label }}</th>
+                    <td *matCellDef="let row" mat-cell style="width: 20px !important;">{{ row[column.property] }}</td>
+                </ng-container>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+                <th *matHeaderCellDef mat-header-cell mat-sort-header>ACTION</th>
+                <td *matCellDef="let row" mat-cell>
+                  <div >
+                    <button class="mr-4 font-10" 
+                        color="primary"
+                        mat-raised-button
+                        type="button"><mat-icon [icIcon]="faEdit" size="24px"></mat-icon>
+                    </button>
+                    <button class="mr-4 font-10" 
+                        color="primary"
+                        mat-raised-button
+                        type="button"><mat-icon [icIcon]="faTimes" size="24px"></mat-icon>
+                    </button>
+                  </div>
+                </td>
+            </ng-container>
+
+            <tr *matHeaderRowDef="visibleColumns sticky: true" mat-header-row></tr>
+            <tr *matRowDef="let row; columns: visibleColumns;"
+                @fadeInUp stagger60ms
+                class="hover:bg-hover trans-ease-out cursor-pointer"
+                mat-row></tr>
+
+        </table>
+    </div>
+    <mat-paginator *ngIf="showMenot" appearance="standard" [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" class="sticky left-0"></mat-paginator><br>
+    
+
+    <div *ngIf="showMe" >
+        <mat-form-field appearance="outline" fxFlex="none" style="width: 440px !important;">
+          <mat-label>Tax Name:</mat-label>
+          <input matInput formControlName="firstCtrl" placeholder="ISBN number">
+        </mat-form-field><br>
+        <mat-form-field appearance="outline" fxFlex="none" style="width: 440px !important;">
+          <mat-label>Tax Rate:</mat-label>
+          <input matInput formControlName="firstCtrl" placeholder="ISBN number">
+        </mat-form-field><br>
+        <button color="primary" mat-flat-button type="button">
+            Save
+        </button>&nbsp;&nbsp;
+        <button (click)="setSelectedRow()" color="secondary" mat-raised-button type="button">
+            <mat-icon [icIcon]="icClose" size="24px"></mat-icon> Close 
+        </button>
+      </div>
+
+  </mat-dialog-content>
+  
+  <mat-dialog-actions>
+  
+    <span class="flex-1"></span>
+    
+    
+    <!-- <button mat-dialog-close mat-raised-button type="button" color="secondary">
+      <mat-icon [icIcon]="icCancel" [inline]="true" size="16px"></mat-icon> Close
+    </button>-->
+
+    <button *ngIf="showMenot" (click)="setSelectedRow()" color="primary" mat-flat-button type="button">
+        New <mat-icon [icIcon]="faRightangle" size="24px"></mat-icon>
+    </button>
+
+    <button mat-dialog-close mat-raised-button type="button" color="secondary">
+        <mat-icon [icIcon]="icCancel" [inline]="true" size="16px"></mat-icon> Close
+    </button>
+  
+    
+  </mat-dialog-actions>
+  

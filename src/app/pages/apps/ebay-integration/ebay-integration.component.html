@@ -1,0 +1,387 @@
+<link rel="stylesheet" href="https://s3-us-west-1.amazonaws.com/khubweb/assets/global/plugins/bootstrap/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://login.sellershub.io/css/new-admin.css">
+<link rel="stylesheet" href="https://login.sellershub.io/css/components.css">
+<div class="row topbar margin-top-10 margin-bottom-10">
+  
+<
+    <div class="page-content-wrapper">
+        <!-- BEGIN PAGE HEAD -->
+        
+        <!-- END PAGE HEAD -->
+        <!-- BEGIN PAGE CONTENT -->
+        <div class="page-content">
+    
+            <!-- NEW UI HEADER -->
+    
+            <div class="row topbar margin-top-10 margin-bottom-10">
+                <div class="col-md-12">
+                    <strong><i class="fa fa-puzzle-piece"></i> Manage your Ebay account integration setting </strong>
+                </div>
+            </div>
+    
+                <!-- BEGIN PAGE CONTENT INNER -->
+    
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="portlet">
+                            <div class="portlet-body form">
+                                <div class="portlet box ">
+                                    <!-- <div class="portlet-title">
+                                        <div class="caption">
+                                            <i class="fa fa-puzzle-piece"></i>Manage your Ebay account integration setting stevealex63
+                                        </div>
+                                    </div> -->
+                                        <div class="portlet-body">
+                                            <div class="tabbable-custom">
+                                                <ul id="amazonsettingsdivid" class="nav nav-tabs">
+                                                    <li class="active">
+                                                        <a href="#integration" data-toggle="tab" aria-expanded="true"> Integration </a>
+                                                    </li>
+                                                    <!-- <li class="">
+                                                        <a href="#listingtemplate" data-toggle="tab" aria-expanded="false"> Listing Templates </a>
+                                                    </li> -->
+                                                    
+                                                   
+                                                </ul>
+                                                <div class="tab-content">
+                                                    <div class="tab-pane active in" id="integration">
+                                                        <div class="portlet">
+                                                            <div class="portlet-body">
+                                                                 <div class="portlet transparent">
+                                                                    <div class="portlet-title">
+                                                                    
+                                                                        <div class="caption">
+    
+                                                                        <!--	<span class="caption-subject font-green-sharp bold uppercase"></span> -->
+                                                                            <img height="35px" src="https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubebay.png"/> 
+    
+    
+                                                                        </div>
+                                                                        <div class="pull-right">
+                                                                          
+    
+                                                                                    <a class="tooltips btn btn-sm btn-default btn-circle" (click)="openTestConnectionModal()"   data-container="body" data-placement="top" data-html="true" data-original-title="Test Connection"><i class="fa fa-exchange font-green"></i> Test Connection</a>
+                                                                                    <a class="tooltips btn btn-sm btn-default btn-circle"  (click)="openGenerateTokenModal()" data-container="body" data-placement="top" data-html="true" data-original-title="Re-Regenerate a Token"> <i class="fa fa-refresh font-green"></i>  Re-Regenerate a Token</a>
+                                                                                    <a class="tooltips btn btn-sm btn-default btn-circle" (click)="openRecentproductsModal()" downloadebaycatalog="995"   data-container="body" data-placement="top" data-html="true" data-original-title="Download Ebay Catalog"> <i class="fa fa-download font-blue"></i> Recent Products</a>
+                                                                                    <a class="tooltips btn btn-sm btn-default btn-circle" (click)="openAllproductsModal()" downloadebaycatalog="995"   data-container="body" data-placement="top" data-html="true" data-original-title="Download Ebay Catalog"> <i class="fa fa-download font-blue"></i> All Products</a>
+                                                                                    <!-- onclick="downloadebaycatalog(3078)" -->
+                                                                                    <!-- <a class="btn btn-warning btn-circle" href="javascript:void(0)" type="button" onclick="removeallchannelproductsfromkartzhub(3078)" >Remove All listings from KartzHub</a> -->
+                                                                                    <a  id="removeallchannelproductsfromkartzhub" class=" tooltips btn btn-sm btn-default btn-circle" href="javascript:void(0)" type="button" onclick="removeallchannelproductsfromkartzhub(3078)" data-container="body" data-placement="top" data-html="true" data-original-title="Remove All listings from KartzHub"> <i class="fa fa-times-circle-o font-red"></i> Remove All</a>
+                                                                                    <!-- onclick="removeallchannelproductsfromkartzhub(3078)" -->
+                                                                                    
+                                                                                    <a id="saveebayuser" class="btn btn-sm btn-default btn-circle"  href="javascript:void(0)" type="button">Save <i class="fa fa-angle-right"></i> </a>
+                                                                                    <a routerLink="/apps/integration-channel-integration" type="button" class="btn btn-sm btn-default btn-circle"><i class="fa fa-times font-red"></i> Close</a>
+                                                                                    <!-- <a href="javascript:;" class="msgbox confirm">Open msgbox</a> -->
+                                                                                </div>
+                                                                    </div>
+                                                                    <div class="portlet-body">
+                                                                        
+    
+    
+    <div class="row">
+    
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    
+    
+        
+            <div *ngIf="!username">
+                <h6>Please set-up the eBay Integration</h6>
+                <p>
+                   <!-- <a onclick="addnewebayaccount(3078)" href="javascript:void(0)" class="btn default btn-lg">Generate eBay Token</a> -->
+                    
+                    <span class="input-group-btn">
+                                              
+                        <a  href="javascript:void(0)"  >
+                         <button class="btn btn-sm btn-default btn-circle" (click)="openGenerateTokenModal()"  type="button">Generate eBay Token <i class="fa fa-check font-blue"></i></button>
+                        </a>
+                   </span>
+                </p>
+            </div>
+    </div>
+    <div *ngIf="username" class="portlet-body">
+
+        
+<!------------------------------------->
+            <div class="">
+                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label class="control-label">Enter name to remember within KartzHub</label>
+                        <input class="form-control" type="text"  id="ebayname" value="{{ username }}-ebay"/>
+                    </div>
+                
+                    <div class="form-group">
+                        <label class=" control-label">eBay Username</label>
+                        <input class="form-control" [(ngModel)]="username" disabled type="text" />
+                    </div>
+                
+                    <div class="form-group">
+                        <label class="control-label">Integration Expiry Date</label>
+                       <input class="form-control" [(ngModel)]="tknexp" type="text"  readonly value=""/>
+                    </div>
+
+                <div class="">
+                    <div class="form-group">
+                        <label class="control-label">Ebay Member Since</label>
+                        <div class="input-group">
+                            <div id="dateInput" class="input-group date date-picker " data-date-format="yyyy-mm-dd 00:00:00">
+                                <mat-form-field appearance="fill" style="width: 360px !important;">
+                                    <mat-label>From</mat-label>
+                                    <input [matDatepicker]="datepickerRef" [value]="date.value" disabled matInput>
+                                    <mat-datepicker-toggle [for]="datepickerRef" matSuffix></mat-datepicker-toggle>
+                                    <mat-datepicker #datepickerRef></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="label-danger" style="padding:6px;">
+                         <span class=""style="color:white;font-weight:bold;">Please choose your "Ebay Member Since" date to download your product.</span>
+                    </div> -->
+                </div>
+
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label>Download Inventory</label>
+                        <div class="mt-checkbox-list">
+                            <mat-checkbox class="caption" #showTitle color="primary" checked > <a class="btn btn-default btn-xs"  href="javascript:void(0)">Advance Settings</a></mat-checkbox><br>
+                            
+                            <mat-checkbox class="caption" #showTitle color="primary" >Download Orders</mat-checkbox><br>
+                            
+                            <mat-checkbox class="caption" #showTitle color="primary" checked >Enable Out of Stock Feature</mat-checkbox>
+                            
+                        </div>
+                    </div>
+                </div>
+
+        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">	
+            
+
+            
+                <!-- <div class="form-group ">
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="alert alert-warning">
+                            Product catalogue downloaded time  
+                        </div>
+                    </div>
+                </div> -->
+            
+
+            
+        </div>
+
+
+            </div>
+    
+<!------------------------------------->            
+
+</div>
+    </div>
+    
+    <!-- datepicker-dropdown -->
+    
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="listingtemplate">
+                                                         <div class="portlet">
+                                                            <div class="portlet-title">
+                                                                <div class="caption">
+                                                                </div>
+                                                                <div class="pull-right">
+                                                                    <button class="btn btn-sm btn-default btn-circle" onclick="editebaylistingtemplate('-1',3078)"> <i class="fa fa-angle-right font-blue"></i> New Listing Template</button>
+                                                                    <a href="/settings/listchanelsettings"  class="btn btn-sm btn-default btn-circle"><i class="fa fa-times font-red"></i> Close</a>	
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="portlet-body">
+                                                                
+    
+    
+    
+    <!--    <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-cogs font-green-sharp"></i>
+                <span class="caption-subject font-green-sharp bold uppercase">Manage eBay Listing templates</span>
+            </div>
+            <div class="tools">
+                 <button class="btn btn-success" onclick="editebaylistingtemplate('-1',3078)">New Listing Template</button>
+            </div>
+        </div> -->
+        <div class="portlet-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>
+                            Template Name
+                        </th>
+                        <th>
+                            eBay Site
+                        </th>
+                        <th>
+                            Modified Date
+                        </th>
+                        <th>
+                            Action
+                        </th>
+    
+                    </tr>
+                    </thead>
+                    <tbody>
+    
+                    
+    
+    
+    
+                                <tr>
+    
+                                    <td>
+                                            EBAY UK STEVEALEXA
+    
+                                    </td>
+                                    <td>
+    
+                                        <img src="https://s3-us-west-1.amazonaws.com/khubweb/web/UK.png"/>
+    
+                                    </td>
+                                    <td>
+                                            2020-11-04 08:29:57.0
+    
+                                    </td>
+                                    <td>
+    
+                                        <button class="btn btn-sm btn-success btn-circle" onclick="editebaylistingtemplate(1,3078)" >Edit</button>
+                                        <button class="btn btn-sm btn-success btn-circle"  onclick="duplicateebaylistingtemplate(1, 3078)" >Duplicate</button>
+                                        <button class="btn btn-sm btn-danger btn-circle"  onclick="removelistingtemplate(1,3078)" >Remove</button>
+                                        &nbsp; &nbsp;&nbsp;&nbsp;
+                                        <button class="btn btn-sm purple-plum btn-circle"  onclick="updateebaylistingtempaltechangestoebay(3078,1)" >Update Changes to eBay</button>
+    
+    
+                                    </td>
+    
+                                </tr>
+    
+    
+    
+    
+    
+    
+                        
+    
+    
+    
+                                <tr>
+    
+                                    <td>
+                                            name
+    
+                                    </td>
+                                    <td>
+    
+                                        <img src="https://s3-us-west-1.amazonaws.com/khubweb/web/US.png"/>
+    
+                                    </td>
+                                    <td>
+                                            2019-04-29 14:43:18.0
+    
+                                    </td>
+                                    <td>
+    
+                                        <button class="btn btn-sm btn-success btn-circle" onclick="editebaylistingtemplate(2,3078)" >Edit</button>
+                                        <button class="btn btn-sm btn-success btn-circle"  onclick="duplicateebaylistingtemplate(2, 3078)" >Duplicate</button>
+                                        <button class="btn btn-sm btn-danger btn-circle"  onclick="removelistingtemplate(2,3078)" >Remove</button>
+                                        &nbsp; &nbsp;&nbsp;&nbsp;
+                                        <button class="btn btn-sm purple-plum btn-circle"  onclick="updateebaylistingtempaltechangestoebay(3078,2)" >Update Changes to eBay</button>
+    
+    
+                                    </td>
+    
+                                </tr>
+    
+    
+    
+    
+    
+    
+                        
+    
+    
+    
+                                <tr>
+    
+                                    <td>
+                                            name
+    
+                                    </td>
+                                    <td>
+    
+                                        <img src="https://s3-us-west-1.amazonaws.com/khubweb/web/US.png"/>
+    
+                                    </td>
+                                    <td>
+                                            2019-04-29 14:43:19.0
+    
+                                    </td>
+                                    <td>
+    
+                                        <button class="btn btn-sm btn-success btn-circle" onclick="editebaylistingtemplate(3,3078)" >Edit</button>
+                                        <button class="btn btn-sm btn-success btn-circle"  onclick="duplicateebaylistingtemplate(3, 3078)" >Duplicate</button>
+                                        <button class="btn btn-sm btn-danger btn-circle"  onclick="removelistingtemplate(3,3078)" >Remove</button>
+                                        &nbsp; &nbsp;&nbsp;&nbsp;
+                                        <button class="btn btn-sm purple-plum btn-circle"  onclick="updateebaylistingtempaltechangestoebay(3078,3)" >Update Changes to eBay</button>
+    
+    
+                                    </td>
+    
+                                </tr>
+    
+    
+    
+    
+    
+    
+                        
+                    </tbody>
+    
+                </table>
+            </div>
+        </div>
+    
+    
+    
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>	
+                        </div>
+                    </div>
+                </div>
+            
+    
+    
+    
+    
+    
+    
+    <!-- END PAGE CONTENT INNER -->
+    </div>
+    </div>
+    <!-- END PAGE CONTENT -->
+    </div>
+    <!-- END PAGE CONTAINER -->
+    
+    
+    <!-- BEGIN PRE-FOOTER -->
+    
+    <!-- END PRE-FOOTER -->

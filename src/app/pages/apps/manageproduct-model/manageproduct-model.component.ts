@@ -1,0 +1,120 @@
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { fadeInUp400ms } from 'src/@vex/animations/fade-in-up.animation';
+import { stagger60ms } from 'src/@vex/animations/stagger.animation';
+import icRefresh from '@iconify/icons-ic/refresh';
+import icSearch from '@iconify/icons-ic/search';
+import icDownload from '@iconify/icons-ic/cloud-download';
+import icAdd from '@iconify/icons-ic/twotone-add';
+import { TableColumn } from 'src/@vex/interfaces/table-column.interface';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { SelectionModel } from '@angular/cdk/collections';
+import { Observable, ReplaySubject } from 'rxjs';
+import { UrlAPIService } from 'src/app/services/url-api.service';
+import { filter } from 'rxjs/operators';
+import icPhone from '@iconify/icons-ic/twotone-phone';
+import icMail from '@iconify/icons-ic/twotone-mail';
+import icMap from '@iconify/icons-ic/twotone-map';
+// import { ManageProductmodel } from 'src/app/services/ManageProductmodel'; 
+import { ManageProductmodel } from 'src/app/services/manageproduct-model';
+import icExcel  from '@iconify/icons-ic/bookmark-border'
+import icPrint from '@iconify/icons-ic/twotone-print';
+import icRemove from '@iconify/icons-ic/remove-shopping-cart';
+import icClose from '@iconify/icons-ic/twotone-close';
+import icCancel from '@iconify/icons-ic/cancel';
+
+@Component({
+  selector: 'vex-manageproduct-model',
+  templateUrl: './manageproduct-model.component.html',
+  styleUrls: ['./manageproduct-model.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [
+    stagger60ms,
+    fadeInUp400ms
+  ]
+})
+export class ManageproductModelComponent implements OnInit {
+
+  icRefresh = icRefresh;
+  icSearch = icSearch;
+  icDownload = icDownload;
+  icPhone = icPhone;
+  icMail = icMail;
+  icMap = icMap;
+  icAdd = icAdd;
+  icExcel = icExcel;
+  icPrint = icPrint;
+  icRemove = icRemove;
+  icClose = icClose;
+  icCancel = icCancel;
+
+  subject$: ReplaySubject<ManageProductmodel[]> = new ReplaySubject<ManageProductmodel[]>(1);
+  data$: Observable<ManageProductmodel[]> = this.subject$.asObservable();
+  ManageProductmodel: ManageProductmodel[];
+
+  @Input()
+  columns: TableColumn<ManageProductmodel>[] = [
+    // { label: 'Checkbox', property: 'checkbox', type: 'checkbox', visible: true },
+    // { label: 'Channel', property: 'channel', type: 'button', visible: true },
+    { label: 'SKU', property: 'sku', type: 'text', visible: true, cssClasses: ['font-medium'] },
+    // { label: 'Variation Theme', property: 'variation_theme', type: 'text', visible: true, cssClasses: ['font-medium'] },
+    { label: 'Available Qty', property: 'available_qty', type: 'text', visible: true, cssClasses: ['font-medium'] },
+    { label: 'Assign Quantify', property: 'assign_qty', type: 'button', visible: true, cssClasses: ['font-medium'] },
+    // { label: 'Action', property: 'action', type: 'button', visible: true, cssClasses: ['font-medium'] },
+    // { label: 'Listing Status', property: 'listing_status', type: 'button', visible: true, cssClasses: ['font-medium'] },
+    // { label: 'Status', property: 'status', type: 'text', visible: true },
+    { label: 'Action', property: 'action', type: 'button', visible: true },
+  ];
+
+  
+  pageSize = 10;
+  pageSizeOptions: number[] = [5, 10, 20, 50];
+
+  dataSource: MatTableDataSource<ManageProductmodel> | null;
+  selection = new SelectionModel<ManageProductmodel>(true, []);
+
+
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+
+  constructor(private cd: ChangeDetectorRef, private urlApi: UrlAPIService) { }
+
+  get visibleColumns() {
+    return this.columns.filter(column => column.visible).map(column => column.property);
+  }
+
+  ngOnInit(): void {
+    this.urlApi.getManageproductmodel("manageproduct-model.json")
+      .subscribe((ManageProductmodel) => {
+        this.subject$.next(ManageProductmodel);
+    });
+
+    this.dataSource = new MatTableDataSource();
+    
+    this.data$.pipe(
+      filter<ManageProductmodel[]>(Boolean)
+    ).subscribe(ManageProductmodel => {
+      this.ManageProductmodel = ManageProductmodel;
+      this.dataSource.data = ManageProductmodel;
+    });
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  masterToggle() {
+    this.isAllSelected() ?
+      this.selection.clear() :
+      this.dataSource.data.forEach(row => this.selection.select(row));
+  }
+
+}

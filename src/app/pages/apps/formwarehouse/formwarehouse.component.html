@@ -1,0 +1,242 @@
+<link rel="stylesheet"
+    href="https://s3-us-west-1.amazonaws.com/khubweb/assets/global/plugins/bootstrap/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://login.sellershub.io/css/new-admin.css">
+<link rel="stylesheet" href="https://login.sellershub.io/css/components.css">
+
+
+<div class="portlet box">
+    <div class="portlet-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="portlet box blue">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-home"></i> Add new warehouse
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="">
+                            <div class="form-group">
+                                <label class="control-label">Warehouse Name</label>
+                                <input type="text" class="form-control" id="warehousename" value=""
+                                    placeholder="Warehouse Name">
+                                <input type="hidden" class="form-control" id="warehousenameid" value="101">
+                                <input type="hidden" class="form-control" id="warehousenameidfromoption1" value="101">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Warehouse Code</label>
+                                <input type="text" class="form-control" id="warehousecode" value=""
+                                    placeholder="Warehouse Code">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Email Address</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon btn-xs">
+                                        <i class="fa fa-envelope"></i>
+                                    </span>
+                                    <input type="text" class="form-control" id="warehouseemail" value=""
+                                        placeholder="Warehouse Email Address">
+                                </div>
+                            </div>
+
+                            <label class="control-label"> Contact Name</label>
+                            <input type="text" class="form-control" id="contactname" value="">
+
+                            <label class="control-label"> Address Line1</label>
+                            <input type="text" class="form-control" id="addressline1" value="">
+
+                            <label class="control-label"> Address Line2 </label>
+                            <input type="text" class="form-control" id="addressline2" value="">
+
+                            <label class="control-label"> Address Line3</label>
+                            <input type="text" class="form-control" id="addressline3" value="">
+                            <label class="control-label"> City</label>
+                            <input type="text" class="form-control" id="city" value="">
+                            <label class="control-label"> State</label>
+                            <input type="text" class="form-control" id="state" value="">
+
+                            <label class="control-label"> Country</label>
+                            <input type="text" class="form-control" id="country" value="">
+                            <label class="control-label"> PostCode</label>
+                            <input type="text" class="form-control" id="postcode" value="">
+
+
+
+                            <div class="form-group">
+                                <div class="">
+                                    <label>
+                                        <input type="checkbox" class="form-control" id="defaultwarehouse" value=""><span
+                                            class="label-text">Default Warehouse</span>
+                                    </label>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="pull-right">
+                                            <a onclick="savewarehouse(101)" class="btn btn-sm btn-success btn-circle"><i
+                                                    class="fa fa-check"></i> Save</a>
+                                            <a onclick="assignproductstowarehousefromedit()"
+                                                class="btn btn-sm btn-default btn-circle"><i class="fa fa-link"></i>
+                                                Assign Products to Warehouse</a>
+                                            <a onclick="closeeditwarehouse()"
+                                                class="btn btn-sm btn-default btn-circle"><i
+                                                    class="fa fa-times font-red"></i> Close</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div id="warehouselocationsdivid">
+
+
+
+                    <script>
+                        function finalocationsforwarehouse1(pageno, total) {
+                            var wid = $('#warehousenameidfromoptionid').val();
+
+                            var url = '/settings/finalocationsforwarehouse?unique=' + (new Date()).getTime() +
+                                '&pageno=' + pageno + '&wid=' + wid + '&total=' + total;
+                            $.get(url,
+                                function (data) {
+                                    $('#warehouselocationsdivid').html(data);
+                                    $('#warehouselocationsdivid').show();
+                                    stopprogress();
+                                });
+                        }
+                    </script>
+                    <!-- new code start -->
+                    <div id="itemlocationsresponsediv">
+                        <div class="">
+                            <div class="portlet box blue">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        Please Manage Item Locations
+                                    </div>
+                                    <div class="actions">
+                                        <a href="javascript:void(0)" onclick="editwarehouselocations('-1', 101)"
+                                            class="btn btn-sm btn-default btn-circle">Create a New Location </a>
+                                        <a href="/bulkactions/bulkactions?type=WAREHOUSE_LOCATIONS"
+                                            class="btn btn-sm btn-default btn-circle">Upload Locations</a>
+                                        <input type="hidden" id="warehousenameidfromoptionid" value="101">
+                                    </div>
+                                </div>
+                                <div class="portlet-body">
+
+                                    <div class="table-scrollable">
+
+
+                                        <div id="locationslist_table_wrapper" class="dataTables_wrapper no-footer">
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="dataTables_length" id="locationslist_table_length">
+                                                        <label>Show <select name="locationslist_table_length"
+                                                                aria-controls="locationslist_table"
+                                                                class="form-control input-xsmall input-inline">
+                                                                <option value="6">6</option>
+                                                                <option value="15">15</option>
+                                                                <option value="20">20</option>
+                                                                <option value="-1">All</option>
+                                                            </select></label></div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div id="locationslist_table_filter" class="dataTables_filter">
+                                                        <label>Search:<input type="search"
+                                                                class="form-control input-small input-inline"
+                                                                placeholder=""
+                                                                aria-controls="locationslist_table"></label></div>
+                                                </div>
+                                            </div>
+                                            <div class="table-scrollable">
+                                                <table
+                                                    class="table tableFixHead table-hover order-column v2 dataTable no-footer"
+                                                    id="locationslist_table" role="grid"
+                                                    aria-describedby="locationslist_table_info">
+                                                    <thead>
+                                                        <tr role="row">
+                                                            <th class="sorting_disabled" rowspan="1" colspan="1"
+                                                                aria-label="
+            Id
+        " style="width: 0px;">
+                                                                Id
+                                                            </th>
+                                                            <th class="sorting_asc" tabindex="0"
+                                                                aria-controls="locationslist_table" rowspan="1"
+                                                                colspan="1" aria-sort="ascending" aria-label="
+            Aisle-Bay-Shelf-Bin
+        : activate to sort column ascending" style="width: 0px;">
+                                                                Aisle-Bay-Shelf-Bin
+                                                            </th>
+                                                            <th class="sorting" tabindex="0"
+                                                                aria-controls="locationslist_table" rowspan="1"
+                                                                colspan="1" aria-label="
+            Modified Date
+        : activate to sort column ascending" style="width: 0px;">
+                                                                Modified Date
+                                                            </th>
+                                                            <th class="sorting" tabindex="0"
+                                                                aria-controls="locationslist_table" rowspan="1"
+                                                                colspan="1" aria-label="
+            Action
+        : activate to sort column ascending" style="width: 0px;">
+                                                                Action
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                        <!-- []-->
+
+                                                        <tr class="odd">
+                                                            <td valign="top" colspan="4" class="dataTables_empty">No
+                                                                data available in table</td>
+                                                        </tr>
+                                                    </tbody>
+
+                                                </table>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-5 col-sm-12">
+                                                    <div class="dataTables_info" id="locationslist_table_info"
+                                                        role="status" aria-live="polite">No records found</div>
+                                                </div>
+                                                <div class="col-md-7 col-sm-12">
+                                                    <div class="dataTables_paginate paging_simple_numbers"
+                                                        id="locationslist_table_paginate">
+                                                        <ul class="pagination">
+                                                            <li class="paginate_button previous disabled"
+                                                                aria-controls="locationslist_table" tabindex="0"
+                                                                id="locationslist_table_previous"><a href="#">Prev</a>
+                                                            </li>
+                                                            <li class="paginate_button next disabled"
+                                                                aria-controls="locationslist_table" tabindex="0"
+                                                                id="locationslist_table_next"><a href="#">Next</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- table-datatables-itemlocations.min.js -->
+                                        <script src="/assets/pages/scripts/table-datatables-itemlocations.min.js"
+                                            type="text/javascript"></script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

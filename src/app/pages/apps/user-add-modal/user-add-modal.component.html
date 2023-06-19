@@ -1,0 +1,47 @@
+<div class="flex items-center" mat-dialog-title>
+    <p class="flex-auto text-lg font-medium">Add New User</p>
+    <button mat-dialog-close mat-icon-button type="button">
+        <mat-icon [icIcon]="icClose" size="24px"></mat-icon>
+    </button>
+</div>
+  
+  <mat-dialog-content>
+    
+    <mat-form-field appearance="outline" class="block w-full">
+      <mat-label>E-mail Address</mat-label>
+      <input matInput [(ngModel)]="uemail" type="text"/>
+    </mat-form-field>
+  
+    <mat-form-field appearance="outline" class="block w-full">
+        <mat-label>First Name</mat-label>
+        <input matInput [(ngModel)]="uname" type="text"/>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="block w-full">
+        <mat-label>Password</mat-label>
+        <input matInput [(ngModel)]="curpas" type="password"/>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="block w-full">
+        <mat-label>Re-type Password</mat-label>
+        <input matInput [(ngModel)]="newpass" type="password"/>
+    </mat-form-field>
+
+  </mat-dialog-content>
+  
+  <mat-dialog-actions>
+    <!-- <button color="warn" mat-dialog-close mat-icon-button matTooltip="Discard Draft" type="button">
+      <mat-icon [icIcon]="icDelete" size="24px"></mat-icon>
+    </button> -->
+  
+    <span class="flex-1"></span>
+  
+    <button mat-dialog-close mat-raised-button type="button" color="secondary">
+      <mat-icon [icIcon]="icCancel" [inline]="true" size="16px"></mat-icon> Cancel
+    </button>
+  
+    <button (click)="saveUser()" color="primary" mat-flat-button type="button">
+        <ic-icon [icIcon]="icCheck" [inline]="true" size="16px"></ic-icon>  Save
+    </button>
+  </mat-dialog-actions>
+  

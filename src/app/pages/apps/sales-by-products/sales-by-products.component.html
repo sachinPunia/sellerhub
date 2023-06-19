@@ -1,0 +1,115 @@
+
+<div class="p-gutter" vexContainer>
+    <div class="card">
+        <div class="border-b py-4 px-6" fxLayout="row" fxLayoutAlign="start center">
+          <h2 class="m-0 title" fxFlex="auto">Sales by Products Report</h2>
+        </div>
+      
+        <div class="py-0 px-0" fxLayout="row" fxLayout.lt-md="column" style="margin-top: 5px !important;">
+            <mat-form-field appearance="standard" style="width: 160px !important; margin-left: 27px !important; margin-right: 10px !important;">
+                <mat-label>From</mat-label>
+                <input (dateInput)="onSearchByFrom($event)" [(ngModel)]="fromDate" [matDatepicker]="datepickerRef" matInput>
+                <mat-datepicker-toggle [for]="datepickerRef" matSuffix></mat-datepicker-toggle>
+                <mat-datepicker #datepickerRef></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field appearance="standard" style="width: 160px !important;">
+                <mat-label>To</mat-label>
+                <input (dateInput)="onSearchByTo($event)" [(ngModel)]="toDate" [matDatepicker]="datepickerRefTo" matInput>
+                <mat-datepicker-toggle [for]="datepickerRefTo" matSuffix></mat-datepicker-toggle>
+                <mat-datepicker #datepickerRefTo></mat-datepicker>
+            </mat-form-field>
+            <button (click)="resetForm()" mat-raised-button color="primary" type="button" style="margin-left: 10px !important; margin-right: 6px !important;">
+                <mat-icon color="text-secondary" [icIcon]="icRefresh"></mat-icon>
+            </button>
+            <button (click)="onSearch()" class="mt-3" color="primary" mat-raised-button type="button" style="margin-right: 6px !important;">
+                <mat-icon color="text-secondary" [icIcon]="icSearch"></mat-icon>
+            </button>
+            <button class="rounded-tr rounded-br mt-3" color="primary" mat-raised-button type="button" style="margin-right: 6px !important;">
+                <mat-icon color="text-secondary" [icIcon]="icDownload"></mat-icon>
+            </button>
+
+            <mat-form-field appearance="standard" style="width: 140px !important; margin-right: 6px !important;" fxFlex="none">
+                <mat-label>Search By</mat-label>
+                <mat-select (valueChange)="onSearchByChange($event)">
+                  <mat-option value="1">SKU</mat-option>
+                  <mat-option value="2">Order ID</mat-option>
+                  <mat-option value="3">Channel</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="standard" style="width: 250px !important; margin-right: 6px !important;" class="vex-flex-form-field" color="warn">
+                <mat-label>Enter value to search</mat-label>
+                <input matInput (change)="onSearchValueChange($event)">
+            </mat-form-field>
+            <button class="mt-3" color="primary" mat-raised-button type="button" (click)="onSearch()">
+                <mat-icon color="text-secondary" [icIcon]="icSearch"></mat-icon>
+            </button>
+
+            <div class="info">
+                <b>Description</b>: This report will show you all sales for each product during the specified time period. All orders for all variants within a product will be added together to generate the values in this report. 
+                All orders that were downloaded into Sellershub during the time period will be used to present the data.
+            </div>
+
+            <div class="box_info">
+                <b>Top Product Name:  {{ toTopproduct }}</b><br />
+                During this time period your top product was
+            </div>
+
+            <div>
+                <mat-grid-list cols="4" rowHeight="16:9" gutterSize="0" class="p-0 top-30">
+
+                    <mat-grid-tile>
+                      <div class="dashboard-stat blue widget-thumb btn-circle">
+                        <h4 class="widget-thumb-heading font-white" style="font-size:10.5pt;text-align: left;">Percent Sales</h4>
+                        <div class="widget-thumb-body-stat font-white">{{ toPercentsale }}</div>
+                      </div>
+                    </mat-grid-tile>
+
+                    <mat-grid-tile>
+                        <div class="dashboard-stat red widget-thumb btn-circle">
+                          <h4 class="widget-thumb-heading font-white" style="font-size:10.5pt;text-align: left;">Product Sales</h4>
+                          <div class="widget-thumb-body-stat font-white">{{ toProductsales }}</div>
+                        </div>
+                    </mat-grid-tile>
+
+                    <mat-grid-tile>
+                        <div class="dashboard-stat blue">
+                          <h4 class="widget-thumb-heading font-white" style="font-size:10.5pt;text-align: left;">Percent Sales</h4>
+                          <div class="widget-thumb-body-stat font-white">{{ toPercentsale_new }}</div>
+                        </div>
+                    </mat-grid-tile>
+
+                    <mat-grid-tile>
+                        <div class="dashboard-stat cyan">
+                          <h4 class="widget-thumb-heading font-white" style="font-size:10.5pt;text-align: left;">Units</h4>
+                          <div class="widget-thumb-body-stat font-white">{{ toUnits }}</div>
+                        </div>
+                    </mat-grid-tile>
+
+                </mat-grid-list>
+            </div>
+            <div>
+                <div class="table-responsive">
+                    <table [dataSource]="dataSource" class="top-30 left-13" mat-table matSort>
+                        
+                        <ng-container *ngFor="let column of columns">
+                        <ng-container *ngIf="column.type === 'text'" [matColumnDef]="column.property">
+                            <th *matHeaderCellDef class="uppercase" mat-header-cell mat-sort-header> {{ column.label }}</th>
+                            <td *matCellDef="let row" mat-cell style="width: 20px !important;">{{ row[column.property] }}</td>
+                        </ng-container>
+                        </ng-container>
+            
+                        <tr *matHeaderRowDef="visibleColumns sticky: true" mat-header-row></tr>
+                        <tr *matRowDef="let row; columns: visibleColumns;"
+                            @fadeInUp stagger60ms
+                            class="hover:bg-hover trans-ease-out cursor-pointer"
+                            mat-row></tr>
+            
+                    </table>
+                </div>
+                <mat-paginator appearance="standard" [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" class="sticky left-0"></mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>

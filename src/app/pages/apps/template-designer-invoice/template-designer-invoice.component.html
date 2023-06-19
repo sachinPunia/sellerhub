@@ -1,0 +1,37 @@
+
+<div class="p-gutter" vexContainer>
+    <div class="card">
+        <div class="border-b py-4 px-6" fxLayout="row" fxLayoutAlign="start center">
+          <h2 class="m-0 title" fxFlex="auto">Invoice Templates</h2>
+        </div>
+      
+        <div class="py-5 px-5" fxLayout="row" fxLayout.lt-md="column" style="background-color: rgb(218, 218, 218);">
+            <mat-grid-list cols="4" gutterSize="0">
+                <mat-grid-tile *ngFor="let t of listTemplate">
+                    <div class="card">
+                        <div class="border-b py-4 px-8" fxLayout="row" fxLayoutAlign="start center">
+                            <img src="{{ t.invoice_logo }}" style="width: 150px; height: 40px;">
+                        </div>
+                      
+                        <div class="py-4 px-3" fxLayout="row" fxLayout.lt-md="column">
+                            <table style="min-height: 120px !important; padding: 10px !important">
+                                <tbody>
+                                    <tr>
+                                        <td>Name : <b><a class="tooltips" data-original-title="">{{ t.invoice_name }}</a></b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Inv Template : <b>{{ t.invoice_templates }}</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Shiping Labels : <b style="color:green;"> {{ t.invoice_label }} </b></td>
+                                    </tr>
+                                </tbody>
+                                
+                            </table>
+                        </div>
+                    </div>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </div>
+    </div>
+</div>

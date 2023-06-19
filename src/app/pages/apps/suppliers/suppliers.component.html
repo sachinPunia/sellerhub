@@ -1,0 +1,129 @@
+<div class="p-gutter" vexContainer>
+    <div class="card">
+        <div class="border-b py-4 px-6" fxLayout="row" fxLayoutAlign="start center">
+          <h2 class="m-0 title" fxFlex="auto">Supplier</h2>
+        </div>
+      
+        <div class="py-5 px-5" fxLayout="row" fxLayout.lt-md="column">
+          <mat-tab-group animationDuration="200ms" [@.disabled]="true">
+            <mat-tab>
+              <ng-template mat-tab-label>
+                Suppliers
+              </ng-template>
+              <div>
+                <div class="table-responsive">
+                  
+
+                    <table [dataSource]="dataSource" class="top-30 left-13 w-full" mat-table matSort>
+                    
+                    <ng-container *ngFor="let column of columns">
+                        <ng-container *ngIf="column.type === 'text'" [matColumnDef]="column.property">
+                            <th *matHeaderCellDef class="uppercase bg-sellershub" mat-header-cell mat-sort-header> {{ column.label }}</th>
+                            <td *matCellDef="let row" mat-cell style="width: 20px !important;">{{ row[column.property] }}</td>
+                        </ng-container>
+                    </ng-container>
+
+                    
+
+                    <ng-container matColumnDef="action">
+                      <th *matHeaderCellDef mat-header-cell mat-sort-header class="bg-sellershub">ACTION</th>
+                      <td *matCellDef="let row" mat-cell>
+                        <div>
+                          <button class="mr-4 small-icon-button font-9" 
+                              color="secondary"
+                              mat-raised-button
+                              type="button"><mat-icon class="font-icon-9" color="text-secondary" [icIcon]="icEdit"></mat-icon>
+                          </button>
+                          <button class="mr-4 small-icon-button font-9" 
+                              color="danger"
+                              mat-raised-button
+                              type="button"><mat-icon class="font-icon-9" color="primary" [icIcon]="icRemove"></mat-icon>
+                          </button>
+                        </div>
+                      </td>
+                  </ng-container>
+            
+                        <tr *matHeaderRowDef="visibleColumns; sticky: true" mat-header-row></tr>
+                        <tr *matRowDef="let row; columns: visibleColumns;"
+                            @fadeInUp stagger60ms
+                            class="hover:bg-hover trans-ease-out cursor-pointer"
+                            mat-row></tr>
+            
+                    </table>
+                </div>
+                <mat-paginator appearance="standard" [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" class="sticky left-0"></mat-paginator>
+            </div>
+            </mat-tab>
+
+            <mat-tab>
+              <ng-template mat-tab-label>
+                Feeds
+              </ng-template>
+              <div><br>
+                <div class="info">
+                  Please enter a http feed with inventory details from your supplier/dropshipper to keep your stock levels in synch with your supplier quantity. This feed runs every 24 hours
+                </div>
+              <br>
+                <div class="table-responsive">
+                  
+                    <table [dataSource]="dataSource_1" class="top-30 left-13" mat-table matSort>
+                    
+                    
+                    <ng-container *ngFor="let column1 of columns_new">
+                        <ng-container *ngIf="column1.type === 'text'" [matColumnDef]="column1.property">
+                            <th *matHeaderCellDef class="uppercase" mat-header-cell mat-sort-header> {{ column1.label }}</th>
+                            <td *matCellDef="let row" mat-cell style="width: 20px !important;">{{ row[column1.property] }}</td>
+                        </ng-container>
+                    </ng-container>
+
+                    <ng-container matColumnDef="feedUrl">
+                      <th *matHeaderCellDef mat-header-cell mat-sort-header>FEED URL</th>
+                      <td *matCellDef="let row" mat-cell>
+                        <div>
+                          <input placeholder="Enter URL" matInput value="{{row.feedUrl}}">
+                        </div>
+                      </td>
+                  </ng-container>
+
+                    <ng-container matColumnDef="rules">
+                      <th *matHeaderCellDef mat-header-cell mat-sort-header>RULES</th>
+                      <td *matCellDef="let row" mat-cell>
+                        <div>
+                          <button class="mr-4 font-10" 
+                              color="primary"
+                              mat-raised-button
+                              type="button"><mat-icon color="text-secondary" [icIcon]="icEdit"></mat-icon>
+                          </button>
+                        </div>
+                      </td>
+                  </ng-container>
+
+                    <ng-container matColumnDef="action">
+                      <th *matHeaderCellDef mat-header-cell mat-sort-header>ACTION</th>
+                      <td *matCellDef="let row" mat-cell>
+                        <div>
+                          <button class="mr-4 font-10" 
+                              color="primary"
+                              mat-raised-button
+                              type="button"><mat-icon color="text-secondary" [icIcon]="icCheck"></mat-icon>Save
+                          </button>
+                        </div>
+                      </td>
+                  </ng-container>
+            
+                        <tr *matHeaderRowDef="visibleColumns_new; sticky: true" mat-header-row></tr>
+                        <tr *matRowDef="let row; columns: visibleColumns_new;"
+                            @fadeInUp stagger60ms
+                            class="hover:bg-hover trans-ease-out cursor-pointer"
+                            mat-row></tr>
+            
+                    </table>
+                </div>
+                <mat-paginator appearance="standard" [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" class="sticky left-0"></mat-paginator>
+            </div>
+              
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+    </div>
+</div>

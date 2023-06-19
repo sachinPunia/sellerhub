@@ -1,0 +1,152 @@
+
+<div class="p-gutter" vexContainer>
+    <div class="card">
+        <div style="display: flex;justify-content: space-between;"  class="border-b py-4 px-6" fxLayout="row" fxLayoutAlign="start center">
+          <h2 class="m-0 title" fxFlex="auto">Order Hostory Report</h2>
+          <button style="background-color: #0c1c44; color: white;" mat-raised-button class="mr-4 font-10">
+            <mat-icon color="text-secondary" [icIcon]="icSearch"></mat-icon>
+          </button>
+        </div>
+      
+        <div class="py-0 px-0" fxLayout="row" fxLayout.lt-md="column" style="margin-top: 5px !important;">
+            <mat-form-field appearance="standard" style="width: 160px !important; margin-left: 27px !important; margin-right: 10px !important;">
+                <mat-label>From</mat-label>
+                <input (dateInput)="onSearchByFrom($event)" [(ngModel)]="fromDate" [matDatepicker]="datepickerRef" matInput>
+                <mat-datepicker-toggle [for]="datepickerRef" matSuffix></mat-datepicker-toggle>
+                <mat-datepicker #datepickerRef></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field appearance="standard" style="width: 160px !important;">
+                <mat-label>To</mat-label>
+                <input (dateInput)="onSearchByTo($event)" [(ngModel)]="toDate" [matDatepicker]="datepickerRefTo" matInput>
+                <mat-datepicker-toggle [for]="datepickerRefTo" matSuffix></mat-datepicker-toggle>
+                <mat-datepicker #datepickerRefTo></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field appearance="standard" style="width: 160px !important; margin-left: 27px !important; margin-right: 10px !important;">
+                <mat-label>Enter Date to search</mat-label>
+                <input (dateInput)="onSearchByDate($event)" [(ngModel)]="searchvalueDate" [matDatepicker]="datepickerRefEnter" matInput>
+                <mat-datepicker-toggle [for]="datepickerRefEnter" matSuffix></mat-datepicker-toggle>
+                <mat-datepicker #datepickerRefEnter></mat-datepicker>
+            </mat-form-field>
+
+            
+            <button (click)="resetForm()" color="primary" mat-raised-button type="button" style="margin-left: 10px !important; margin-right: 6px !important;">
+                <mat-icon color="text-secondary" [icIcon]="icRefresh"></mat-icon>
+            </button>
+
+            <button (click)="onSearch()" class="mt-3" color="primary" mat-raised-button type="button" style="margin-right: 6px !important;">
+                <mat-icon color="text-secondary" [icIcon]="icSearch"></mat-icon>
+            </button>
+            
+            <button class="rounded-tr rounded-br mt-3" color="primary" mat-raised-button type="button" style="margin-right: 6px !important;">
+                <mat-icon color="text-secondary" [icIcon]="icDownload"></mat-icon>
+            </button>
+
+            <!-- <mat-form-field appearance="standard" style="width: 140px !important; margin-right: 6px !important; margin-left: 27px !important;" fxFlex="none">
+                <mat-label>Search By</mat-label>
+                <mat-select>
+                  <mat-option value="SKU">SKU</mat-option>
+                  <mat-option value="Channel">Channel</mat-option>
+                  <mat-option value="Title">Title</mat-option>
+                </mat-select>
+            </mat-form-field> -->
+
+            <!-- <mat-form-field appearance="standard" style="width: 250px !important; margin-right: 6px !important;" class="vex-flex-form-field" color="warn">
+                <mat-label>Enter value to search</mat-label>
+                <input matInput>
+            </mat-form-field>
+
+            <button class="mt-3" color="primary" mat-raised-button type="button">
+                <mat-icon color="text-secondary" [icIcon]="icSearch"></mat-icon>
+            </button> -->
+
+
+            <div class="info">
+                <b>Description</b>: This report will show you all orders created during the specified time period. Both closed and open orders will be included in this report. 
+                All orders that were input into Sellershub during the time period will be used to present the data.
+            </div>
+
+            <div class="box_info">
+                During this time period your top product was
+            </div>
+
+            <div>
+                <mat-grid-list cols="4" rowHeight="16:9" gutterSize="0" class="p-0 top-30">
+
+                    <mat-grid-tile>
+                      <div class="dashboard-stat blue widget-thumb btn-circle">
+                        <h4 class="widget-thumb-heading font-white" style="font-size:10.5pt;text-align: left;">Total Order Value</h4>
+                        <div class="widget-thumb-body-stat font-white">{{toTotalordervalue}}</div>
+                      </div>
+                    </mat-grid-tile>
+
+                    <mat-grid-tile>
+                        <div class="dashboard-stat red widget-thumb btn-circle">
+                          <h4 class="widget-thumb-heading font-white" style="font-size:10.5pt;text-align: left;">Total Units</h4>
+                          <div class="widget-thumb-body-stat font-white">{{toTotalunits}}</div>
+                        </div>
+                    </mat-grid-tile>
+
+                    <mat-grid-tile>
+                        <div class="dashboard-stat blue">
+                          <h4 class="widget-thumb-heading font-white" style="font-size:10.5pt;text-align: left;">Number of Orders</h4>
+                          <div class="widget-thumb-body-stat font-white">{{toNumberorder}}</div>
+                        </div>
+                    </mat-grid-tile>
+
+                    <mat-grid-tile>
+                        <div class="dashboard-stat cyan">
+                          <h4 class="widget-thumb-heading font-white" style="font-size:10.5pt;text-align: left;">Total Customers</h4>
+                          <div class="widget-thumb-body-stat font-white">{{toTotalcustomer}}</div>
+                        </div>
+                    </mat-grid-tile>
+
+                </mat-grid-list>
+            </div>
+            <div>
+                <div class="table-responsive">
+                    <table [dataSource]="dataSource" class="top-30 left-13" mat-table matSort>
+                        
+                        <ng-container *ngFor="let column of columns">
+                            <ng-container *ngIf="column.type === 'text'" [matColumnDef]="column.property">
+                                <th *matHeaderCellDef class="uppercase" mat-header-cell mat-sort-header> {{ column.label }}</th>
+                                <td *matCellDef="let row" mat-cell style="width: 20px !important;">{{ row[column.property] }}</td>
+                            </ng-container>
+                        </ng-container>
+
+                        <ng-container matColumnDef="date">
+                            <th *matHeaderCellDef mat-header-cell mat-sort-header class="bg-sellershub">TOTAL %</th>
+                            <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell style="width: 20px !important;">
+                                    {{ row['date'] |  date:'dd/MM/yyyy' }} %
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="totalpercent">
+                            <th *matHeaderCellDef mat-header-cell mat-sort-header class="bg-sellershub">TOTAL %</th>
+                            <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell style="width: 20px !important;">
+                                    {{ row['totalpercent'] }} %
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="unitspercent">
+                            <th *matHeaderCellDef mat-header-cell mat-sort-header class="bg-sellershub">UNIT %</th>
+                            <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell style="width: 20px !important;">
+                                    {{ row['unitspercent'] }} %
+                            </td>
+                        </ng-container>
+            
+                        <tr *matHeaderRowDef="visibleColumns sticky: true" mat-header-row></tr>
+                        <tr *matRowDef="let row; columns: visibleColumns;"
+                            @fadeInUp stagger60ms
+                            class="hover:bg-hover trans-ease-out cursor-pointer"
+                            mat-row>
+                        </tr>
+            
+                    </table>
+                </div>
+                <mat-paginator appearance="standard" [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" class="sticky left-0"></mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,93 @@
+<div class="flex items-center" mat-dialog-title>
+    <h2 class="flex-auto text-lg font-medium font-12">
+        Export Orders to Pick List
+    </h2>
+    <button mat-dialog-close mat-icon-button type="button">
+        <mat-icon [icIcon]="icClose" size="24px"></mat-icon>
+    </button>
+</div>
+<!-- <table class="w-full">
+    <tr><td class="left">US +1 (925) 217-1261 (8AM EST - 5PM EST)</td><td class="right">UK +44 203 371 7255 (10AM GMT - 5PM GMT)</td></tr>
+</table> -->
+<mat-divider></mat-divider>
+  <mat-dialog-content>
+    <!-- <div class="info">
+        Please select a order from following or create a new order
+    </div><br> -->
+    <!-- <div class="info flex">
+        <img src="https://login.sellershub.io/web/ka
+        rtzhubtelesale.png">&nbsp;&nbsp;&nbsp; <b>Create a new order in KartzHub. Sale channel will be set to Telesales</b>
+    </div> -->
+    <div class="content">
+        <div class="column">
+            <div class="row">
+                <img src="https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubexcelimageicon.png" style="width: 50px;" />
+            </div>
+        </div>
+        <div class="column">
+            <div class="row">
+                <mat-form-field appearance="standard" style="width: 140px !important; margin-right: 6px !important;" fxFlex="none">
+                    <mat-label>Select</mat-label>
+                    <mat-select>
+                        <mat-option value="0">Location Wise Pick List</mat-option>
+                        <mat-option value="1">Default Pick List</mat-option>
+                    </mat-select>
+                </mat-form-field><br>
+                <button color="primary" mat-raised-button class="small-icon-button" type="button" style="margin-left: 10px !important; margin-right: 6px !important;">
+                    Export to Excel
+                </button>
+            </div>
+        </div>
+    </div><br>
+    <div class="content">
+        <div class="column">
+            <div class="row">
+                <img src="https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubpdfimageicon.png" style="width: 50px;" />
+            </div>
+        </div>
+        <div class="column">
+            <div class="row">
+                <mat-form-field appearance="standard" style="width: 140px !important; margin-right: 6px !important;" fxFlex="none">
+                    <mat-label>Select</mat-label>
+                    <mat-select>
+                        <mat-option value="0">Location Wise Pick List</mat-option>
+                        <mat-option value="1">Default Pick List</mat-option>
+                    </mat-select>
+                </mat-form-field><br>
+                <button color="primary" mat-raised-button class="small-icon-button" type="button" style="margin-left: 10px !important; margin-right: 6px !important;">
+                    Export to PDF
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    
+                <!-- <mat-form-field appearance="fill">
+                    <mat-label>Search by Order ID</mat-label>
+                    <input matInput #input maxlength="10" placeholder="Search By Order ID">
+                     <button class="small-icon-button mt-3" color="primary" mat-raised-button type="button" style="margin-right: 6px !important;">
+                        <mat-icon color="text-secondary" [icIcon]="icSearch"></mat-icon>
+                    </button> 
+                </mat-form-field> -->
+  </mat-dialog-content>
+  
+  <mat-dialog-actions>
+  
+    <span class="flex-1"></span>
+    
+    
+    <!-- <button mat-dialog-close mat-raised-button type="button" color="secondary">
+      <mat-icon [icIcon]="icCancel" [inline]="true" size="16px"></mat-icon> Close
+    </button>-->
+
+    <button color="primary" mat-flat-button type="button">
+        <ic-icon [icIcon]="icSend" [inline]="true" size="16px"></ic-icon>  Save
+    </button>
+
+    <button mat-dialog-close mat-raised-button type="button" color="secondary">
+        <mat-icon [icIcon]="icCancel" [inline]="true" size="16px"></mat-icon> Close
+    </button>
+  
+    
+  </mat-dialog-actions>
+  

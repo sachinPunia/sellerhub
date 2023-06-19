@@ -1,0 +1,125 @@
+<div class="flex items-center" mat-dialog-title>
+    <h2 class="flex-auto text-lg font-medium font-12">
+        Please confirm below products to link SKU's
+    </h2>
+    <button mat-dialog-close mat-icon-button type="button">
+        <mat-icon [icIcon]="icClose" size="24px"></mat-icon>
+    </button>
+</div>
+<!-- <table class="w-full">
+    <tr><td class="left">US +1 (925) 217-1261 (8AM EST - 5PM EST)</td><td class="right">UK +44 203 371 7255 (10AM GMT - 5PM GMT)</td></tr>
+</table> -->
+  <mat-dialog-content>
+    <mat-divider></mat-divider><br>
+    <div class="table-responsive">
+        <table [dataSource]="dataSource" class="w-full top-30 left-13" mat-table matSort>
+
+            <!-- Checkbox Column -->
+            <ng-container matColumnDef="checkbox">
+                <th *matHeaderCellDef mat-header-cell>
+                <mat-checkbox (change)="$event ? masterToggle() : null"
+                                [checked]="selection.hasValue() && isAllSelected()"
+                                [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                color="primary">
+                </mat-checkbox>
+                </th>
+                <td *matCellDef="let row" class="w-4" mat-cell>
+                <mat-checkbox (change)="$event ? selection.toggle(row) : null"
+                                (click)="$event.stopPropagation()"
+                                [checked]="selection.isSelected(row)"
+                                color="primary">
+                </mat-checkbox>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="image_data">
+                <th *matHeaderCellDef mat-header-cell>IMAGE</th>
+                <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell>
+                    <img [src]="row['imageUrl']" class="h-12 w-12 align-middle">
+                </td>
+            </ng-container>
+
+            <ng-container *ngFor="let column of columns">
+                <ng-container *ngIf="column.type === 'text'" [matColumnDef]="column.property">
+                    <th *matHeaderCellDef class="uppercase" mat-header-cell mat-sort-header> {{ column.label }}</th>
+                    <td *matCellDef="let row" mat-cell style="width: 20px !important;">{{ row[column.property] }}</td>
+                </ng-container>
+            </ng-container>
+
+            <ng-container matColumnDef="add_to_channel">
+                <th *matHeaderCellDef mat-header-cell>ADD TO CHANNEL</th>
+                <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell>
+                    <mat-checkbox (change)="$event ? masterToggle() : null"
+                                [checked]="selection.hasValue() && isAllSelected()"
+                                [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                color="primary">
+                </mat-checkbox>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="edit">
+                <th *matHeaderCellDef mat-header-cell mat-sort-header>EDIT</th>
+                <td *matCellDef="let row" mat-cell>
+                  <div>
+                      {{ row.qty }} &nbsp;&nbsp;&nbsp;
+                    <button class="mr-4 font-10" 
+                        (click)="openUpdateqtyproductsModal()"
+                        color="primary"
+                        mat-raised-button
+                        type="button">Edit
+                    </button>
+                  </div>
+                </td>
+            </ng-container>
+
+            <tr *matHeaderRowDef="visibleColumns sticky: true" mat-header-row></tr>
+            <tr *matRowDef="let row; columns: visibleColumns;"
+                @fadeInUp stagger60ms
+                class="hover:bg-hover trans-ease-out cursor-pointer"
+                mat-row></tr>
+
+        </table>
+    </div>
+    <mat-paginator appearance="standard" [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" class="sticky left-0"></mat-paginator>
+    <br>
+    <br>
+    <mat-form-field appearance="outline" style="width: 250px !important; margin-right: 6px !important;" class="vex-flex-form-field" color="warn">
+        <mat-label></mat-label>
+        <input matInput>
+    </mat-form-field>
+
+    <button class="mt-3" color="primary" mat-raised-button type="button">
+        <mat-icon color="text-secondary" [icIcon]="icSearch"></mat-icon>
+    </button>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions>
+  
+    <span class="flex-1"></span>
+
+    <mat-slide-toggle>Enable Equal Qty</mat-slide-toggle>&nbsp;&nbsp;&nbsp;
+
+    <button color="primary" mat-flat-button type="button">
+        Unlink Product 
+    </button> 
+    <button color="primary" mat-flat-button type="button">
+        Link Product  
+    </button> 
+    
+    <!-- <button color="primary" mat-flat-button type="button" [matMenuTriggerFor]="aboveMenu"><ic-icon [icIcon]="icUparrow" [inline]="true" size="16px"></ic-icon></button>
+    <mat-menu #aboveMenu="matMenu" yPosition="above">
+    <button mat-menu-item>Last 1 Day</button>
+    <button mat-menu-item>Last 7 Days</button>
+    <button mat-menu-item>Last 14 Days</button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item>Last 30 Days</button>
+    </mat-menu> -->
+    
+
+    <button mat-dialog-close mat-raised-button type="button" color="secondary">
+      <mat-icon [icIcon]="icCancel" [inline]="true" size="16px"></mat-icon> Close
+    </button>
+  
+    
+  </mat-dialog-actions>
+  

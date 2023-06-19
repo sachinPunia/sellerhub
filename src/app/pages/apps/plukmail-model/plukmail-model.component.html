@@ -1,0 +1,263 @@
+
+
+<div class="flex items-center" mat-dialog-title>
+    <h2 class="flex-auto text-lg font-medium font-12">
+           UK-Mail
+    </h2>
+
+
+  <button mat-dialog-close routerLink="/apps/add-createorderpage" color="primary" mat-flat-button type="button">
+     Print Labels
+</button>  &nbsp;&nbsp;
+
+<button mat-dialog-close routerLink="/apps/add-createorderpage" color="primary" mat-flat-button type="button">
+    <ic-icon [icIcon]="icSend" [inline]="true" size="16px"></ic-icon> Confirm Shipment
+</button>&nbsp;&nbsp;
+<button mat-dialog-close routerLink="/apps/add-createorderpage" color="primary" mat-flat-button type="button">
+     Refresh
+</button>&nbsp;&nbsp;
+    <button mat-dialog-close mat-icon-button type="button">
+        <mat-icon [icIcon]="icClose" size="24px"></mat-icon>
+    </button>
+</div>
+<!-- <table class="w-full">
+    <tr><td class="left">US +1 (925) 217-1261 (8AM EST - 5PM EST)</td><td class="right">UK +44 203 371 7255 (10AM GMT - 5PM GMT)</td></tr>
+</table> -->
+<mat-divider></mat-divider>
+  <mat-dialog-content>
+    <!-- <div class="info">
+        Please select a order from following or create a new order
+    </div><br> -->
+    <div class="table-responsive">
+        <table [dataSource]="dataSource" class="w-full top-30 left-13" mat-table matSort>
+            
+            <!-- Checkbox Column -->
+            <!-- <ng-container matColumnDef="checkbox">
+                <th *matHeaderCellDef mat-header-cell>
+                <mat-checkbox (change)="$event ? masterToggle() : null"
+                                [checked]="selection.hasValue() && isAllSelected()"
+                                [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                color="primary">
+                </mat-checkbox>
+                </th>
+                <td *matCellDef="let row" class="w-4" mat-cell>
+                <mat-checkbox (change)="$event ? selection.toggle(row) : null"
+                                (click)="$event.stopPropagation()"
+                                [checked]="selection.isSelected(row)"
+                                color="primary">
+                </mat-checkbox>
+                </td>
+            </ng-container> -->
+
+            <ng-container *ngFor="let column of columns">
+                <ng-container *ngIf="column.type === 'text'" [matColumnDef]="column.property">
+                    <th *matHeaderCellDef class="uppercase" mat-header-cell mat-sort-header> {{ column.label }}</th>
+                    <td *matCellDef="let row" mat-cell style="width: 20px !important;">{{ row[column.property] }}</td>
+                </ng-container>
+            </ng-container>
+
+            <ng-container matColumnDef="carrier">
+                <th *matHeaderCellDef mat-header-cell mat-sort-header>CARRIER</th>
+                <td *matCellDef="let row" mat-cell>
+                  <div class="flex">
+                    <mat-form-field style="width: 140px !important; margin-right: 6px !important;" appearance="outline" color="primary">
+                        <!-- <mat-label>Package Weight</mat-label> -->
+                        <input matInput #input value="royalmail" >
+                    </mat-form-field>
+                  </div>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="shippingMethod1">
+                <th *matHeaderCellDef mat-header-cell mat-sort-header>SHIPPING METHODS</th>
+                <td *matCellDef="let row" mat-cell>
+                  <div class="flex">
+                    <mat-form-field style="width: 140px !important; margin-right: 6px !important;" appearance="outline" color="primary">
+                        <!-- <mat-label>Package Weight</mat-label> -->
+                        <input matInput #input value="" >
+                    </mat-form-field>
+                  </div>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="serviceFormat">
+                <th *matHeaderCellDef mat-header-cell mat-sort-header>SERVICE FORMAT</th>
+                <td *matCellDef="let row" mat-cell>
+                  <div class="flex">
+                    <mat-form-field style="width: 140px !important; margin-right: 6px !important;" appearance="outline" color="primary">
+                        <!-- <mat-label>Package Weight</mat-label> -->
+                        <input matInput #input value="" >
+                    </mat-form-field>
+                  </div>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="trkid">
+                <th *matHeaderCellDef mat-header-cell mat-sort-header>TRACKING ID</th>
+                <td *matCellDef="let row" mat-cell>
+                  <div class="flex">
+                    <mat-form-field style="width: 140px !important; margin-right: 6px !important;" appearance="outline" color="primary">
+                        <!-- <mat-label>Package Weight</mat-label> -->
+                        <input matInput #input value="" >
+                    </mat-form-field>
+                  </div>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="shippingmethod">
+                <th *matHeaderCellDef mat-header-cell mat-sort-header>ITEM WIDTH</th>
+                <td *matCellDef="let row" mat-cell>
+                  <div class="flex">
+                    <mat-form-field style="width: 140px !important; margin-right: 6px !important;" appearance="outline" color="primary">
+                        <!-- <mat-label>Package Weight</mat-label> -->
+                        <input matInput #input value="" >
+                    </mat-form-field>
+                  </div>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="dispatchdate">
+                <th *matHeaderCellDef mat-header-cell mat-sort-header>ITEM DIMENTIONS</th>
+                <td *matCellDef="let row" mat-cell>
+                  <div class="flex">
+                    <mat-form-field style="width: 140px !important; margin-right: 6px !important;" appearance="outline" color="primary">
+                        <!-- <mat-label>Package Weight</mat-label> -->
+                        <input matInput #input value="" >
+                    </mat-form-field>
+                    <mat-form-field style="width: 140px !important; margin-right: 6px !important;" appearance="outline" color="primary">
+                        <!-- <mat-label>Package Weight</mat-label> -->
+                        <input matInput #input value="" >
+                    </mat-form-field>
+                    <mat-form-field style="width: 140px !important; margin-right: 6px !important;" appearance="outline" color="primary">
+                        <!-- <mat-label>Package Weight</mat-label> -->
+                        <input matInput #input value="" >
+                    </mat-form-field>
+                  </div>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="date">
+                <th *matHeaderCellDef mat-header-cell mat-sort-header>DISPATCH DATE</th>
+                <td *matCellDef="let row" mat-cell>
+                  <div class="flex">
+                    <mat-form-field style="width: 140px !important; margin-right: 6px !important;" appearance="outline" color="primary">
+                        <!-- <mat-label>Package Weight</mat-label> -->
+                        <input matInput #input value="" >
+                    </mat-form-field>
+                  </div>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+                <th *matHeaderCellDef mat-header-cell mat-sort-header>ACTION</th>
+                <td *matCellDef="let row" mat-cell>
+                  <div class="flex">
+                    <button class="mr-4 font-10" 
+                        color="primary"
+                        mat-raised-button
+                        type="button">Select
+                    </button>
+                    <button class="mr-4 font-10" 
+                        style="background-color: red; color: white"
+                        mat-raised-button
+                        type="button">Remove
+                    </button>
+                  </div>
+                </td>
+            </ng-container>
+
+            <tr *matHeaderRowDef="visibleColumns sticky: true" mat-header-row></tr>
+            <tr *matRowDef="let row; columns: visibleColumns;"
+                @fadeInUp stagger60ms
+                class="hover:bg-hover trans-ease-out cursor-pointer"
+                mat-row></tr>
+
+        </table>
+    </div><br>
+
+    <mat-form-field appearance="standard" style="width: 160px !important; margin-left: 27px !important; margin-right: 10px !important;">
+        <mat-label>Shipping dates</mat-label>
+        <input [matDatepicker]="datepickerRef" matInput>
+        <mat-datepicker-toggle [for]="datepickerRef" matSuffix></mat-datepicker-toggle>
+        <mat-datepicker #datepickerRef></mat-datepicker>
+
+        
+    </mat-form-field>
+
+    <button class="small-icon-button mt-3" color="primary" mat-raised-button type="button" >
+       Select date   .
+    </button>
+  
+    <mat-form-field appearance="standard" style="width: 200px !important; margin-right: 6px !important;" fxFlex="none">
+        <mat-label>Shipping Service</mat-label>
+        <mat-select>
+            <mat-option value="-1">Please select</mat-option>
+            
+        </mat-select>
+        
+    </mat-form-field> <button class="small-icon-button mt-3" color="primary" mat-raised-button type="button" >
+        Apply Shipping Service   .
+      </button> <br>
+
+
+    <mat-form-field appearance="standard" style="width: 200px !important; margin-right: 6px !important;" fxFlex="none">
+        <mat-label>Service Format</mat-label>
+        <mat-select>
+            <mat-option value="-1">Please select</mat-option>
+            <mat-option value="5569"> Letter (L)</mat-option>
+            <mat-option value="5569">  Large Letter (F) </mat-option>
+            <mat-option value="5569"> Parcel (P)</mat-option>
+            <mat-option value="5569"> Printed Papers - International Services Only (S)</mat-option>
+          
+        </mat-select>
+
+       
+    </mat-form-field>
+    
+    
+    <button class="small-icon-button mt-3" color="primary" mat-raised-button type="button" >
+        Apply Service Format   .
+      </button>
+    
+    <mat-form-field appearance="standard" style="width: 180px !important; margin-right: 6px !important;" class="vex-flex-form-field" color="warn">
+        <mat-label>Weight</mat-label>
+        <input matInput>
+
+       
+    </mat-form-field>
+    <button class="small-icon-button mt-3" color="primary" mat-raised-button type="button" >
+        Apply weight   .
+      </button>
+
+    <mat-form-field appearance="standard" style="width: 180px !important; margin-right: 6px !important;" class="vex-flex-form-field" color="warn">
+        <mat-label>Dimensions Length</mat-label>
+        <input matInput>
+
+    </mat-form-field>
+
+
+    <button class="small-icon-button mt-3" color="primary" mat-raised-button type="button" >
+        Apply Dimensions  .
+      </button>
+
+    <mat-form-field appearance="standard" style="width: 180px !important; margin-right: 6px !important;" class="vex-flex-form-field" color="warn">
+        <mat-label>Width </mat-label>
+        <input matInput>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" style="width: 180px !important; margin-right: 6px !important;" class="vex-flex-form-field" color="warn">
+        <mat-label>Height  </mat-label>
+        <input matInput>
+    </mat-form-field>
+    
+                <!-- <mat-form-field appearance="fill">
+                    <mat-label>Search by Order ID</mat-label>
+                    <input matInput #input maxlength="10" placeholder="Search By Order ID">
+                     <button class="small-icon-button mt-3" color="primary" mat-raised-button type="button" style="margin-right: 6px !important;">
+                        <mat-icon color="text-secondary" [icIcon]="icSearch"></mat-icon>
+                    </button> 
+                </mat-form-field> -->
+  </mat-dialog-content>
+  
+
+  

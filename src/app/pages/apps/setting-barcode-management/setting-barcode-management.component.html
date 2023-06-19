@@ -1,0 +1,196 @@
+<div class="p-gutter" vexContainer>
+    <div class="card">
+        <div class="border-b py-4 px-6" fxLayout="row" fxLayoutAlign="start center">
+          <h2 class="m-0 title" fxFlex="auto">Barcode Management</h2>
+        </div>
+      
+        <div class="py-5 px-5" fxLayout="row" fxLayout.lt-md="column">
+            <div style="display: flex;justify-content: space-between;" class="border-b py-1 px-2" fxLayout="row" fxLayoutAlign="start center">
+                <mat-checkbox >Automatically add unused barcodes to new product</mat-checkbox>
+                <button style="background-color: blue; color: white;" mat-raised-button class="mr-4 font-10">
+                    <mat-icon color="text-secondary" [icIcon]="icCloudupload"></mat-icon>  Upload New Barcode 
+                </button>
+              </div>
+            <mat-tab-group [@.disabled]="true">
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        Unused Barcode
+                    </ng-template>
+                    <div style="display: flex;" class="border-b py-1 px-2" fxLayout="row" fxLayoutAlign="start center">
+                        <b style="padding-top: 15px;">Manage your Product Barcode</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <mat-form-field  appearance="fill">
+                            <mat-label>Unused barcodes and SKUs are displayed below</mat-label>
+
+                            <input matInput #input (change)="SearchByValueNew($event)" placeholder="Unused barcodes">
+
+                            <!-- <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint> -->
+                        </mat-form-field>
+
+                        <button (click)="onSearchNew()" class="mt-3" color="primary" class="small-icon-button" mat-raised-button type="button" style="margin-left: 6px !important; height: 50px;">
+                            <mat-icon color="text-secondary" [icIcon]="icSearch"></mat-icon>
+                        </button>
+                      </div>
+                      <!-- <br> -->
+                      <div>
+                          <div class="table-responsive">
+                              <table [dataSource]="dataSource" class="w-full top-30 left-13" mat-table matSort style="width: 100% !important;">
+          
+                                  <ng-container *ngFor="let column of columns">
+                                      <ng-container *ngIf="column.type === 'text'" [matColumnDef]="column.property">
+                                          <th *matHeaderCellDef class="uppercase" mat-header-cell mat-sort-header> {{ column.label }}</th>
+                                          <td *matCellDef="let row" mat-cell style="width: 20px !important;">{{ row[column.property] }}</td>
+                                      </ng-container>
+                                  </ng-container>
+          
+                                  <ng-container matColumnDef="action">
+                                      <th *matHeaderCellDef mat-header-cell mat-sort-header>ACTION</th>
+                                      <td *matCellDef="let row" mat-cell>
+                                        <div>
+                                          <!-- <button class="mr-4 font-10" 
+                                              color="primary"
+                                              mat-raised-button
+                                              type="button"><mat-icon color="text-secondary" [icIcon]="icEdit"></mat-icon>
+                                          </button>
+                                          <button class="mr-4 font-10" 
+                                              color="primary"
+                                              mat-raised-button
+                                              type="button"><mat-icon color="text-secondary" [icIcon]="icRemove"></mat-icon>
+                                          </button> -->
+                                        </div>
+                                      </td>
+                                  </ng-container>
+                      
+                                  <tr *matHeaderRowDef="visibleColumns sticky: true" mat-header-row></tr>
+                                  <tr *matRowDef="let row; columns: visibleColumns;"
+                                      @fadeInUp stagger60ms
+                                      class="hover:bg-hover trans-ease-out cursor-pointer"
+                                      mat-row></tr>
+                      
+                              </table>
+                          </div>
+                          <mat-paginator appearance="standard" [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" class="sticky left-0"></mat-paginator>
+                      </div>
+                </mat-tab>
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        Used Barcode
+                    </ng-template>
+                    <div style="display: flex;" class="border-b py-1 px-2" fxLayout="row" fxLayoutAlign="start center">
+                        <b style="padding-top: 15px;">Manage your Product Barcode</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <mat-form-field  fxFlex="auto">
+                            <mat-label>Used barcodes and SKUs are displayed below</mat-label>
+                            <input  matInput (change)="SearchByValue($event)" placeholder="Unused barcodes">
+                            <!-- <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint> -->
+                        </mat-form-field>
+                        
+                        <button (click)="onSearch()" class="mt-3" color="primary" class="small-icon-button" mat-raised-button type="button" style="margin-left: 6px !important; height: 50px;">
+                            <mat-icon color="text-secondary" [icIcon]="icSearch"></mat-icon>
+                        </button>
+                      </div>
+                    <div>
+                        <div class="table-responsive">
+                          
+                            <table [dataSource]="dataSource_1" class="top-30 left-13" mat-table matSort>
+                            
+                            
+                            <ng-container *ngFor="let column1 of columns_new">
+                                <ng-container *ngIf="column1.type === 'text'" [matColumnDef]="column1.property">
+                                    <th *matHeaderCellDef class="uppercase" mat-header-cell mat-sort-header> {{ column1.label }}</th>
+                                    <td *matCellDef="let row" mat-cell style="width: 20px !important;">{{ row[column1.property] }}</td>
+                                </ng-container>
+                            </ng-container>
+        
+                            <ng-container matColumnDef="action">
+                              <th *matHeaderCellDef mat-header-cell mat-sort-header>ACTION</th>
+                              <td *matCellDef="let row" mat-cell>
+                                <div>
+                                  <!-- <button class="mr-4 font-10" 
+                                      color="primary"
+                                      mat-raised-button
+                                      type="button"><mat-icon color="text-secondary" [icIcon]="icCheck"></mat-icon>Save
+                                  </button> -->
+                                </div>
+                              </td>
+                          </ng-container>
+                    
+                                <tr *matHeaderRowDef="visibleColumns_new; sticky: true" mat-header-row></tr>
+                                <tr *matRowDef="let row; columns: visibleColumns_new;"
+                                    @fadeInUp stagger60ms
+                                    class="hover:bg-hover trans-ease-out cursor-pointer"
+                                    mat-row></tr>
+                    
+                            </table>
+                        </div>
+                        <mat-paginator appearance="standard" [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" class="sticky left-0"></mat-paginator>
+                    </div>
+                </mat-tab>
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        Convert SKU Barcode
+                    </ng-template>
+                    <div style="display: flex;" class="border-b py-1 px-2" fxLayout="row" fxLayoutAlign="start center">
+                        <b style="padding-top: 15px;">Manage your Product Barcode</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <mat-form-field  fxFlex="auto">
+                            <mat-label>Convert SKU barcodes and SKUs are displayed below</mat-label>
+                            <input (change)="SearchByValueSKU($event)" matInput  placeholder="Unused barcodes">
+                            <!-- <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint> -->
+                        </mat-form-field>
+                        <button (click)="onSearchSKU()" class="mt-3" color="primary" class="small-icon-button" mat-raised-button type="button" style="margin-left: 6px !important; height: 50px;">
+                            <mat-icon color="text-secondary" [icIcon]="icSearch"></mat-icon>
+                        </button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <div>
+                            <p>Export SKU Barcode</p>
+                            <button color="primary" mat-raised-button type="button">Export</button>
+                        </div>
+                      </div>
+                    <div>
+                        <div class="table-responsive">
+                          
+                            <table [dataSource]="dataSource_2" class="top-30 left-13" mat-table matSort>
+                            
+                            
+                            <ng-container *ngFor="let column2 of columns_2">
+                                <ng-container *ngIf="column2.type === 'text'" [matColumnDef]="column2.property">
+                                    <th *matHeaderCellDef class="uppercase" mat-header-cell mat-sort-header> {{ column2.label }}</th>
+                                    <td *matCellDef="let row" mat-cell style="width: 20px !important;">{{ row[column2.property] }}</td>
+                                </ng-container>
+                            </ng-container>
+                        
+                            <ng-container matColumnDef="linkSku">
+                                <th *matHeaderCellDef mat-header-cell class="bg-sellershub">BARCODE</th>
+                                <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell>
+                                    <!-- {{ row['purchaseDate'] }}<br /> -->
+                                    <!-- {{ row['order_time'] }} -->
+                                    <img src="https://barcode.tec-it.com/barcode.ashx?data={{ row['sku'] }}" class="h-120 w-12 align-middle">
+                                </td>
+                            </ng-container>
+        
+                            <!-- <ng-container matColumnDef="barcode">
+                              <th *matHeaderCellDef mat-header-cell mat-sort-header>BARCODE</th>
+                              <td *matCellDef="let row" mat-cell>
+                                <div> -->
+                                  <!-- <button class="mr-4 font-10" 
+                                      color="primary"
+                                      mat-raised-button
+                                      type="button"><mat-icon color="text-secondary" [icIcon]="icCheck"></mat-icon>Save
+                                  </button> -->
+                                <!-- </div>
+                              </td>
+                          </ng-container> -->
+                    
+                                <tr *matHeaderRowDef="visibleColumns_2; sticky: true" mat-header-row></tr>
+                                <tr *matRowDef="let row; columns: visibleColumns_2;"
+                                    @fadeInUp stagger60ms
+                                    class="hover:bg-hover trans-ease-out cursor-pointer"
+                                    mat-row></tr>
+                    
+                            </table>
+                        </div>
+                        <mat-paginator appearance="standard" [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" class="sticky left-0"></mat-paginator>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+</div>

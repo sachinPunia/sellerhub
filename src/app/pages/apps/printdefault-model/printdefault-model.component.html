@@ -1,0 +1,102 @@
+
+<!-- <h1 class="flex-auto text-lg font-medium font-8">
+    New Order Email Notification
+</h1> -->
+
+<div class="flex items-center" mat-dialog-title>
+    <h2 class="flex-auto text-lg font-medium font-28">
+        Please select a label format
+    </h2>
+   
+</div>
+<!-- <table class="w-full">
+    <tr><td class="left">US +1 (925) 217-1261 (8AM EST - 5PM EST)</td><td class="right">UK +44 203 371 7255 (10AM GMT - 5PM GMT)</td></tr>
+</table> -->
+  <mat-dialog-content>
+    <mat-divider></mat-divider><br>
+    <div class="table-responsive">
+        <table [dataSource]="dataSource" class="w-full top-30 left-13" mat-table matSort>
+
+            <ng-container matColumnDef="channel">
+                <th *matHeaderCellDef mat-header-cell ></th>
+                <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell>
+                    <img height="40" [src]="row['channel']" class="h-7 w-122 align-middle">
+                </td>
+            </ng-container>
+
+            <!-- <ng-container *ngFor="let column of columns">
+                <ng-container *ngIf="column.type === 'text'" [matColumnDef]="column.property">
+                    <th *matHeaderCellDef class="uppercase" mat-header-cell mat-sort-header> {{ column.label }}</th>
+                    <td *matCellDef="let row" mat-cell style="width: 20px !important;">{{ row[column.property] }}</td>
+                </ng-container>
+            </ng-container>  -->
+
+            <ng-container matColumnDef="email">
+                <th *matHeaderCellDef mat-header-cell> </th>
+                <td *matCellDef="let row"  class="w-8 min-w-8 pr-0" mat-cell >
+                    {{ row['email'] }} <br>
+                  <!-- <div class="flex"> -->
+                    <!-- <mat-form-field  style="width: 200px !important; margin-right: 6px !important;" appearance="outline" color="primary">
+                         <mat-label>Package Weight</mat-label> -->
+                        <!-- <input matInput #input  > -->
+                    <!-- </mat-form-field> --> 
+                  <!-- </div> -->
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="select">
+                <th *matHeaderCellDef mat-header-cell> </th>
+                <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell>
+                    
+                    <button color="secondary" mat-raised-button type="button">Print</button>
+                                
+                </td>
+            </ng-container>
+
+            <!-- <ng-container matColumnDef="select">
+                <th *matHeaderCellDef mat-header-cell class="bg-sellershub pl-20">
+                <mat-checkbox (change)="$event ? masterToggle() : null"
+                                [checked]="selection.hasValue() && isAllSelected()"
+                                [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                color="primary">
+                </mat-checkbox>
+                </th>
+                <td *matCellDef="let row" class="w-4 pl-20" mat-cell>
+                <mat-checkbox (change)="$event ? selection.toggle(row) : null"
+                                (click)="$event.stopPropagation()"
+                                [checked]="selection.isSelected(row)"
+                                color="primary">
+                </mat-checkbox>
+                </td>
+            </ng-container> -->
+
+            <tr *matHeaderRowDef="visibleColumns sticky: true" mat-header-row></tr>
+            <tr *matRowDef="let row; columns: visibleColumns;"
+                @fadeInUp stagger60ms
+                class="hover:bg-hover trans-ease-out cursor-pointer"
+                mat-row></tr>
+
+        </table>
+    </div>
+    <!-- <mat-paginator appearance="standard" [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" class="sticky left-0"></mat-paginator> -->
+  </mat-dialog-content>
+  
+  <mat-dialog-actions>
+  
+    <span class="flex-1"></span>
+
+    <!-- <button color="primary" mat-flat-button type="button">
+        Save
+    </button>  -->
+    
+   
+   
+    
+
+    <button mat-dialog-close mat-raised-button type="button" color="secondary">
+      <mat-icon [icIcon]="icCancel" [inline]="true" size="16px"></mat-icon> Close
+    </button>
+  
+    
+  </mat-dialog-actions>
+  

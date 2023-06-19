@@ -1,0 +1,117 @@
+<div class="flex items-center" mat-dialog-title>
+    <h2 class="flex-auto text-lg font-medium font-12">
+        Email Order Details
+    </h2>
+    <button mat-dialog-close mat-icon-button type="button">
+        <mat-icon [icIcon]="icClose" size="24px"></mat-icon>
+    </button>
+</div>
+<!-- <table class="w-full">
+    <tr><td class="left">US +1 (925) 217-1261 (8AM EST - 5PM EST)</td><td class="right">UK +44 203 371 7255 (10AM GMT - 5PM GMT)</td></tr>
+</table> -->
+<mat-divider></mat-divider>
+<br>
+<div class="info">
+    Email the order invoice to the customer or shipping labels/order details to a dropshipper/warehouse pickup agent
+</div><br>
+<div class="order">
+   <h3>Order Details</h3><br>
+   <span><b>Order Id</b> : 1633508384481</span><br>
+   <span><b>Order Date</b>  : 2021-10-06 08:19:44.0</span><br>
+   <span><b>Order Channel</b>  : telesales</span><br>
+</div><br>
+  <mat-dialog-content>
+    <mat-label >From Email Address</mat-label>&nbsp;
+    <mat-form-field appearance="outline" color="primary">
+        <input matInput #input value="pavan.tula@synverse.com" disabled>
+        <!-- <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint> -->
+        <!-- <button class="small-icon-button mt-3" color="primary" mat-raised-button type="button" style="margin-right: 6px !important;">
+            <mat-icon color="text-secondary" [icIcon]="icSearch"></mat-icon>
+        </button> -->
+    </mat-form-field><br>
+    <mat-label>From Email Address</mat-label>&nbsp;
+    <mat-form-field appearance="outline" color="primary">
+        <input matInput #input value="gshivakumar5282@gmail.com">
+        <!-- <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint> -->
+        <!-- <button class="small-icon-button mt-3" color="primary" mat-raised-button type="button" style="margin-right: 6px !important;">
+            <mat-icon color="text-secondary" [icIcon]="icSearch"></mat-icon>
+        </button> -->
+    </mat-form-field><br>
+    <mat-label>Email Subject</mat-label>&nbsp;
+    <mat-form-field appearance="outline" color="primary">
+        <input matInput #input value="Order details for 1633508384481">
+        <!-- <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint> -->
+        <!-- <button class="small-icon-button mt-3" color="primary" mat-raised-button type="button" style="margin-right: 6px !important;">
+            <mat-icon color="text-secondary" [icIcon]="icSearch"></mat-icon>
+        </button> -->
+    </mat-form-field><br>
+    <mat-checkbox labelPosition="before" class="example-margin">Send Invoice Only</mat-checkbox><br>
+    <mat-checkbox labelPosition="before" class="example-margin">Include Shipping Labels</mat-checkbox><br>
+    <mat-checkbox labelPosition="before" class="example-margin">Exclude Prices</mat-checkbox><br>
+    <mat-checkbox labelPosition="before" class="example-margin">Include Order Confirmation Callback Url (For Dropshippers only)</mat-checkbox><br><br>
+    
+    <span>Upload attachments. Only following file types are supported : Images, Text files and PDF files</span><br>
+    <button mat-raised-button color="primary"><mat-icon color="text-secondary" [icIcon]="icAddcircle"></mat-icon>   Upload Attachment</button><br><br>
+
+    <mat-divider></mat-divider><br>
+    
+    <h2>Previously sent emails</h2>
+    <div class="table-responsive">
+        <table [dataSource]="dataSource" class="w-full top-30 left-13" mat-table matSort>
+
+            <ng-container *ngFor="let column of columns">
+                <ng-container *ngIf="column.type === 'text'" [matColumnDef]="column.property">
+                    <th *matHeaderCellDef class="uppercase" mat-header-cell mat-sort-header> {{ column.label }}</th>
+                    <td *matCellDef="let row" mat-cell style="width: 20px !important;">{{ row[column.property] }}</td>
+                </ng-container>
+            </ng-container>
+
+            <tr *matHeaderRowDef="visibleColumns sticky: true" mat-header-row></tr>
+            <tr *matRowDef="let row; columns: visibleColumns;"
+                @fadeInUp stagger60ms
+                class="hover:bg-hover trans-ease-out cursor-pointer"
+                mat-row></tr>
+
+        </table>
+    </div>
+    <mat-paginator appearance="standard" [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" class="sticky left-0"></mat-paginator>
+    
+
+    
+    <!-- <mat-checkbox class="example-margin">Send Invoice Only</mat-checkbox> -->
+    <!-- <div class="info">
+        Please select a order from following or create a new order
+    </div><br> -->
+    <!-- <div class="info flex">
+        <img src="https://login.sellershub.io/web/ka
+        rtzhubtelesale.png">&nbsp;&nbsp;&nbsp; <b>Create a new order in KartzHub. Sale channel will be set to Telesales</b>
+    </div> -->
+    <!-- <mat-form-field appearance="fill">
+        <mat-label>Search by Order ID</mat-label>
+        <input matInput #input maxlength="10" placeholder="Search By Order ID">
+            <button class="small-icon-button mt-3" color="primary" mat-raised-button type="button" style="margin-right: 6px !important;">
+            <mat-icon color="text-secondary" [icIcon]="icSearch"></mat-icon>
+        </button> 
+    </mat-form-field> -->
+  </mat-dialog-content>
+  
+  <mat-dialog-actions>
+  
+    <span class="flex-1"></span>
+    
+    
+    <!-- <button mat-dialog-close mat-raised-button type="button" color="secondary">
+      <mat-icon [icIcon]="icCancel" [inline]="true" size="16px"></mat-icon> Close
+    </button>-->
+
+    <button color="primary" mat-flat-button type="button">
+        <ic-icon [icIcon]="icSend" [inline]="true" size="16px"></ic-icon>  Save
+    </button>
+
+    <button mat-dialog-close mat-raised-button type="button" color="secondary">
+        <mat-icon [icIcon]="icCancel" [inline]="true" size="16px"></mat-icon> Close
+    </button>
+  
+    
+  </mat-dialog-actions>
+  

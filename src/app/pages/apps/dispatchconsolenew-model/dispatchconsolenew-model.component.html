@@ -1,0 +1,206 @@
+<div class="flex items-center" mat-dialog-title>
+    <h2 class="flex-auto text-lg font-medium font-12">
+        Refresh orders from following channels
+    </h2>
+    <mat-form-field style="width: 140px !important; margin-right: 6px !important; margin-left: 27px !important;" appearance="outline" color="primary">
+        <input matInput #input value="1633886185196">
+    </mat-form-field>
+    <mat-form-field style="width: 140px !important; margin-right: 6px !important; margin-left: 27px !important;"  appearance="outline" color="primary">
+        <input size="20" matInput #input value="88445">
+    </mat-form-field>
+    <p>NOT UPDATED</p>
+    <button mat-dialog-close mat-icon-button type="button">
+        <mat-icon [icIcon]="icClose" size="24px"></mat-icon>
+    </button><br>
+</div>
+<div>
+    <mat-slide-toggle color="primary" >Disable Scan</mat-slide-toggle>
+</div><br>
+<!-- <table class="w-full">
+    <tr><td class="left">US +1 (925) 217-1261 (8AM EST - 5PM EST)</td><td class="right">UK +44 203 371 7255 (10AM GMT - 5PM GMT)</td></tr>
+</table> -->
+  <mat-dialog-content>
+    <mat-divider></mat-divider><br>
+    <div>
+        <h4>Shipping Method Details :</h4><br>
+        <div class="flex">
+            <mat-form-field appearance="outline" style="width: 240px !important; margin-right: 6px !important; margin-left: 27px !important;" fxFlex="none">
+                <mat-label>Shipping Courier</mat-label>
+                <mat-select>
+                    <mat-option value="-1">Default</mat-option>
+                    <mat-option value="dpd">Via dpd</mat-option>         
+                    <mat-option value="royalmail">Via Royal Mail</mat-option>     
+                    <mat-option value="shipstation">Via shipstation</mat-option> 
+                    <mat-option value="dx">Via DX</mat-option>    
+                    <mat-option value="dropbox">Via RM Click &amp; Drop</mat-option>  
+                    <mat-option value="webshipper">Via WEBSHIPPER</mat-option>    
+                    <mat-option value="ukmail">Via UK Mail</mat-option>       
+                    <mat-option value="yodel">Via Yodel</mat-option>         
+                    <mat-option value="interlink">Via Interlink Express</mat-option>
+                    <mat-option value="fedex">Via FedEx</mat-option> 
+                    <mat-option value="parcelmonkey">Via Parcel Moneky</mat-option>     
+                    <mat-option value="goshippo.com">Via goshippo</mat-option>  
+                    <mat-option value="amazoneasyship">Via AmazonEasyShip</mat-option>   
+                    <mat-option value="ekart">Via EKart</mat-option> 
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field style="width: 240px !important; margin-right: 6px !important; margin-left: 27px !important;" appearance="outline" color="primary">
+                <mat-label>Height</mat-label>
+                <input matInput #input placeholder="Height">
+            </mat-form-field>
+        </div>
+            <mat-form-field style="width: 240px !important; margin-right: 6px !important; margin-left: 27px !important;" appearance="outline" color="primary">
+                <mat-label>Tracking No</mat-label>
+                <input matInput #input placeholder="Tracking ID">
+            </mat-form-field>
+            <mat-form-field style="width: 240px !important; margin-right: 6px !important; margin-left: 27px !important;" appearance="outline" color="primary">
+                <mat-label>Package Weight</mat-label>
+                <input matInput #input placeholder="Package Weight">
+            </mat-form-field><br>
+            <mat-form-field style="width: 240px !important; margin-right: 6px !important; margin-left: 27px !important;" appearance="outline" color="primary">
+                <mat-label>Width</mat-label>
+                <input matInput #input placeholder="Width">
+            </mat-form-field>
+            <mat-form-field style="width: 240px !important; margin-right: 6px !important; margin-left: 27px !important;" appearance="outline" color="primary">
+                <mat-label>Length</mat-label>
+                <input matInput #input placeholder="Length">
+            </mat-form-field>
+    </div>
+    <div>
+        <h4>Shipping Method Details :</h4><br>
+        <mat-form-field style="width: 500px;" appearance="outline">
+            <!-- <mat-label>Textarea</mat-label> -->
+            <textarea rows="8" matInput placeholder="Write here"></textarea>
+        </mat-form-field>
+    </div><br>
+    <div class="info flex">
+        <b> Default Shipping Courier : 1^12</b>
+    </div><br>
+
+    <div class="flex items-center" >
+        <p>Scan bar code and verify</p>&nbsp;&nbsp;&nbsp;
+        <mat-form-field appearance="outline" style="width: 140px !important;  margin-right: 6px !important;" fxFlex="none">
+            <mat-label style="height: 20px;">Search By</mat-label>
+            <mat-select>
+                <mat-option value="1">SKU</mat-option>
+                <mat-option value="2">UPC/EAN</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" style="width: 180px !important; margin-right: 6px !important;" class="vex-flex-form-field" color="warn">
+            <mat-label>Search Item here</mat-label>
+            <input matInput>
+        </mat-form-field>
+    </div>
+
+    <div class="table-responsive">
+        <table [dataSource]="dataSource" class="w-full top-30 left-13" mat-table matSort>
+
+            <!-- <ng-container matColumnDef="channel">
+                <th *matHeaderCellDef mat-header-cell>CHANNEL</th>
+                <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell>
+                    <img height="40" [src]="row['channel']" class="h-12 w-12 align-middle">
+                </td>
+            </ng-container> -->
+             <!-- Checkbox Column -->
+             <ng-container matColumnDef="checkbox">
+                <th *matHeaderCellDef mat-header-cell class="bg-sellershub pl-20">
+                <mat-checkbox (change)="$event ? masterToggle() : null"
+                                [checked]="selection.hasValue() && isAllSelected()"
+                                [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                color="primary">
+                </mat-checkbox>
+                </th>
+                <td *matCellDef="let row" class="w-4 pl-20" mat-cell>
+                <mat-checkbox (change)="$event ? selection.toggle(row) : null"
+                                (click)="$event.stopPropagation()"
+                                [checked]="selection.isSelected(row)"
+                                color="primary">
+                </mat-checkbox>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="channel">
+                <th *matHeaderCellDef mat-header-cell>CHANNEL</th>
+                <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell>
+                    <img [src]="row['channel']" class="h-12 w-12 align-middle">
+                </td>
+            </ng-container>
+
+            <ng-container *ngFor="let column of columns">
+                <ng-container *ngIf="column.type === 'text'" [matColumnDef]="column.property">
+                    <th *matHeaderCellDef class="uppercase" mat-header-cell mat-sort-header> {{ column.label }}</th>
+                    <td *matCellDef="let row" mat-cell style="width: 20px !important;">{{ row[column.property] }}</td>
+                </ng-container>
+            </ng-container>
+
+            <!-- <ng-container matColumnDef="select">
+                <th *matHeaderCellDef mat-header-cell>SELECT</th>
+                <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell>
+                    <mat-checkbox (change)="$event ? masterToggle() : null"
+                                [checked]="selection.hasValue() && isAllSelected()"
+                                [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                color="primary">
+                </mat-checkbox>
+                </td>
+            </ng-container> -->
+
+            <!-- <ng-container matColumnDef="select">
+                <th *matHeaderCellDef mat-header-cell class="bg-sellershub pl-20">
+                <mat-checkbox (change)="$event ? masterToggle() : null"
+                                [checked]="selection.hasValue() && isAllSelected()"
+                                [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                color="primary">
+                </mat-checkbox>
+                </th>
+                <td *matCellDef="let row" class="w-4 pl-20" mat-cell>
+                <mat-checkbox (change)="$event ? selection.toggle(row) : null"
+                                (click)="$event.stopPropagation()"
+                                [checked]="selection.isSelected(row)"
+                                color="primary">
+                </mat-checkbox>
+                </td>
+            </ng-container> -->
+
+            <tr *matHeaderRowDef="visibleColumns sticky: true" mat-header-row></tr>
+            <tr *matRowDef="let row; columns: visibleColumns;"
+                @fadeInUp stagger60ms
+                class="hover:bg-hover trans-ease-out cursor-pointer"
+                mat-row></tr>
+
+        </table>
+    </div>
+    <mat-paginator appearance="standard" [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" class="sticky left-0"></mat-paginator>
+    <mat-slide-toggle color="primary" >Dispatch Enabled</mat-slide-toggle>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions>
+  
+    <span class="flex-1">
+        <button style="background-color: #0089BA; color: white;"  mat-flat-button type="button">
+            <mat-icon class="text-grey" [icIcon]="faPrint"></mat-icon>  Print Invoice
+        </button> 
+        <button color="primary"  mat-flat-button type="button" disabled>
+            <mat-icon class="text-grey" [icIcon]="faTruck"></mat-icon>  Dispatch
+        </button> 
+    </span>
+
+    <button  mat-flat-button type="button">
+        Total Orders: 1
+    </button> 
+    <button  mat-flat-button type="button">
+        Dispatched Orders: 0
+    </button> 
+    <button color="primary"  mat-flat-button type="button">
+        Remaining Orders: 0
+    </button> 
+
+    
+
+    <!-- <button mat-dialog-close mat-raised-button type="button" color="secondary">
+      <mat-icon [icIcon]="icCancel" [inline]="true" size="16px"></mat-icon> Close
+    </button> -->
+  
+    
+  </mat-dialog-actions>
+  

@@ -1,0 +1,126 @@
+<link rel="stylesheet" href="https://s3-us-west-1.amazonaws.com/khubweb/assets/global/plugins/bootstrap/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://login.sellershub.io/css/new-admin.css">
+<link rel="stylesheet" href="https://login.sellershub.io/css/components.css">
+<div class="row topbar margin-top-10 margin-bottom-10">
+  
+    <div class="page-content-wrapper">
+        <!-- BEGIN PAGE HEAD -->
+        
+        <!-- END PAGE HEAD -->
+        <!-- BEGIN PAGE CONTENT -->
+        <div class="page-content">
+            <div class="row topbar margin-top-10 margin-bottom-10">
+                <div class="col-md-2 col-sm-6 col-xs-6">
+                    <label><img style="width:100px" src="https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubhermes.png"></label>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    <label>Configure MyHermes Order Export file</label>
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <div class="pull-right">
+                        <a class="btn btn-sm btn-default btn-circle tooltips" href="/orders/shippingcourierlist"><i class="fa fa-times font-red"></i> Close</a>
+                    </div>
+                </div>
+            </div>
+            <div class="portlet transparent">
+                            <div class="portlet box">
+                                <div class="portlet-body">
+               <div id="maindiv">
+    
+    
+                <div class="note note-info">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <h5>Please configure the MyHermes order export profiles</h5>
+                            <p>You can create multiple profiles with default values and can be select a profile at the time of the order export to MyHermes</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="table-scrollable">
+    
+    
+                    <div id="resultdivid">
+                    
+    
+    
+    <table class="table tableFixHead table-hover order-column v2">
+        <thead>
+        <tr>
+            <th>
+                Export Profile Name
+            </th>
+    
+            <th>
+                Default Weight (KG)
+            </th>
+            <th>
+                Compensation Value (GBP)
+            </th>
+            <th>
+                Signature (Y/N)
+            </th>
+                <th >
+                    Action
+                </th>
+        </tr>
+        </thead>
+    
+        <tbody>
+    
+    
+    
+        
+            <tr>
+                <td>
+                    <input class="form-control" id="3nameid" type="text" value="test" />
+                </td>
+                <td>
+                    <input class="form-control"  id="3weightid" type="text" value="1.0" />
+                </td>
+                <td>
+                    <input class="form-control"  id="3defaultvalid" type="text" value="0.00" />
+                </td>
+                <td>
+                    <select id="3selectsignature" class="form-control">
+                        <option value="false"    >No</option>
+                        <option value="true"    >Yes</option>
+                    </select>
+                </td>
+                <td>
+                    <a class="btn btn-sm btn-success btn-circle" onclick="saveproile(3)" href="javascript:void(0)"><i class="fa fa-times"></i> Save</a>
+                    <a class="btn btn-sm btn-default btn-circle" onclick="removeprofile(3)" href="javascript:void(0)"><i class="fa fa-times font-red"></i> Remove</a>
+                </td>
+            </tr>
+        
+        <tr>
+            <td>
+                <input class="form-control" type="text" value="" id="profilenameid"/>
+            </td>
+            <td>
+                <input class="form-control" type="text" value="" id="weightid"/>
+            </td>
+            <td>
+                <input class="form-control" type="text" value="" id="compensationid"/>
+            </td>
+            <td>
+                <select id="selectsignature" class="form-control">
+                    <option value="false"  >No</option>
+                    <option value="true"   >Yes</option>
+                </select>
+            </td>
+            <td>
+                <a class="btn btn-sm btn-default btn-circle" onclick="addfield()" href="javascript:void(0)"><i class="fa fa-plus"></i> Add</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    
+                    </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+    

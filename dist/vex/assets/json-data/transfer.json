@@ -1,0 +1,14 @@
+[
+    {
+      "id": 1,
+      "image": "https://s3-us-west-1.amazonaws.com/khubweb/web/emptyimage.jpg",
+      "sku": "9634265",
+      "title": "gbg",
+      "src": "Ajay X-Y-Z",
+      "destination": "Vams",
+      "qty": "1",
+      "initiated_on": "14-09-2021",
+      "status": "INPROGRESS On 19-09-2021",
+      "action": ""
+    }
+]

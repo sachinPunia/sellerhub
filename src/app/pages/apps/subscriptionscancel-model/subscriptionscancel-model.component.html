@@ -1,0 +1,48 @@
+<div class="flex items-center" mat-dialog-title>
+    <h2 class="flex-auto text-lg font-medium font-12">
+        Delete My Account
+    </h2>
+    <button mat-dialog-close mat-icon-button type="button">
+        <mat-icon [icIcon]="icClose" size="24px"></mat-icon>
+    </button>
+</div>
+<!-- <table class="w-full">
+    <tr><td class="left">US +1 (925) 217-1261 (8AM EST - 5PM EST)</td><td class="right">UK +44 203 371 7255 (10AM GMT - 5PM GMT)</td></tr>
+</table> -->
+  <mat-dialog-content>
+    <span class="flex-1"></span>
+    <mat-divider></mat-divider>
+    <br>
+    <div class="info">
+        <p>Upon cancelling the Kartzhub account, we will deactivate your numbers and start<br> data removal.</p>
+        <p>Before you leave, would you mind leaving us quick feedback? <br> <b>Help us understand the reason:</b></p>
+        <mat-checkbox>Pricing is high</mat-checkbox><br>
+        <mat-checkbox>Difficult to use</mat-checkbox><br>
+        <mat-checkbox>Missing functionality</mat-checkbox><br>
+        <mat-checkbox>Using other products</mat-checkbox><br>
+        <mat-checkbox>Not in use anymore</mat-checkbox><br>
+        <mat-checkbox>Other</mat-checkbox>
+    </div>
+    <mat-form-field style="width: 540px;" appearance="outline">
+        <!-- <mat-label>Textarea</mat-label> -->
+        <textarea rows="8" matInput placeholder="Your feedback matters to us and will help us improve our service"></textarea>
+    </mat-form-field>
+    
+  </mat-dialog-content>
+  
+  <mat-dialog-actions>
+  
+    <span class="flex-1"></span>
+    
+    
+    <!-- <button mat-dialog-close mat-raised-button type="button" color="secondary">
+      <mat-icon [icIcon]="icCancel" [inline]="true" size="16px"></mat-icon> Close
+    </button>-->
+
+    <button color="primary" mat-flat-button type="button">
+        <ic-icon [icIcon]="icClose" [inline]="true" size="16px"></ic-icon> Close
+    </button> 
+  
+    
+  </mat-dialog-actions>
+  

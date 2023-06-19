@@ -1,0 +1,60 @@
+<div class="flex items-center" mat-dialog-title>
+    <h2 class="flex-auto text-lg font-medium font-12">
+        Dispatch Console
+    </h2>
+    <button mat-dialog-close mat-icon-button type="button">
+        <mat-icon [icIcon]="icClose" size="24px"></mat-icon>
+    </button>
+</div>
+<!-- <table class="w-full">
+    <tr><td class="left">US +1 (925) 217-1261 (8AM EST - 5PM EST)</td><td class="right">UK +44 203 371 7255 (10AM GMT - 5PM GMT)</td></tr>
+</table> -->
+  <mat-dialog-content>
+    <span class="flex-1"></span>
+    <mat-tab-group [@.disabled]="true">
+        <mat-tab> 
+            <ng-template mat-tab-label>
+                By Order ID
+            </ng-template>
+                <mat-form-field appearance="outline" color="primary">
+                    <mat-label>Search by Order ID</mat-label>
+                    <input matInput #input maxlength="10" placeholder="Search By Order ID">
+                    <!-- <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint> -->
+                    <!-- <button class="small-icon-button mt-3" color="primary" mat-raised-button type="button" style="margin-right: 6px !important;">
+                        <mat-icon color="text-secondary" [icIcon]="icSearch"></mat-icon>
+                    </button> -->
+                </mat-form-field>
+                
+        </mat-tab>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                By Item Barcode
+            </ng-template>
+                <mat-form-field appearance="outline">
+                    <mat-label>Search by Item Barcode</mat-label>
+                    <input matInput #input maxlength="10" placeholder="Search By Item Barcode">
+                    <!-- <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint> -->
+                </mat-form-field>
+                <!-- <button class="small-icon-button mt-3" color="primary" mat-raised-button type="button" style="margin-right: 6px !important;">
+                    <mat-icon color="text-secondary" [icIcon]="icSearch"></mat-icon>
+                </button> -->
+        </mat-tab>
+    </mat-tab-group>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions>
+  
+    <span class="flex-1"></span>
+    
+    
+    <!-- <button mat-dialog-close mat-raised-button type="button" color="secondary">
+      <mat-icon [icIcon]="icCancel" [inline]="true" size="16px"></mat-icon> Close
+    </button>-->
+
+    <button color="primary" mat-flat-button type="button">
+        <ic-icon [icIcon]="icSend" [inline]="true" size="16px"></ic-icon>  Search
+    </button> 
+  
+    
+  </mat-dialog-actions>
+  

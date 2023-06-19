@@ -1,0 +1,29 @@
+[
+    {
+      "rule_name": "Royal Mail rule 1",
+      "modified_date": "2021-09-15 08:38:37.0",
+      "courier": "https://s3.amazonaws.com/selrostatic/web/selroroyalmail.png",
+      "service": "ROYAL MAIL 48/CRL2",
+      "status": "ENABLED",
+      "action": ""
+     
+    },
+
+    {
+      "rule_name": "Royal Mail rule 1",
+      "modified_date": "2021-09-15 08:38:37.0",
+      "courier": "https://s3.amazonaws.com/selrostatic/web/selroroyalmail.png",
+      "service": "ROYAL MAIL 48/CRL2",
+      "status": "ENABLED",
+      "action": ""
+    },
+
+    {
+      "rule_name": "Royal Mail rule 1",
+      "modified_date": "2021-09-15 08:38:37.0",
+      "courier": "https://s3.amazonaws.com/selrostatic/web/selroroyalmail.png",
+      "service": "ROYAL MAIL 48/CRL2",
+      "status": "ENABLED",
+      "action": ""
+    }
+]

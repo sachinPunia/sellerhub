@@ -1,0 +1,207 @@
+<link rel="stylesheet" href="https://s3-us-west-1.amazonaws.com/khubweb/assets/global/plugins/bootstrap/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://login.sellershub.io/css/new-admin.css">
+<link rel="stylesheet" href="https://login.sellershub.io/css/components.css">
+<div class="row topbar margin-top-10 margin-bottom-10">
+    <div class="page-content-wrapper">
+        <!-- BEGIN PAGE HEAD -->
+
+        <!-- END PAGE HEAD -->
+        <!-- BEGIN PAGE CONTENT -->
+        <div class="page-content">
+        <div class="row topbar margin-top-10">
+        <div class="col-md-2 col-sm-6 col-xs-6">
+            <label><img style="width:100px" src="https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubroyalmail.png"/></label>
+        </div>
+        <div class="col-md-6 col-sm-8 col-xs-8">
+            <div class="form-group">
+                <label><i class="fa fa-truck"></i> Manage Royal Mail Tariff Codes for Label Printing</label>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-4">
+            <div class="pull-right">
+            <a class="btn btn-sm btn-success btn-circle" onclick="saveroyalmailshippinglabelchanges()" href="javascript:void(0)"><i class="fa fa-check"></i> Save</a>
+            <a class="btn btn-sm btn-default btn-circle" target="_blank" href="https://ss7.shipstation.com/"><i class="fa fa-share font-green"></i> Manifest</a>
+            <a class="btn btn-sm btn-default btn-circle"  routerLink="/apps/integration-shipping-courier"><i class="fa fa-times font-red"></i> Close</a>
+            </div>
+        </div>
+
+        </div>
+        <div id="maindiv">
+        <div class="row" id="onedivid">
+            <div class="col-md-12">
+                <div class="portlet transparent">
+                    <div class="portlet">
+                        <div class="portlet-body">
+                            <div class="portlet box">
+                                <div class="portlet-body">
+                                    <div class="">
+                                            <div class="tabbable-custom">
+                                                <ul class="nav nav-tabs">
+                                                    <li class="active">
+                                                        <a href="#tab_1_1" data-toggle="tab" aria-expanded="true"> Integration </a>
+                                                    </li>
+                                                    <!-- <li class="">
+                                                        <a href="#tab_1_2" data-toggle="tab" aria-expanded="false"> Shipping Services </a>
+                                                    </li>
+                                                    <li class="">
+                                                        <a href="#tab_1_3" data-toggle="tab" aria-expanded="false"> Label Settings </a>
+                                                    </li> -->
+                                                    
+                                                </ul>
+                                                <div class="tab-content">
+                                                    <div class="tab-pane active in" id="tab_1_1">
+                                                        <div class="portlet-body">
+                                                            <!-----------------------------Form Start----------------------------------->
+                                                            <div class="portlet box">
+                                                                    <div class="portlet-body">
+                                                                        <div class="portlet transparent">
+                                                                            <div class="portlet-body form">
+                                                                                <form class="" role="form">
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-6 nopadding">
+                                                                                            <div class="col-md-12 alert-info">
+                                                                                                <div class="mt-element-ribbon">
+                                                                                                    <div class="ribbon ribbon-border-hor ribbon-clip ribbon-color-info" style="color:black;">
+                                                                                                        <div class="ribbon-sub ribbon-clip"></div>Please follow the below steps
+                                                                                                    </div>
+                                                                                                    <ul class="ribbon-content " style="color:black;">
+                                                                                                        <li>Please enable the Service Codes applicable for your Royal Mail Account</li>
+                                                                                                        <li>Please complete the following details to get access to RM API. You must have Royal Mail OBA/DMO account to use this service.</li>
+                                                                                                        <li>
+                                                                                                                If you would like to generate test labels from Royal mail, please enter <strong>Sellershub</strong>  for the Royal Mail account number and leave other details empty.
+                                                                                                            </li>
+                                                                                                            <li>
+                                                                                                                <img style="width:100px" src="https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubroyalmail.png"/>
+                                                                                                                <a class="btn btn-primary" href="/orders/findShipstationFormRM?id=4" onclick="shownetdespatchform()" >Request Royal Mail API Access Details</a>
+                                                                                                            </li>
+                                                                                                        </ul>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                        </div>
+                                                                                        <div class="col-md-6 nopadding">
+                                                                                            <div class="portlet box blue">
+                                                                                                <div class="portlet-title">
+                                                                                                    <div class="caption">
+                                                                                                        <i class="fa fa-key"></i> Royal Mail Account Details 
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="portlet-body">
+                                                                                                    <div class="form-group">
+                                                                                                        <label>Account Number</label>
+                                                                                                        <input class="form-control" type="text" id="rmaccountnumberid" value="KartzHub"/>
+                                                                                                    </div>
+                                                                                                    <div class="form-group">
+                                                                                                        <label>Domestic Shipping API Username</label>
+                                                                                                        <input class="form-control" type="text" id="rmndaccountusername" value="4ab6b305-e512-4ce4-a8a3-fb250c348b54"/>
+                                                                                                    </div>
+                                                                                                    <div class="form-group">
+                                                                                                        <label>Domestic Shipping API Password </label>
+                                                                                                        <input class="form-control" type="password" id="rmndaccountpassword" value="xW4qI4eB4yB8yH1rA1wA8cE8tL0jS4wN5sK6lE1fG0iK2gN7aU"/>
+                                                                                                    </div>
+                                                                                                    <div class="form-group">
+                                                                                                        <label>International Shipping API Username</label>
+                                                                                                        <input class="form-control" type="text" id="rmndaccountusernameinternational" value="0514374000API"/>
+                                                                                                    </div>
+                                                                                                    <div class="form-group">
+                                                                                                        <label>International Shipping API Password</label>
+                                                                                                        <input class="form-control" type="password" id="rmndaccountpasswordinternational" value="Gaurav80!"/>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-md-6 nopadding">
+                                                                                            <div class="portlet box blue">
+                                                                                                <div class="portlet-title">
+                                                                                                    <div class="caption">
+                                                                                                        <i class="fa fa-truck"></i>Royal Mail Pickup Address Details
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="portlet-body">
+                                                                                                    <form class="" role="form">
+                                                                                                        <div class="form-group">
+                                                                                                            <label>Contact Name <span class="required"> * </span></label>
+                                                                                                            <input class="form-control" type="text" id="rmNDPickupName" value="GAURAV PATEL"  />
+                                                                                                        </div>
+                                                                                                        <div class="form-group">
+                                                                                                            <label>Company Name <span class="required"> * </span></label>
+                                                                                                            <input class="form-control" type="text" id="rmNDPickupCompany" value="SPICOM TRADING LTD"  />
+                                                                                                        </div>
+                                                                                                        <div class="form-group">
+                                                                                                            <label>Street Name <span class="required"> * </span></label>
+                                                                                                            <input class="form-control" type="text" id="rmNDPickupStreet" value=" Unit 2A"  />
+                                                                                                        </div>
+                                                                                                        <div class="form-group">
+                                                                                                            <label>Pickup Town <span class="required"> * </span></label>
+                                                                                                            <input class="form-control" type="text" id="rmNDPickupTown" value="Wembley"  />
+                                                                                                        </div>
+                                                                                                        <div class="form-group">
+                                                                                                            <label>Pickup Postcode <span class="required"> * </span></label>
+                                                                                                            <input class="form-control" type="text" id="rmNDPickupZip" value="HA9 7UR"  />
+                                                                                                        </div>
+                                                                                                        <div class="form-group">
+                                                                                                            <label>Contact Phone Number <span class="required"> * </span></label>
+                                                                                                            <input class="form-control" type="text" id="rmNDPickupPhone" value="447540863298"  />
+                                                                                                        </div>
+                                                                                                    </form>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-md-6 nopadding">
+                                                                                            <div class="portlet box blue">
+                                                                                                <div class="portlet-title">
+                                                                                                    <div class="caption">
+                                                                                                        <i class="fa fa-cogs"></i>Royal Mail International Shipping Settings
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="portlet-body">
+                                                                                                    <form class="" role="form">
+
+                                                                                                        <div class="form-group">
+                                                                                                            <label>CN23 Export Entry Number</label>
+                                                                                                            <input class="form-control" type="text" id="royalmailcn23ExportEntryNumber" value=""  />
+                                                                                                        </div>
+
+                                                                                                        <div class="form-group">
+                                                                                                            <label>CN23 License/Certificate Number</label>
+                                                                                                            <input class="form-control" type="text" id="royalmailcn23LicenseCertificateNumber" value=""  />
+                                                                                                        </div>
+                                                                                                        <div class="form-group">
+                                                                                                            <label>CN23 - Customs Client Code</label>
+                                                                                                            <input class="form-control" type="text" id="royalmailcn23CustomClientCode" value=""  />
+                                                                                                        </div>
+                                                                                                        <div class="form-group">
+                                                                                                            <label>CN23 - Consignee VAT Number</label>
+                                                                                                            <input class="form-control" type="text" id="royalmailcn23ConsigneeVatNumber" value=""  />
+                                                                                                        </div>
+                                                                                                        <div class="form-group">
+                                                                                                            <label>CN23 Description of Export Type <span class="required"> * </span></label>
+                                                                                                            <input class="form-control" type="text" id="royalmailcn23DescriptionOfExportType" value=""  />
+                                                                                                        </div>
+                                                                                                        <div class="form-group">
+                                                                                                            <label>HS Tariff Code <span class="required"> * </span></label>
+                                                                                                            <input class="form-control" type="text" id="royalmailhsTariffCode" value=""  />
+                                                                                                        </div>
+                                                                                                        <div class="form-group">
+                                                                                                            <label>CN23 Non Delivery Instructions <span class="required"> * </span></label>
+                                                                                                            <select class="form-control" id="royalmailnondeliveryinstruction">
+                                                                                                                    <option    value="RETURN">RETURN</option>
+                                                                                                                    <option   value="DESTROY">DESTROY</option>
+                                                                                                                    <option   selected value="NONE">NONE</option>
+                                                                                                                </select>
+                                                                                                        </div>
+                                                                                                    </form>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            <!-----------------------------Form Ends----------------------------------->
+                                                        </div>
+                                                    </div>
+                                        

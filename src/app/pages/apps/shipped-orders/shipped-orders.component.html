@@ -1,0 +1,223 @@
+
+<div class="p-gutter" vexContainer>
+    <div class="card">
+        <div class="border-b py-4 px-6" fxLayout="row" fxLayoutAlign="start center">
+          <h2 class="m-0 title" fxFlex="auto">Shipped Orders</h2>
+          <button class="rounded-tr rounded-br float-right" color="primary" mat-raised-button type="button" style="margin-right: 6px !important;">
+            <mat-icon color="text-secondary" [icIcon]="icPrint"></mat-icon> Print
+          </button>
+          <button class="float-right" color="primary" mat-raised-button type="button" style="margin-right: 6px !important;">
+            <mat-icon color="text-secondary" [icIcon]="icExcel"></mat-icon> Export to CSV
+          </button>
+        </div>
+      
+        <div class="py-0 px-0" fxLayout="row" fxLayout.lt-md="column" style="margin-top: 5px !important;">
+            <mat-form-field appearance="standard" style="width: 140px !important; margin-right: 6px !important; margin-left: 27px !important;" fxFlex="none">
+                <mat-label>Show</mat-label>
+                <mat-select (valueChange)="onSearchByShow($event)">
+                  <mat-option value="100">100</mat-option>
+                  <mat-option value="50">50</mat-option>
+                  <mat-option value="25">25</mat-option>
+                  <mat-option value="10">10</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="standard" style="width: 140px !important; margin-right: 6px !important; margin-left: 27px !important;" fxFlex="none">
+                <mat-label>Filter By Channel</mat-label>
+                    <mat-select (valueChange)="onSearchByChannel($event)">
+                        <mat-option *ngFor="let cur of showChannel" value="{{ cur.id }}">{{ cur.type }}</mat-option>
+                    </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="standard" style="width: 150px !important; margin-right: 6px !important; margin-left: 27px !important;" fxFlex="none">
+                <mat-label>Shipping Methods</mat-label>
+                <mat-select (valueChange)="onSearchByShip($event)">
+                    <mat-option value="000">Select</mat-option>				
+                    <mat-option value="Exp US D2D Dom">Exp US D2D Dom</mat-option>
+                    <mat-option value="InternationalPriorityShippingUK">InternationalPriorityShippingUK</mat-option>
+                    <mat-option value="NotSelected">NotSelected</mat-option>
+                    <mat-option value="Std UK Dom_1">Std UK Dom_1</mat-option>
+                    <mat-option value="Std UK Dom_2">Std UK Dom_2</mat-option>
+                    <mat-option value="Std UK Dom_3">Std UK Dom_3</mat-option>
+                    <mat-option value="Std UK Intl_3">Std UK Intl_3</mat-option>
+                    <mat-option value="Std UK Intl_4">Std UK Intl_4</mat-option>
+                    <mat-option value="Std UK Intl_5">Std UK Intl_5</mat-option>
+                    <mat-option value="Std US D2D Dom">Std US D2D Dom</mat-option>
+                    <mat-option value="UK_RoyalMail24">UK_RoyalMail24</mat-option>
+                    <mat-option value="UK_RoyalMailAirmailInternational">UK_RoyalMailAirmailInternational</mat-option>
+                    <mat-option value="UK_RoyalMailFirstClassStandard">UK_RoyalMailFirstClassStandard</mat-option>
+                    <mat-option value="UK_RoyalMailSecondClassRecorded">UK_RoyalMailSecondClassRecorded</mat-option>
+                    <mat-option value="UK_RoyalMailSurfaceMailInternational">UK_RoyalMailSurfaceMailInternational</mat-option>
+                </mat-select>
+            </mat-form-field>
+            
+            <div class='content'>
+                <div class='column'>
+                  <div class='row'>
+                    <mat-form-field appearance="standard" style="width: 160px !important; margin-left: 27px !important; margin-right: 10px !important;">
+                        <mat-label>From</mat-label>
+                        <input  (dateInput)="onSearchByFrom($event)" [(ngModel)]="fromDate" [matDatepicker]="datepickerRef" matInput>
+                        <mat-datepicker-toggle [for]="datepickerRef" matSuffix></mat-datepicker-toggle>
+                        <mat-datepicker #datepickerRef></mat-datepicker>
+                    </mat-form-field>
+        
+                    <mat-form-field appearance="standard" style="width: 160px !important;">
+                        <mat-label>To</mat-label>
+                        <input (dateInput)="onSearchByTo($event)" [(ngModel)]="toDate" [matDatepicker]="datepickerRefTo" matInput>
+                        <mat-datepicker-toggle [for]="datepickerRefTo" matSuffix></mat-datepicker-toggle>
+                        <mat-datepicker #datepickerRefTo></mat-datepicker>
+                    </mat-form-field>
+
+                    <button (click)="resetForm()" color="primary" mat-raised-button class="small-icon-button" type="button" style="margin-left: 10px !important; margin-right: 6px !important;">
+                        <mat-icon color="text-secondary" [icIcon]="icRefresh"></mat-icon>
+                    </button>
+                    <button (click)="onSearch()" class="mt-3" color="primary" class="small-icon-button" mat-raised-button type="button" style="margin-right: 6px !important;">
+                        <mat-icon color="text-secondary" [icIcon]="icSearch"></mat-icon>
+                    </button>
+
+                    <mat-form-field appearance="standard" style="width: 140px !important; margin-right: 6px !important;" fxFlex="none">
+                        <mat-label >Search By</mat-label>
+                        <mat-select (valueChange)="onSearchByChange($event)">
+                            <mat-option value="1">SKU</mat-option>
+                            <mat-option value="2">Order ID</mat-option>
+                            <mat-option value="3">Channel</mat-option>
+                            <mat-option value="4">Item Id</mat-option>
+                            <mat-option value="5">Customer</mat-option>
+                            <mat-option value="6">Post Code</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+        
+                    <mat-form-field appearance="standard" style="width: 180px !important; margin-right: 6px !important;" class="vex-flex-form-field" color="warn">
+                        <mat-label>Enter value to search</mat-label>
+                        <input (change)="SearchByValue($event)" matInput>
+                    </mat-form-field>
+                    <button (click)="onSearch()"  class="small-icon-button mt-3" color="primary" mat-raised-button type="button" style="margin-right: 6px !important;">
+                        <mat-icon color="text-secondary" [icIcon]="icSearch"></mat-icon>
+                    </button>
+<!-- 
+                    <mat-form-field appearance="standard" style="width: 140px !important; margin-right: 6px !important;" fxFlex="none">
+                        <mat-label>Sort By</mat-label>
+                        <mat-select [value]="var">
+                            <mat-option value="0">Sort By</mat-option>
+                            <mat-option value="1">SKU Ascending</mat-option>
+                            <mat-option value="2">SKU Descending</mat-option>
+                            <mat-option value="3">Price low to high</mat-option>
+                            <mat-option value="4">Price High to low</mat-option>
+                            <mat-option value="5">Title A-Z</mat-option>
+                            <mat-option value="6">Title Z-A</mat-option>
+                        </mat-select>
+                    </mat-form-field> -->
+                  </div>
+                </div>
+            </div>
+            <div>
+                <div class="table-responsive">
+                    <table [dataSource]="dataSource" class="w-full top-30 left-13" mat-table matSort>
+                        
+                        <!-- Checkbox Column -->
+                        <ng-container matColumnDef="checkbox">
+                            <th *matHeaderCellDef mat-header-cell>
+                            <mat-checkbox (change)="$event ? masterToggle() : null"
+                                            [checked]="selection.hasValue() && isAllSelected()"
+                                            [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                            color="primary">
+                            </mat-checkbox>
+                            </th>
+                            <td *matCellDef="let row" class="w-4" mat-cell>
+                            <mat-checkbox (change)="$event ? selection.toggle(row) : null"
+                                            (click)="$event.stopPropagation()"
+                                            [checked]="selection.isSelected(row)"
+                                            color="primary">
+                            </mat-checkbox>
+                            </td>
+                        </ng-container>
+
+                        
+                        <ng-container matColumnDef="title">
+                            <th *matHeaderCellDef mat-header-cell>PRODUCT</th>
+                            <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell>
+                                <!-- <img src="https://s3-us-west-1.amazonaws.com/khubweb/web/UK.png" class="h-2 w-6 align-left"> -->
+                                <img [src]="row['imageUrl']" class="h-20 w-20 align-middle">
+                                {{ row['title'] }}
+                            </td>
+                        </ng-container>
+
+                        
+                        <ng-container matColumnDef="channel">
+                            <th *matHeaderCellDef mat-header-cell>CHANNEL</th>
+                            <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell>
+                                <img src="https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhub{{ row['channel'] }}.png" class="h-10 w-10 align-middle">
+                                <img src="https://s3-us-west-1.amazonaws.com/khubweb/web/{{ row['site'] }}.png" class="h-6 w-8 align-left">
+                            </td>
+                        </ng-container>
+
+                        <ng-container *ngFor="let column of columns">
+                            <ng-container *ngIf="column.type === 'text'" [matColumnDef]="column.property">
+                                <th *matHeaderCellDef class="uppercase" mat-header-cell mat-sort-header> {{ column.label }}</th>
+                                <td *matCellDef="let row" mat-cell style="width: 20px !important;">{{ row[column.property] }}</td>
+                            </ng-container>
+                        </ng-container>
+
+                        <ng-container matColumnDef="stock_qty">
+                            <th *matHeaderCellDef mat-header-cell mat-sort-header>STOCK QTY</th>
+                            <td *matCellDef="let row" mat-cell>
+                              <div class="flex">
+                                <a class="w-8 h-8 leading-none flex items-center justify-center hover:bg-hover text-white bg-red"
+                                   mat-icon-button>
+                                  {{ row['quantityPurchased'] }}
+                                </a>
+                              </div>
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="purchaseDate">
+                            <th *matHeaderCellDef mat-header-cell mat-sort-header class="bg-sellershub">ORDER DATE</th>
+                            <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell style="width: 20px !important;">
+                                    {{ row['purchaseDate'] |  date:'dd/MM/yyyy' }} 
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="shipping">
+                            <th *matHeaderCellDef mat-header-cell mat-sort-header>SHIPPING</th>
+                            <td *matCellDef="let row" mat-cell>
+                              <div class="flex">
+                                {{row['carrierName']}} {{row['shippingMethod']}}
+                                Shipped Date: {{ row['shippedDate'] |  date:'dd/MM/yyyy' }}
+                                Shipping Cost: {{ row['shippingPrice'] }}
+                                Shipping Country: {{ row['shipCountry'] }}
+                              </div>
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="return_eligible">
+                            <th *matHeaderCellDef mat-header-cell mat-sort-header>RETURN ELIGIBLE</th>
+                            <td *matCellDef="let row" mat-cell>
+                              <div class="flex">
+                                  NO
+                              </div>
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="view">
+                            <th *matHeaderCellDef mat-header-cell mat-sort-header>VIEW</th>
+                            <td *matCellDef="let row" mat-cell>
+                              <div class="flex">
+                                <button color="secondary" mat-raised-button type="button">View <mat-icon [icIcon]="icArrowRight" size="18px"></mat-icon></button>
+                                
+                              </div>
+                            </td>
+                        </ng-container>
+            
+                        <tr *matHeaderRowDef="visibleColumns sticky: true" mat-header-row></tr>
+                        <tr *matRowDef="let row; columns: visibleColumns;"
+                            @fadeInUp stagger60ms
+                            class="hover:bg-hover trans-ease-out cursor-pointer"
+                            mat-row></tr>
+            
+                    </table>
+                </div>
+                <mat-paginator appearance="standard" [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" class="sticky left-0"></mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>

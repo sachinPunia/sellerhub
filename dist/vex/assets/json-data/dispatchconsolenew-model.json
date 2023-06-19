@@ -1,0 +1,14 @@
+[
+    {
+      "id": 1,
+      "order_no": "18836",
+      "channel": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubtelesale.png",
+      "product": "ggbg",
+      "sku": "692721",
+      "order_date": "10/10/2021 17:10:00",
+      "customer": "JOHNNNNN",
+      "amount": "15.00",
+      "stock_qty": "1/10",
+      "shipping": "Status: Unshipped Shipping Cost:Shipping Country: INDIA"
+    }
+]

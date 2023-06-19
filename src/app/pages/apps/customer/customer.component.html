@@ -1,0 +1,98 @@
+<div class="p-gutter" vexContainer>
+    <div class="card">
+        <div style="display: flex;justify-content: space-between;" class="border-b py-4 px-6" fxLayout="row" fxLayoutAlign="start center">
+            <div>
+                <h2 class="m-0 title" fxFlex="auto">Customers</h2>
+            </div>
+            <div class="column">
+                <div class="row">
+                    <div class='column'>
+                        <div class='row'>
+                            <button color="secondary" mat-raised-button class="mr-4 font-10">
+                               <span><i class="fa fa-download"></i></span> Download template
+                            </button>
+
+                            <button color="secondary" mat-raised-button class="mr-4 font-10">
+                                <span><i class="fa fa-file-excel-o"></i></span>Import from csv
+                            </button>
+
+                            <button color="secondary" mat-raised-button class="mr-4 font-10">
+                                <span><i class="fa fa-file-excel-o"></i></span>Export from csv
+                            </button>
+                            <button color="secondary" mat-raised-button class="mr-4 font-10">
+                                <span><i class="fa fa-plus-circle"></i></span>New Customer
+                          </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="py-0 px-0" fxLayout="row" fxLayout.lt-md="column" style="margin-top: 5px !important;">
+            <mat-form-field appearance="standard" style="width: 140px !important; margin-right: 6px !important; margin-left: 27px !important;" fxFlex="none">
+                <mat-label>Sort By</mat-label>
+                <mat-select>
+                    <mat-option value="SKU">General</mat-option>
+                    <mat-option value="SKU">Follow Up</mat-option>
+                    <mat-option value="SKU">High Performance</mat-option>
+                 
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="standard" style="width: 250px !important; margin-right: 6px !important;" class="vex-flex-form-field" color="warn">
+                <mat-label>Enter value to search</mat-label>
+                <input matInput>
+            </mat-form-field>
+            <button _ngcontent-rqh-c248="" color="primary" mat-raised-button="" type="button" class="mat-focus-indicator mt-3 ng-tns-c248-3 mat-raised-button mat-button-base mat-primary" style="margin-right: 6px !important;" ng-reflect-color="primary"><span class="mat-button-wrapper"><mat-icon _ngcontent-rqh-c248="" role="img" color="text-secondary" class="mat-icon notranslate mat-text-secondary material-icons mat-icon-no-color" aria-hidden="true" ng-reflect-color="text-secondary" ng-reflect-ic-icon="[object Object]" data-mat-icon-type="font"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5A6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5S14 7.01 14 9.5S11.99 14 9.5 14z" fill="text-secondary"></path></svg></mat-icon></span><span matripple="" class="mat-ripple mat-button-ripple" ng-reflect-disabled="false" ng-reflect-centered="false" ng-reflect-trigger="[object HTMLButtonElement]"></span><span class="mat-button-focus-overlay"></span></button>
+
+
+
+            <div>
+                <div class="table-responsive">
+                    <table [dataSource]="dataSource" class="w-full top-30 left-13" mat-table matSort>
+
+
+                        <ng-container matColumnDef="checkbox">
+                            <th *matHeaderCellDef mat-header-cell>
+                                <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()" color="primary">
+                                </mat-checkbox>
+                            </th>
+                            <td *matCellDef="let row" class="w-4" mat-cell>
+                                <mat-checkbox (change)="$event ? selection.toggle(row) : null" (click)="$event.stopPropagation()" [checked]="selection.isSelected(row)" color="primary">
+                                </mat-checkbox>
+                            </td>
+                        </ng-container>
+
+                        <ng-container *ngFor="let column of columns">
+                            <ng-container *ngIf="column.type === 'text'" [matColumnDef]="column.property">
+                                <th *matHeaderCellDef class="uppercase" mat-header-cell mat-sort-header> {{ column.label }}</th>
+                                <td *matCellDef="let row" mat-cell style="width: 20px !important;">{{ row[column.property] }}</td>
+                            </ng-container>
+                        </ng-container>
+
+                        <ng-container matColumnDef="action">
+                            <th *matHeaderCellDef mat-header-cell mat-sort-header>ACTION</th>
+                            <td *matCellDef="let row" mat-cell>
+                              <div class="flex">
+                                <button class="mr-4 font-10" 
+                                    color="primary"
+                                    mat-raised-button
+                                    type="button">Action
+                                </button>
+                              </div>
+                            </td>
+                        </ng-container>
+
+                        
+
+                        <tr *matHeaderRowDef="visibleColumns sticky: true" mat-header-row></tr>
+                        <tr *matRowDef="let row; columns: visibleColumns;" @fadeInUp stagger60ms class="hover:bg-hover trans-ease-out cursor-pointer" mat-row></tr>
+
+                    </table>
+                </div>
+                <mat-paginator appearance="standard" [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" class="sticky left-0"></mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>

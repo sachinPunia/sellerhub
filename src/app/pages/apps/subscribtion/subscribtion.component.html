@@ -1,0 +1,155 @@
+<div class="p-gutter" vexContainer>
+  <div class="card">
+      <div class="border-b py-4 px-6" fxLayout="row" fxLayoutAlign="start center">
+        <h2 class="m-0 title" fxFlex="auto">Manage Your Account Settings</h2>
+      </div>
+    
+      <div class="py-0 px-0" fxLayout="row" fxLayout.lt-md="column">
+        <mat-tab-group>
+          <mat-tab label="Subscription Details" class="mat-tab-label">
+            <div class="p-6">
+              <div class="table-responsive">
+                <div>
+                  <table>
+                    <tr>
+                      <th>Member since</th><td>: {{ isMember | date:'dd MMMM yyyy' }}</td><th>&nbsp;</th><th>Account Status</th><td>: {{ isActive }}</td>
+                    </tr>
+                  </table>
+                </div>
+                <b>Subscription</b>
+                <table [dataSource]="dataSource" class="w-full top-30" mat-table matSort>
+
+                    <ng-container *ngFor="let column of columns">
+                        <ng-container *ngIf="column.type === 'text'" [matColumnDef]="column.property">
+                            <th *matHeaderCellDef class="uppercase " mat-header-cell mat-sort-header> {{ column.label }}</th>
+                            <td *matCellDef="let row" mat-cell style="width: 20px !important;">{{ row[column.property] }}</td>
+                        </ng-container>
+                    </ng-container>
+
+                    <ng-container matColumnDef="startDate">
+                      <th *matHeaderCellDef mat-header-cell class="uppercase ">DATE</th>
+                      <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell>
+                        <b>{{ row['createDate'] | date:'dd/MM/yyyy' }}</b>
+                      </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="plan">
+                      <th *matHeaderCellDef mat-header-cell class="uppercase">PLAN</th>
+                      <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell>
+                        Starter<br>
+                        ({{ row['stockLimit'] }} SKU limit /{{ row['orderLimit'] }} orders per month) <b> {{ row['mcCurrency'] }} {{ row['mcGross'] }} <br> {{ row['subscriptionInterval'] }}.<br>
+                        If the limits are not sufficient, please upgrade to <br> next level plan to get more volumes.</b>
+                        <!-- <b class="text-primary">{{ row['plan_title'] }}</b><br />
+                        {{ row['plan_limit'] }}<br />
+                        <b>{{ row['plan_desc'] }}</b> -->
+                      </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="endDate">
+                      <th *matHeaderCellDef mat-header-cell class="uppercase ">EXPIRED ON</th>
+                      <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell>
+                        <b>{{ row['endDate'] | date:'dd/MM/yyyy' }}</b>
+                      </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="status">
+                      <th *matHeaderCellDef mat-header-cell class="uppercase ">STATUS</th>
+                      <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell>
+                        <b>{{ row['displayStatus'] }}</b>
+                      </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="action">
+                        <th *matHeaderCellDef mat-header-cell mat-sort-header class="">ACTION</th>
+                        <td *matCellDef="let row" mat-cell>
+                          <button color="primary"  (click)="openSubscribption()" mat-raised-button class="small-icon-button font-10 mr-4">
+                            Change Plan <mat-icon color="text-secondary" [icIcon]="faRight"></mat-icon>
+                          </button><br>
+                          <button color="primary"  (click)="openSubscribption()" mat-raised-button class="small-icon-button font-10 mr-4">
+                            <mat-icon color="text-secondary" [icIcon]="faCreditCard"></mat-icon> Add New Card
+                          </button><br>
+                          <button color="primary"  (click)="openSubscriptionCancelModal()" mat-raised-button class="small-icon-button font-10 mr-4">
+                            <mat-icon color="text-secondary" [icIcon]="faTimes"></mat-icon> Cancel Subscription
+                          </button>
+                          <!-- <div #megaMenuOriginRef class="ltr:ml-100 rtl:mr-2">
+                            <button color="primary"  (click)="openMegaMenu(megaMenuOriginRef)" mat-raised-button class="small-icon-button font-10 mr-4">
+                              Subscription
+                            </button>
+                          </div> -->
+                        </td>
+                    </ng-container>
+        
+                    <tr *matHeaderRowDef="visibleColumns; sticky: true" mat-header-row></tr>
+                    <tr *matRowDef="let row; columns: visibleColumns;"
+                        @fadeInUp stagger60ms
+                        class="hover:bg-hover trans-ease-out cursor-pointer"
+                        mat-row></tr>
+        
+                </table>
+            </div>
+            <!-- <mat-paginator appearance="standard" [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" class="sticky left-0"></mat-paginator> -->
+            </div>
+          </mat-tab>
+          <mat-tab label="Invoices">
+            <div class="p-6">
+              <table [dataSource]="dataSource_invoice" class="w-full top-30" mat-table matSort>
+
+                <ng-container *ngFor="let column_inv of columns_invoice">
+                    <ng-container *ngIf="column_inv.type === 'text'" [matColumnDef]="column_inv.property">
+                        <th *matHeaderCellDef class="uppercase " mat-header-cell mat-sort-header> {{ column_inv.label }}</th>
+                        <td *matCellDef="let rows" mat-cell style="width: 20px !important;">{{ rows[column_inv.property] }}</td>
+                    </ng-container>
+                </ng-container>
+
+                <ng-container matColumnDef="name">
+                  <th *matHeaderCellDef mat-header-cell class="uppercase ">NAME</th>
+                  <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell>
+                    {{ row['name'] }}
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="number">
+                  <th *matHeaderCellDef mat-header-cell class="uppercase ">NUMBER</th>
+                  <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell>
+                    INV-{{ row['invoiceId'] }}
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="amountReceived">
+                  <th *matHeaderCellDef mat-header-cell class="uppercase ">AMOUNT</th>
+                  <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell>
+                    <b>{{ row['currency'] }}</b> {{ row['amountReceived'] }}
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="amountDue">
+                  <th *matHeaderCellDef mat-header-cell class="uppercase ">DUE</th>
+                  <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell>
+                    <b>{{ row['currency'] }}</b> {{ row['amountDue'] }}
+                  </td>
+                </ng-container>
+
+                
+                <ng-container matColumnDef="view">
+                    <th *matHeaderCellDef mat-header-cell mat-sort-header class="">View</th>
+                    <td *matCellDef="let rows" mat-cell>
+                      <button color="primary" mat-raised-button class="small-icon-button font-10 mr-4">
+                        View
+                      </button>
+                    </td>
+                </ng-container>
+    
+                <tr *matHeaderRowDef="visibleColumnsInvoices; sticky: true" mat-header-row></tr>
+                <tr *matRowDef="let row; columns: visibleColumnsInvoices;"
+                    @fadeInUp stagger60ms
+                    class="hover:bg-hover trans-ease-out cursor-pointer"
+                    mat-row></tr>
+    
+              </table>
+            </div>
+            <mat-paginator appearance="standard" [pageSizeOptions]="pageSizeOptions_invoice" [pageSize]="pageSize_invoice" class="sticky left-0"></mat-paginator>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+  </div>
+</div>

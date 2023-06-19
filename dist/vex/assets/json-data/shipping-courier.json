@@ -1,0 +1,66 @@
+[
+    {
+      "shipping_id": "1",
+      "shipping_title": "Coming Soon",
+      "shipping_logo": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubamazonshipping.png",
+      "shiiping_checkbox": "",
+      "shipping_link_setting": "",
+      "shipping_link_label": ""
+    },
+    {
+        "shipping_id": "2",
+        "shipping_title": "Coming Soon",
+        "shipping_logo": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubamazonbuyshipping.png",
+        "shiiping_checkbox": "",
+        "shipping_link_setting": "",
+        "shipping_link_label": ""
+    },
+    {
+        "shipping_id": "3",
+        "shipping_title": "",
+        "shipping_logo": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubdpd.png",
+        "shiiping_checkbox": "1",
+        "shipping_link_setting": "",
+        "shipping_link_label": "dpd-label-setup"
+    },
+    {
+        "shipping_id": "4",
+        "shipping_title": "",
+        "shipping_logo": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubroyalmail.png",
+        "shiiping_checkbox": "1",
+        "shipping_link_setting": "royalmail-setting",
+        "shipping_link_label": "royalmail-label-setup"
+    },
+    {
+        "shipping_id": "5",
+        "shipping_title": "",
+        "shipping_logo": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubshipstation.png",
+        "shiiping_checkbox": "1",
+        "shipping_link_setting": "shipstation-setting",
+        "shipping_link_label": "shipstation-label-setup"
+    },
+    {
+        "shipping_id": "6",
+        "shipping_title": "",
+        "shipping_logo": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubhermes.png",
+        "shiiping_checkbox": "1",
+        "shipping_link_setting": "hermes-setting",
+        "shipping_link_label": "hermes-label-setup"
+    },
+    {
+        "shipping_id": "7",
+        "shipping_title": "",
+        "shipping_logo": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubdx.png",
+        "shiiping_checkbox": "1",
+        "shipping_link_setting": "dx-setting",
+        "shipping_link_label": "dx-label-setup"
+    },
+    {
+        "shipping_id": "7",
+        "shipping_title": "",
+        "shipping_logo": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubdropbox.png",
+        "shiiping_checkbox": "1",
+        "shipping_link_setting": "clickanddrop-setting",
+        "shipping_link_label": "clickanddrop-label-setup"
+    }
+  ]

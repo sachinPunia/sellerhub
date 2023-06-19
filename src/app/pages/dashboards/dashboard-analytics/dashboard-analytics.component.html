@@ -1,0 +1,163 @@
+<div @stagger>
+  <div class="text-center pb-5 pt-5 header">
+    
+
+    <div class="text-left mb-12 container"
+         gdAlignColumns="start start"
+         gdColumns="1fr 1fr"
+         gdColumns.lt-md="1fr"
+         gdGap="24px">
+
+      <div @fadeInUp class="card max-w-full p-3">
+        <mat-nav-list>
+          <h3 mat-subheader><span class="title-header">TO-DO LIST</span></h3>
+        </mat-nav-list>
+
+        <div class="sub-title-header">Recent Orders</div>
+        <div class="table-responsive">
+          <table @stagger [dataSource]="dataSource" class="w-full" mat-table matSort>
+          
+            <ng-container *ngFor="let column of columns">
+              <ng-container *ngIf="column.type === 'text'" [matColumnDef]="column.property">
+                <th *matHeaderCellDef class="uppercase" mat-header-cell mat-sort-header> {{ column.label }}</th>
+                <td *matCellDef="let row" mat-cell>{{ row[column.property] }}</td>
+              </ng-container>
+            </ng-container>
+  
+            <ng-container matColumnDef="orderDate">
+              <th *matHeaderCellDef mat-header-cell mat-sort-header>DATE</th>
+              <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell>
+                  {{ row.orderDate | date:'dd/MM/yyyy' }}
+              </td>
+          </ng-container>
+  
+            <ng-container matColumnDef="sku">
+              <th *matHeaderCellDef mat-header-cell mat-sort-header>ID/SKU/QTY</th>
+              <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell>
+                  {{ row.orderId }} / {{ row.sku }} / {{ row.qty }}
+              </td>
+          </ng-container>
+  
+            <tr *matHeaderRowDef="visibleColumns" mat-header-row></tr>
+            <tr *matRowDef="let row; columns: visibleColumns;"
+                @fadeInUp
+                class="hover:bg-hover trans-ease-out cursor-pointer"
+                mat-row></tr>
+  
+          </table>
+          </div>
+        <mat-paginator [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" class="sticky left-0"></mat-paginator>
+
+      <br />
+      <div class="sub-title-header">Low Stock Products</div>
+      <div class="table-responsive">
+      <table @stagger [dataSource]="dataSourceLowStock" class="w-full" mat-table matSort>
+        
+        <ng-container *ngFor="let product_column of column_low_stock">
+          <ng-container *ngIf="product_column.type === 'text'" [matColumnDef]="product_column.property">
+            <th *matHeaderCellDef class="uppercase" mat-header-cell mat-sort-header> {{ product_column.label }}</th>
+            <td *matCellDef="let r" mat-cell>{{ r[product_column.property] }}</td>
+          </ng-container>
+        </ng-container>
+
+        <tr *matHeaderRowDef="visibleColumnsLow" mat-header-row></tr>
+        <tr *matRowDef="let row; columns: visibleColumnsLow;"
+            @fadeInUp
+            class="hover:bg-hover trans-ease-out cursor-pointer"
+            mat-row></tr>
+
+      </table> 
+    </div>
+      <mat-paginator #MatPaginatorLow [pageSizeOptions]="pageSizeOptionsLow" [pageSize]="pageSizeLow" class="sticky left-0"></mat-paginator>
+
+      </div>
+
+      <div @fadeInUp class="card max-w-full p-3">
+        <mat-grid-list cols="4" rowHeight="16:9" gutterSize="0" class="p-4">
+          <mat-grid-tile>
+            <div #infoRevenue class="dashboard-stat red widget-thumb btn-circle cursor-pointer" (click)="openInforevenue(infoRevenue)">
+              <h4 class="widget-thumb-heading font-white" style="font-size:9.5pt;text-align: center;">REVENUE </h4>
+              <div class="widget-thumb-wrap">
+                <div class="widget-thumb-body" style="font-size:9.5pt; text-align: center;">
+                  <span class="widget-thumb-body-stat font-white" data-counter="counterup" data-value="1220"><mat-icon class="font-icon-9" color="white" [icIcon]="icDown"></mat-icon></span>
+                </div>
+              </div>
+            </div>
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+            <div class="dashboard-stat green widget-thumb btn-circle">
+              <h4 class="widget-thumb-heading font-white" style="font-size:8.5pt;text-align: center;">SALES ORDERS</h4>
+              <div class="widget-thumb-wrap">
+                <div class="widget-thumb-body" style="font-size:9.5pt;text-align: center;">
+                  <span class="widget-thumb-body-stat font-white" data-counter="counterup" data-value="2120">{{ totSalesOrders }}</span>
+                </div>
+              </div>
+            </div>
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+            <div class="dashboard-stat blue widget-thumb btn-circle">
+              <h4 class="widget-thumb-heading font-white" style="font-size:9.5pt;text-align: center;">UNITS SOLD</h4>
+              <div class="widget-thumb-wrap">
+                <div class="widget-thumb-body" style="font-size:9.5pt;text-align: center;">
+                  <span class="widget-thumb-body-stat font-white" data-counter="counterup" data-value="1450">{{ totUnitSold }}</span>
+                </div>
+              </div>
+            </div>
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+            <div class="dashboard-stat purple widget-thumb btn-circle">
+              <h4 class="widget-thumb-heading font-white" style="font-size:9.5pt;text-align: center;">LOW STOCK</h4>
+              <div class="widget-thumb-wrap">
+                <div class="widget-thumb-body" style="font-size:9.5pt;text-align: center;">
+                  <span class="widget-thumb-body-stat font-white" data-counter="counterup" data-value="10">{{ totLow }}</span>
+                </div>
+              </div>
+            </div>
+          </mat-grid-tile>
+
+        </mat-grid-list>
+
+        <mat-nav-list class="mt-3">
+          <br><h3 mat-subheader><span class="title-header">SALES BY CHANNEL</span></h3>
+        </mat-nav-list>
+
+        <google-chart #chart
+          [type]="type"
+          [data]="data"
+          [options]="options"
+          [width]="500"
+          [height]="500"
+          *ngIf="data.length>0">
+        </google-chart>
+
+      </div>
+
+      <div @fadeInUp class="card max-w-full p-3">
+        <mat-nav-list>
+          <h3 mat-subheader><span class="title-header">ORDER HISTORY CHART</span> &nbsp;</h3>
+        </mat-nav-list>
+
+        <vex-widget-large-chart *ngIf="userSessionsSeries.length>0" [options]="userSessionsSeriesOptions" [series]="userSessionsSeries"
+                          gdColumn="1 / 4"
+                          gdColumn.lt-md="1 / -1"
+                          gdColumn.lt-sm="1"></vex-widget-large-chart>
+      </div>
+
+      <div @fadeInUp class="card max-w-full overflow-hidden p-3">
+        <mat-nav-list>
+          <h3 mat-subheader><span class="title-header">SALES BY COUNTRIES</span> &nbsp;</h3>
+        </mat-nav-list>
+
+        <vex-widget-large-goal-chart *ngIf="salesSeries.length>0" [series]="salesSeries" [options]="salesSeriesOptions"
+                               gdColumn="1 / -1"
+                               gdColumn.lt-sm="1"
+                               total="4,374"
+                               >0"></vex-widget-large-goal-chart>
+      </div>
+    </div>
+  </div>
+  
+</div>

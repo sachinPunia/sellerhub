@@ -1,0 +1,40 @@
+.float-right{
+    right: 0px !important;
+    top: -29px !important;
+}
+
+.bg-sellershub {
+    background-color: #1a202e !important;
+    color: #ffffff;
+}
+
+::ng-deep .small-icon-button {
+    width: auto !important;
+    height: 32px !important;
+    line-height: 32px !important;
+  
+    .mat-icon {
+       width: 16px !important;
+       height: 16px !important;
+       line-height: 16px !important;
+    }
+    .material-icons {
+       font-size: 16px !important;
+    }
+}
+th{
+    font-size: 9.8pt !important;
+    color:#0c1c44;
+}
+
+td{
+    font-size: 9.5pt !important;
+}
+
+.font-9 {
+    font-size: 9pt !important;
+}
+
+.font-icon-9 {
+    font-size: 9.4pt !important;
+}

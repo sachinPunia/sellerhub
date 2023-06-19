@@ -1,0 +1,218 @@
+[
+  {
+    "invoice_id": "1",
+    "invoice_name": "ebay",
+    "invoice_templates": "Invoice Templates",
+    "invoice_logo": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubebay.png",
+    "invoice_link_path": "ebay-channel-integration",
+    "invoice_label": "Shipping Labels"
+  },
+  {
+    "invoice_id": "2",
+    "invoice_name": "amazon",
+    "invoice_templates": "Invoice Templates",
+    "invoice_logo": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubamazon.png",
+    "invoice_link_path": "create-product-to-fba",
+    "invoice_label": "Shipping Labels"
+  },
+  {
+    "invoice_id": "3",
+    "invoice_name": "rakuten",
+    "invoice_templates": "Invoice Templates",
+    "invoice_logo": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubrakuten.png",
+    "invoice_link_path": "rakuten-channel-integration",
+    "invoice_label": "Shipping Labels"
+  },
+  {
+    "invoice_id": "4",
+    "invoice_name": "sears",
+    "invoice_templates": "Invoice Templates",
+    "invoice_logo": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubsears.png",
+    "invoice_link_path": "sears-channel-integration"
+  },
+  {
+    "invoice_id": "5",
+    "invoice_name": "Cdiscount",
+    "invoice_templates": "Invoice Templates",
+    "invoice_logo": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubcdiscount.png",
+    "invoice_link_path": "cdiscount-channel-integration",
+    "invoice_label": "Shipping Labels"
+  },
+  {
+    "invoice_id": "6",
+    "invoice_name": "Price Minister",
+    "invoice_templates": "Invoice Templates",
+    "invoice_logo": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubpriceminister.png",
+    "invoice_link_path": "priceminister-channel-integration",
+    "invoice_label": "Shipping Labels"
+  },
+  {
+    "invoice_id": "7",
+    "invoice_name": "Bonanza",
+    "invoice_templates": "Invoice Templates",
+    "invoice_logo": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubbonanza.png",
+    "invoice_link_path": "bonza-channel-integration",
+    "invoice_label": "Shipping Labels"
+  },
+  {
+    "invoice_id": "8",
+    "invoice_name": "Flubit",
+    "invoice_templates": "Invoice Templates",
+    "invoice_logo": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubflubit.png",
+    "invoice_link_path": "flubit-channel-integration",
+    "invoice_label": "Shipping Labels"
+  },
+  {
+    "invoice_id": "9",
+    "invoice_name": "Etsy",
+    "invoice_templates": "Invoice Templates",
+    "invoice_logo": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubetsy.png",
+    "invoice_link_path": "etsy-channel-integration",
+    "invoice_label": "Shipping Labels"
+  },
+  {
+    "invoice_id": "10",
+    "invoice_name": "Jet.com",
+    "invoice_templates": "Invoice Templates",
+    "invoice_logo": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubjet.png",
+    "invoice_link_path": "jet-channel-integration",
+    "invoice_label": "Shipping Labels"
+  },
+  {
+    "invoice_id": "11",
+    "invoice_name": "Fruugo",
+    "invoice_templates": "Invoice Templates",
+    "invoice_logo": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubfruugo.png",
+    "invoice_link_path": "frugo-channel-integration",
+    "invoice_label": "Shipping Labels"
+  },
+  {
+    "invoice_id": "12",
+    "invoice_name": "iOffer",
+    "invoice_templates": "Invoice Templates",
+    "invoice_logo": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubioffer.png",
+    "invoice_link_path": "ioffer-channel-integration",
+    "invoice_link_website": "https://www.ioffer.com/",
+    "invoice_label": "Shipping Labels"
+  },
+  {
+    "invoice_id": "13",
+    "invoice_name": "Storenvy",
+    "invoice_templates": "Invoice Templates",
+    "invoice_logo": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubstorenvy.png",
+    "invoice_link_path": "storenvy-channel-integration",
+    "invoice_label": "Shipping Labels"
+  },
+  {
+    "invoice_id": "14",
+    "invoice_name": "Open Sky",
+    "invoice_templates": "Invoice Templates",
+    "invoice_logo": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubopensky.png",
+    "invoice_link_path": "opensky-channel-integration",
+    "invoice_label": "Shipping Labels"
+  },
+  {
+    "invoice_id": "15",
+    "invoice_name": "Lazada",
+    "invoice_templates": "Invoice Templates",
+    "invoice_logo": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhublazada.png",
+    "invoice_link_path": "lazada-channel-integration",
+    "invoice_label": "Shipping Labels"
+  },
+  {
+    "invoice_id": "16",
+    "invoice_name": "Walmart",
+    "invoice_templates": "Invoice Templates",
+    "invoice_logo": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubwalmart.png",
+    "invoice_link_path": "warlmart-template-channel-integration",
+    "invoice_label": "Shipping Labels"
+  },
+  {
+    "invoice_id": "17",
+    "invoice_name": "Bol.com",
+    "invoice_templates": "Invoice Templates",
+    "invoice_logo": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubbol.png",
+    "invoice_link_path": "bolcom-template-channel-integration",
+    "invoice_label": "Shipping Labels"
+  },
+  {
+    "invoice_id": "18",
+    "invoice_name": "OnBuy",
+    "invoice_templates": "Invoice Templates",
+    "invoice_logo": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubonbuy.png",
+    "invoice_link_path": "onbuy-template-channel-integration",
+    "invoice_label": "Shipping Labels"
+  },
+  {
+    "invoice_id": "19",
+    "invoice_name": "Tesco",
+    "invoice_templates": "Invoice Templates",
+    "invoice_logo": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubtesco.png",
+    "invoice_link_path": "tesco-template-channel-integration",
+    "invoice_label": "Shipping Labels"
+  },
+  {
+    "invoice_id": "20",
+    "invoice_name": "ShopClues",
+    "invoice_templates": "Invoice Templates",
+    "invoice_logo": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubshopclues.png",
+    "invoice_link_path": "shopclues-template-channel-integration",
+    "invoice_label": "Shipping Labels"
+  },
+  {
+    "invoice_id": "21",
+    "invoice_name": "Flipkart",
+    "invoice_templates": "Invoice Templates",
+    "invoice_logo": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubflipkart.png",
+    "invoice_link_path": "flipkart-template-channel-integration",
+    "invoice_label": "Shipping Labels"
+  },
+  {
+    "invoice_id": "22",
+    "invoice_name": "Google Shopping",
+    "invoice_templates": "Invoice Templates",
+    "invoice_logo": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubgoogleshop.png",
+    "invoice_link_path": "google-shopping-channel-integration",
+    "invoice_label": "Shipping Labels"
+  },
+  {
+    "invoice_id": "24",
+    "invoice_name": "Shopee",
+    "invoice_templates": "Invoice Templates",
+    "invoice_logo": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubshopee.png",
+    "invoice_link_path": "shopee-channel-integration",
+    "invoice_label": "Shipping Labels"
+  },
+  {
+    "invoice_id": "25",
+    "invoice_name": "LelongMy",
+    "invoice_templates": "Invoice Templates",
+    "invoice_logo": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhublelong.png",
+    "invoice_link_path": "lelong-channel-integration",
+    "invoice_label": "Shipping Labels"
+  },
+  {
+    "invoice_id": "26",
+    "invoice_name": "11Street",
+    "invoice_templates": "Invoice Templates",
+    "invoice_logo": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhub11street.png",
+    "invoice_link_path": "street-channel-integration",
+    "invoice_label": "Shipping Labels"
+  },
+  {
+    "invoice_id": "27",
+    "invoice_name": "SnapDeal",
+    "invoice_templates": "Invoice Templates",
+    "invoice_logo": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubsnapdeal.png",
+    "invoice_link_path": "snapdeal-channel-integration",
+    "invoice_label": "Shipping Labels"
+  },
+  {
+    "invoice_id": "28",
+    "invoice_name": "BackMarket",
+    "invoice_templates": "Invoice Templates",
+    "invoice_logo": "https://khubweb.s3-us-west-1.amazonaws.com/web/kartzhubbackmarket.png",
+    "invoice_link_path": "backmarket-channel-integration",
+    "invoice_label": "Shipping Labels"
+  }
+]

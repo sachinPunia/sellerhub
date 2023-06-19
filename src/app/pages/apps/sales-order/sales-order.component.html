@@ -1,0 +1,457 @@
+<div class="card">
+    <mat-tab-group>
+      <mat-tab label="Orders Summary">
+        <!-- <div class="p-6">
+          A
+        </div> -->
+      </mat-tab>
+      <mat-tab label="Sales Orders">
+        <!-- <div class="p-6">
+          A
+        </div> -->
+      </mat-tab>
+      <mat-tab label="MCF Orders">
+        <!-- <div class="p-6">
+          A
+        </div> -->
+      </mat-tab>
+      <mat-tab label="Shipped Orders">
+        <!-- <div class="p-6">
+          A
+        </div> -->
+      </mat-tab>
+      <mat-tab label="Returned Orders">
+        <!-- <div class="p-6">
+          A
+        </div> -->
+      </mat-tab>
+      <mat-tab label="Cancelled Orders">
+        <!-- <div class="p-6">
+          A
+        </div> -->
+      </mat-tab>
+      <mat-tab label="Manage Return">
+        <!-- <div class="p-6">
+          A
+        </div> -->
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+<div class="p-gutter" vexContainer>
+    <div class="card">
+        <div class="border-b py-4 px-6 bg-sellershub" fxLayout="row" fxLayoutAlign="start center">
+            <div class='content'>
+                <div class='column'>
+                  <div class='row' style="width: 250px !important;">
+                    <h2 class="m-6 title" fxFlex="auto">Sales Orders</h2>
+                  </div>
+                </div>
+                <div class='column'>
+                  <div class='row'>
+                     <button (click)="openPaidmodel()" color="secondary" class="mr-4 font-10" matTooltip="Favorite this" mat-mini-fab type="button">
+                        <mat-icon class="text-warn" [icIcon]="icmoney"></mat-icon>
+                      </button>
+                      
+                      <button (click)="orderProcess()" color="secondary" class="mr-4 font-10" matTooltip="Favorite this" mat-mini-fab type="button">
+                        <mat-icon class="text-warn" [icIcon]="icChip"></mat-icon>
+                      </button>
+            
+                      <button (click)="openBulkEmailModal(selectedRow['channelOrderId'])" color="secondary" class="mr-4 font-10" mat-mini-fab type="button">
+                        <mat-icon class="text-warn" [icIcon]="icMail"></mat-icon>
+                      </button>
+
+                      <button class="small-icon-button mr-4 font-10" [matMenuTriggerFor]="addNewMenu"
+                                color="primary"
+                                mat-raised-button
+                                type="button"><mat-icon [icIcon]="icPrint"></mat-icon> Print Invoice
+                    </button>
+            
+                    <mat-menu #addNewMenu="matMenu" [overlapTrigger]="false" xPosition="after" yPosition="below">
+                            <button  mat-menu-item>
+                                <span>Print Default</span>
+                            </button>
+                        
+                            <button mat-menu-item>
+                                <span>Print 4x6</span>
+                            </button>
+                        
+                            <button mat-menu-item>
+                                <span>Print Invoice &amp; Label</span>
+                            </button>
+                    </mat-menu>
+            
+                    <button (click)="openshipordermodel(selectedRow)" color="secondary" class="mr-4 font-10" mat-mini-fab type="button">
+                        <mat-icon class="text-warn" [icIcon]="faTruck"></mat-icon>
+                    </button>
+                    <button (click)="openCancelordermodel()" color="secondary" class="mr-4 font-10" mat-mini-fab type="button">
+                        <mat-icon class="text-warn" [icIcon]="icRemove"></mat-icon>
+                    </button>
+
+                    <button class="small-icon-button mr-4 font-10" [matMenuTriggerFor]="addNewMenuPrint"
+                                color="primary"
+                                mat-raised-button
+                                type="button"><mat-icon [icIcon]="icPrint"></mat-icon> Print Labels
+                    </button>
+                    <mat-menu #addNewMenuPrint="matMenu" [overlapTrigger]="false" xPosition="after" yPosition="below">
+                            <button (click)="openPrintdefault()" mat-menu-item>
+                                <span>Default Labels</span>
+                            </button>
+                            <!-- <button (click)="openPRMmodel()" mat-menu-item>
+                                <span>Via Royal Mail</span>
+                            </button> -->
+                            
+                            <button mat-menu-item 
+                            *ngFor="let item of shippingCourierList" 
+                            (click)="openPRMmodel(item)">
+                                <span> {{ item.name }}</span>
+                            </button>
+                    </mat-menu>
+                        
+                    <a color="secondary" (click)="openPicklistModal()" class="mr-4 font-10" mat-mini-fab type="button">
+                        <mat-icon class="text-warn" [icIcon]="icList"></mat-icon>
+                    </a>
+                    <a color="secondary" (click)="openPacklistModal()" class="mr-4 font-10" mat-mini-fab type="button">
+                        <mat-icon class="text-warn" [icIcon]="faCube"></mat-icon>
+                    </a>
+                    <button (click)="openExportCSVModal()" color="secondary" class="mr-4 font-10" mat-mini-fab type="button">
+                        <mat-icon class="text-warn" [icIcon]="faExcel"></mat-icon>
+                    </button>
+                    
+                    <div class="mt-5">
+                        <button (click)="openfullfilmentmodel()" color="secondary" mat-raised-button class="small-icon-button mr-4 font-10">
+                            <mat-icon class="text-warn" [icIcon]="faAmazon"></mat-icon>  Fulfillment
+                        </button>
+            
+                        <button (click)="openDispatchModal()" color="secondary" mat-raised-button class="small-icon-button mr-4 font-10">
+                            Despatch Console
+                        </button>
+            
+                        <button (click)="openCreateorderModal()" color="secondary" mat-raised-button class="small-icon-button mr-4 font-10">
+                            Create Order
+                        </button>
+            
+                        <button (click)="openDownloadordersModal(selectedRow['channelOrderId'])" color="secondary" mat-raised-button class="small-icon-button mr-4-right font-10">
+                            <mat-icon class="text-warn" [icIcon]="icDownload"></mat-icon> Download Orders
+                        </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+      
+        <div class="py-0 px-0" fxLayout="row" fxLayout.lt-md="column" style="margin-top: 5px !important;">
+            <div class='content'>
+                <div class='column'>
+                  <div class='row'>
+                    <mat-form-field appearance="standard" style="width: 140px !important; margin-right: 6px !important; margin-left: 27px !important;" fxFlex="none">
+                        <mat-label>Filter By</mat-label>
+                        <mat-select (valueChange)="onSearchByFilter($event)" >
+                            <mat-option value="1">Pending Orders</mat-option>
+                            <mat-option value="2">Unshipped Orders</mat-option>
+                            <mat-option value="3">Prime Orders</mat-option>
+                            <mat-option value="4">Printed Invoices</mat-option>
+                            <mat-option value="5">Non Printed Invoices</mat-option>
+                            <mat-option value="6">In Stock Orders</mat-option>
+                            <mat-option value="7">Out Of Stock Orders</mat-option>
+                            <mat-option value="9">Processed Orders</mat-option>
+                            <mat-option value="0">Non Processed Orders</mat-option>
+                            <mat-option value="10">Printed Labels</mat-option>
+                            <mat-option value="11">Non Printed Labels</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    
+                    <mat-form-field appearance="standard" style="width: 250px !important; margin-right: 6px !important;" class="vex-flex-form-field" color="warn">
+                        <mat-label>Filter By Channel</mat-label>
+                            <mat-select (valueChange)="onSearchByChannel($event)">
+                                <mat-option *ngFor="let cur of showChannel" value="{{ cur.id }}">{{ cur.type }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    
+                    <mat-form-field appearance="standard" style="width: 140px !important; margin-right: 6px !important; margin-left: 27px !important;" fxFlex="none">
+                        <mat-label>Shipping Country</mat-label>
+                        <mat-select (valueChange)="onSearchByCountry($event)">
+                            <mat-option value="000">Select</mat-option>
+                            <mat-option value="IT">Italy</mat-option>
+                            <mat-option value="FR">France</mat-option>
+                            <mat-option value="DE">Germany</mat-option>
+                            <mat-option value="GB">United Kingdom</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    
+                    <mat-form-field appearance="standard" style="width: 180px !important; margin-right: 9px !important; margin-left: 27px !important;" fxFlex="none">
+                        <mat-label>Shipping Methods</mat-label>
+                        <mat-select (valueChange)="onChangeShippingCourier($event)">
+                            <mat-option *ngFor="let scl of shippingCourierList" value="{{ scl.id }}">{{ scl.name }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-slide-toggle [checked]="useDefault" (change)="onShowOrder($event)" color="warn">Show Orders</mat-slide-toggle>
+                  </div>
+                </div>
+            </div> 
+             
+            <div class='content'>
+                <div class='column'>
+                  <div class='row'>
+                    <mat-form-field appearance="standard" style="width: 160px !important; margin-left: 27px !important; margin-right: 10px !important;">
+                        <mat-label>From</mat-label>
+                        <input  (dateInput)="onSearchByFrom($event)" [(ngModel)]="fromDate" [matDatepicker]="datepickerRef" matInput>
+                        <mat-datepicker-toggle [for]="datepickerRef" matSuffix></mat-datepicker-toggle>
+                        <mat-datepicker #datepickerRef></mat-datepicker>
+                    </mat-form-field>
+        
+                    <mat-form-field appearance="standard" style="width: 160px !important;">
+                        <mat-label>To</mat-label>
+                        <input (dateInput)="onSearchByTo($event)" [(ngModel)]="toDate" [matDatepicker]="datepickerRefTo" matInput>
+                        <mat-datepicker-toggle [for]="datepickerRefTo" matSuffix></mat-datepicker-toggle>
+                        <mat-datepicker #datepickerRefTo></mat-datepicker>
+                    </mat-form-field>
+
+                    <button (click)="resetForm()" color="primary" mat-raised-button class="small-icon-button" type="button" style="margin-left: 10px !important; margin-right: 6px !important;">
+                        <mat-icon color="text-secondary" [icIcon]="icRefresh"></mat-icon>
+                    </button>
+                    <button (click)="onSearch()" class="mt-3" color="primary" class="small-icon-button" mat-raised-button type="button" style="margin-right: 6px !important;">
+                        <mat-icon color="text-secondary" [icIcon]="icSearch"></mat-icon>
+                    </button>
+
+                    <mat-form-field appearance="standard" style="width: 140px !important; margin-right: 6px !important;" fxFlex="none">
+                        <mat-label>Search By</mat-label>
+                        <mat-select (valueChange)="onSearchByChange($event)">
+                            <mat-option value="1">SKU</mat-option>
+                            <mat-option value="2">Order ID</mat-option>
+                            <mat-option value="3">Channel</mat-option>
+                            <mat-option value="4">Item Id</mat-option>
+                            <mat-option value="5">Customer</mat-option>
+                            <mat-option value="6">Post Code</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+        
+                    <mat-form-field appearance="standard" style="width: 180px !important; margin-right: 6px !important;" class="vex-flex-form-field" color="warn">
+                        <mat-label>Enter value to search</mat-label>
+                        <input matInput [(ngModel)]="searchByInput">
+                    </mat-form-field>
+                    
+                    <button (click)="resetSearch()" color="primary" mat-raised-button class="small-icon-button" type="button" style="margin-left: 10px !important; margin-right: 6px !important;">
+                        <mat-icon color="text-secondary" [icIcon]="icRefresh"></mat-icon>
+                    </button>
+                    <button (click)="onSearch()" class="small-icon-button mt-3" color="primary" mat-raised-button type="button" style="margin-right: 6px !important;">
+                        <mat-icon color="text-secondary" [icIcon]="icSearch"></mat-icon>
+                    </button>
+
+                    <mat-form-field appearance="standard" style="width: 140px !important; margin-left: 30px !important;" fxFlex="none">
+                        <mat-label>Sort By</mat-label>
+                        <mat-select (valueChange)="onSearchBystyle($event)" [(ngModel)]="teamInitial">
+                            <mat-option value="0">Sort By</mat-option>
+                            <mat-option value="1">SKU Ascending</mat-option>
+                            <mat-option value="2">SKU Descending</mat-option>
+                            <mat-option value="3">Price low to high</mat-option>
+                            <mat-option value="4">Price High to low</mat-option>
+                            <mat-option value="5">Title A-Z</mat-option>
+                            <mat-option value="6">Title Z-A</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <button (click)="resetSortBy()" color="primary" mat-raised-button class="small-icon-button" type="button" style="margin-left: 10px !important; margin-right: 6px !important;">
+                        <mat-icon color="text-secondary" [icIcon]="icRefresh"></mat-icon>
+                    </button>
+                  </div>
+                </div>
+            </div>
+                
+            
+            
+            
+            <div>
+                <div class="table-responsive">
+                    <table [dataSource]="dataSource" class="w-full top-30" mat-table matSort>
+                        
+                        <!-- Checkbox Column -->
+                        <ng-container matColumnDef="checkbox">
+                            <th *matHeaderCellDef mat-header-cell class="bg-sellershub pl-20">
+                            <mat-checkbox (change)="$event ? masterToggle() : null"
+                                            [checked]="selection.hasValue() && isAllSelected()"
+                                            [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                            color="primary">
+                            </mat-checkbox>
+                            </th>
+                            <td *matCellDef="let row" class="w-4 pl-20" mat-cell>
+                            <mat-checkbox (change)="setSelectedRow(row, $event)"
+                                            (click)="$event.stopPropagation()"
+                                            [checked]="selection.isSelected(row)"
+                                            color="primary">
+                            </mat-checkbox>
+                            </td>
+                        </ng-container>
+                        
+                        <ng-container matColumnDef="purchaseDate">
+                            <th *matHeaderCellDef mat-header-cell class="bg-sellershub">ORDER DATE</th>
+                            <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell>
+                                {{ row['purchaseDate'] | date: 'medium' }}<br />
+                                <!-- {{ row['order_time'] }} -->
+                                <img [src]="row['imageUrl']" class="h-120 w-12 align-middle">
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="orderId">
+                            <th *matHeaderCellDef mat-header-cell mat-sort-header class="bg-sellershub">ORDER ID</th>
+                            <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell>
+                                {{ row['orderId'] }}<br />
+                                <div class="label label-danger">{{ row['orderStatus'] }}</div>
+                                <div class="rounded px-2 py-1 font-medium text-xs bg-green-light">{{ row['channel'] }}</div><br />
+                                <!-- <div class="content">
+                                    <div class="column">
+                                        <div class="row">
+                                            <img src="https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubebay.png" style="width: 80px;" />
+                                        </div>
+                                    </div>
+                                    <div class="column">
+                                        <div class="row">
+                                            <img src="https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhubemailicon.png" style="width: 20px;" />
+                                        </div>
+                                    </div>
+                                </div> -->
+                            </td>
+                        </ng-container>
+                        
+
+                        <ng-container matColumnDef="title">
+                            <th *matHeaderCellDef mat-header-cell mat-sort-header class="bg-sellershub">PRODUCT</th>
+                            <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell style="width: 20px !important;">
+                                <a  (click)="openChannelproductModal()">
+                                    SKU: {{ row['sku'] }}<br />
+                                    Item ID: {{ row['id'] }}<br />
+                                    {{ row['title'] }}
+                                </a>
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="productTotalQty">
+                            <th *matHeaderCellDef mat-header-cell mat-sort-header class="bg-sellershub">QTY</th>
+                            <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell style="width: 20px !important;">
+                                <div class="flex">
+                                    <a class="w-10 h-10 leading-none flex items-center justify-center hover:bg-hover text-white bg-red"
+                                        mat-icon-button>
+                                       {{ row['quantityPurchased'] }}/{{ row['productTotalQty'] }}
+                                    </a>
+                                  </div>
+                            </td>
+                        </ng-container>
+
+                        <ng-container *ngFor="let column of columns">
+                            <ng-container *ngIf="column.type === 'text'" [matColumnDef]="column.property">
+                                <th *matHeaderCellDef class="uppercase" mat-header-cell mat-sort-header colspan="bg-sellershub"> {{ column.label }}</th>
+                                <td *matCellDef="let row" mat-cell>{{ row[column.property] }}</td>
+                            </ng-container>
+                        </ng-container>
+
+                        <ng-container matColumnDef="buyerName">
+                            <th *matHeaderCellDef mat-header-cell mat-sort-header class="bg-sellershub">SHIPPED ADDRESS</th>
+                            <td *matCellDef="let row" mat-cell>
+                              Name: {{ row['buyerName'] }}<br />
+                              Email: {{ row['buyerEmail'] }}<br />
+                              Address: {{ row['shipAddress1'] }}<br />
+                              Postcode: {{ row['shipPostalCode'] }}<br />
+                              Country: {{ row['shipCountry'] }}<br />
+                              <button color="secondary" class="small-icon-btn mr-4 font-10" matTooltip="Favorite this" mat-mini-fab type="button">
+                                <mat-icon class="text-grey" [icIcon]="icfaPrint"></mat-icon>
+                              </button>   
+                              <button color="secondary" class="small-icon-btn mr-4 font-10" matTooltip="Favorite this" mat-mini-fab type="button">
+                                <mat-icon class="text-grey" [icIcon]="icChip"></mat-icon>
+                              </button>   
+                              <button color="secondary" class="small-icon-btn mr-4 font-10" matTooltip="Favorite this" mat-mini-fab type="button">
+                                <mat-icon class="text-green" [icIcon]="icMoney"></mat-icon>
+                              </button>   
+                              <button color="secondary" class="small-icon-btn mr-4 font-10" matTooltip="Favorite this" mat-mini-fab type="button">
+                                <mat-icon class="text-green" [icIcon]="icGift"></mat-icon>
+                              </button>                          
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="totalPrice">
+                            <th *matHeaderCellDef mat-header-cell mat-sort-header class="bg-sellershub">ITEM TOTAL / SHIP COST</th>
+                            <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell style="width: 20px !important;">
+                                    {{ row['totalPrice'] }}
+                            </td>
+                        </ng-container>
+
+                        <!-- <ng-container matColumnDef="qty">
+                            <th *matHeaderCellDef mat-header-cell mat-sort-header class="bg-sellershub">QTY</th>
+                            <td *matCellDef="let row" mat-cell>
+                              <div class="flex">
+                                <a class="w-8 h-8 leading-none flex items-center justify-center hover:bg-hover text-white bg-red"
+                                   mat-icon-button>
+                                  {{ row['qty'] }}
+                                </a>
+                              </div>
+                            </td>
+                        </ng-container> -->
+
+                        <ng-container matColumnDef="notes">
+                            <th *matHeaderCellDef mat-header-cell mat-sort-header class="bg-sellershub">NOTES</th>
+                            <td *matCellDef="let row" class="w-8 min-w-8 pr-0" mat-cell>
+                                <div class="content">
+                                    <div class="column">
+                                        <div class="row">
+                                            <a (click)="openCommentShowModal()">Click for more</a><br>
+                                           <a (click)="openCommentCreateModal()"> <img src="https://khubweb.s3-us-west-1.amazonaws.com/web/kartzhubediticon.png"/></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="action">
+                            <th *matHeaderCellDef mat-header-cell mat-sort-header class="bg-sellershub">ACTION</th>
+                            <td *matCellDef="let row" mat-cell>
+                              <div class="flex">
+                                <button class="small-icon-button mr-4 font-10" [matMenuTriggerFor]="addNewMenuPrint"
+                                    color="primary"
+                                    mat-raised-button
+                                    type="button">Action <mat-icon [icIcon]="icArrowRight"></mat-icon>
+                                </button>
+                                    <mat-menu #addNewMenuPrint="matMenu" [overlapTrigger]="false" xPosition="after" yPosition="below">
+                                            <a routerLink="/apps/create-orders" mat-menu-item>
+                                                <span>Edit Order</span>
+                                            </a>
+                                        
+                                            <a (click)="openSendMailModal()" mat-menu-item>
+                                                <span>Send Email</span>
+                                            </a>
+                                        
+                                            <button mat-menu-item>
+                                                <span>Remove Order</span>
+                                            </button>
+                            
+                                            <button mat-menu-item>
+                                                <span>Via Shipstation</span>
+                                            </button>
+                            
+                                            <button mat-menu-item>
+                                                <span>Print Invoice</span>
+                                            </button>
+                            
+                                            <button mat-menu-item>
+                                                <span>Ready to Ship</span>
+                                            </button>
+                            
+                                            <button mat-menu-item>
+                                                <span>Cancel Order</span>
+                                            </button>
+                                    </mat-menu>
+                              </div>
+                            </td>
+                        </ng-container>
+                        
+            
+                        <tr *matHeaderRowDef="visibleColumns sticky: true" mat-header-row></tr>
+                        <tr *matRowDef="let row; columns: visibleColumns;"
+                            @fadeInUp stagger60ms
+                            class="hover:bg-hover trans-ease-out cursor-pointer"
+                            mat-row></tr>
+            
+                    </table>
+                </div>
+                <mat-paginator appearance="standard" [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" class="sticky left-0"></mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>

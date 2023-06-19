@@ -1,0 +1,29 @@
+<div class="card">
+    <div class="border-b py-4 px-6" fxLayout="row" fxLayoutAlign="start center">
+      <h2 class="m-0 title" fxFlex="auto">Shipping Courier Setup</h2>
+    </div>
+
+    <div class="py-0 px-0" fxLayout="row" fxLayout.lt-md="column" style="background-color: rgb(235, 235, 235);">
+        <mat-grid-list cols="4" gutterSize="0">
+            <mat-grid-tile *ngFor="let s of shippinglLists">
+                <div class="card">
+                    <div class="border-b py-4 px-8" fxLayout="row" fxLayoutAlign="start center">
+                        <img src="https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhub{{ s.code }}.png" style="width: 182px; height: 45px;">
+                    </div>
+                  
+                    <div class="py-4 px-4" fxLayout="row" fxLayout.lt-md="column">
+                        <div>
+                            <b style="text-align: center !important;">{{ s.name }}</b> <br />
+                            <mat-checkbox class="caption" #showTitle color="primary" checked="{{ s.enable }}">Enabled</mat-checkbox>
+                        </div>
+                        <div style="margin-top: 5px;">
+                            <button disabled="{{ !s.settings }}" routerLink="/apps/{{ s.code }}settings" class="small-icon-button py-4 px-8" style="font-size: 9pt !important;" color="primary" mat-raised-button type="button" class="mat-focus-indicator mat-raised-button mat-button-base mat-secondary">Setting</button>
+                            <button disabled="{{ !s.labelIntegrated }}" [routerLink]="['/apps/'+s.code+'labelsetup']"[queryParams]="{id:s.id}" class="small-icon-button py-4 px-8" style="font-size: 9pt !important; margin-left: 5px;" color="secondary" mat-raised-button type="button" class="mat-focus-indicator mat-raised-button mat-button-base mat-secondary">Label Setup</button>
+                        </div>
+                    </div>
+                </div>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+
+</div>

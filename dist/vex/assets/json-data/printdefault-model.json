@@ -1,0 +1,57 @@
+[
+    {
+      
+      "channel": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhub1x1.png",
+      "email": "One label per sheet",
+      "select": "",
+      "text":"GB"
+    },
+  
+    {
+      
+      "channel": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhub2x1.png",
+      "email": "Two labels per sheet (2x1)",
+      "select": "",
+      "text":"GB"
+    },
+  
+    {
+      
+      "channel": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhub2x3.png",
+      "email": "6 labels per sheet (2x3)",
+      "select": "",
+      "text":"GB"
+    },
+  
+    {
+      
+      "channel": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhub2x4.png",
+      "email": "8 labels per sheet (2x4)",
+      "select": "",
+      "text":"GB"
+    },
+  
+    {
+      
+      "channel": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhub2x5.png",
+      "email": "10 labels per sheet (2x5)",
+      "select": "",
+      "text":"GB"
+    },
+  
+    {
+      
+      "channel": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhub2x6.png",
+      "email": "12 labels per sheet (2x6)",
+      "select": "",
+      "text":"GB"
+    },
+  
+    {
+      
+      "channel": "https://s3-us-west-1.amazonaws.com/khubweb/web/kartzhub1x1.png",
+      "email": "(4x6)",
+      "select": "",
+      "text":"GB"
+    }
+  ]

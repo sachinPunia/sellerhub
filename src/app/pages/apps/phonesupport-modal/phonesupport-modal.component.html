@@ -1,0 +1,69 @@
+<div class="flex items-center" mat-dialog-title>
+    <p class="flex-auto text-lg font-medium font-12">
+        Callback hours are 10am - 5pm GMT, Monday - Friday. For requests made outside those times, 
+        we'll call you back at the start of the next business day. 
+        If you would like to call now please use the below numbers
+    </p>
+    <button mat-dialog-close mat-icon-button type="button">
+        <mat-icon [icIcon]="icClose" size="24px"></mat-icon>
+    </button>
+</div>
+<table class="w-full">
+    <tr><td class="left">US +1 (925) 217-1261 (8AM EST - 5PM EST)</td><td class="right">UK +44 203 371 7255 (10AM GMT - 5PM GMT)</td></tr>
+</table>
+  <mat-dialog-content>
+    
+    <table class="mt-18">
+        <tr>
+            <td class="td-width-left">
+                <p class="text-center mb-15">
+                    Leave your details here
+                    We will call you back
+                </p>
+                <img src="http://localhost:4200/assets/img/illustrations/it_support.svg" style="width: 100%;"/>
+            </td>
+            <td class="td-width-right">
+                <mat-form-field>
+                    <mat-label>Name</mat-label>
+                    <input matInput value="{{ toName }} ">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>E-mail</mat-label>
+                    <input matInput value="{{ toEmail }}">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Phone Number</mat-label>
+                    <input matInput value="{{ toNumber }}">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>What would you like to chat about ?</mat-label>
+                    <textarea matInput [(ngModel)]="toQuery"></textarea>
+                </mat-form-field>
+                <p>
+                    If applicable, please provide a few examples (SKU, Variant SKUs, Item Ids, Order Number, etc)
+                </p>
+            </td>
+        </tr>
+    </table>
+
+  </mat-dialog-content>
+  
+  <mat-dialog-actions>
+  
+    <span class="flex-1"></span>
+    
+    
+    <button mat-dialog-close mat-raised-button type="button" color="secondary">
+      <mat-icon [icIcon]="icCancel" [inline]="true" size="16px"></mat-icon> Close
+    </button>
+
+    <button (click)="saveTicket()" color="primary" mat-dialog-close mat-flat-button type="button">
+        <ic-icon [icIcon]="icSend" [inline]="true" size="16px"></ic-icon>  Send Request
+    </button>
+  
+    
+  </mat-dialog-actions>
+  

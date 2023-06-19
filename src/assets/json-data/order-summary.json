@@ -1,0 +1,20 @@
+[
+    {
+      "channel_name": "TEST_CRAFT",
+      "channel": "EBAY",
+      "order_status": "Pending",
+      "no_of_orders": 3
+    },
+    {
+      "channel_name": "TEST_CRAFT",
+      "channel": "EBAY",
+      "order_status": "Shipped",
+      "no_of_orders": 1658
+    },
+    {
+      "channel_name": "TEST_CRAFT",
+      "channel": "EBAY",
+      "order_status": "Unshipped",
+      "no_of_orders": 123
+    }
+]
